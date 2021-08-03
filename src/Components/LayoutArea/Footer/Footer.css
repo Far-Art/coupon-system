@@ -1,0 +1,8 @@
+.Footer {
+	text-align: center;
+	padding: 2px;
+}
+
+.Footer *{
+	color: black;
+}

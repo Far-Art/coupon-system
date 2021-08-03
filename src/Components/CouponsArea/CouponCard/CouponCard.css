@@ -1,0 +1,59 @@
+.CouponCard {
+    /* position: relative; */
+	/* background-image: linear-gradient(red, yellow); */
+    border-radius: 300px;
+    margin:auto;
+    max-width: 80vw;
+    /* overflow: hidden; */
+    /* min-height: 150px; */
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    /* transform: rotateZ(10deg); */
+}
+
+.CouponCard * {
+    position: relative;
+    z-index: 2;
+    top: 0;
+}
+
+.CouponCard > .title {
+    text-align: center;
+    font-weight: 500;
+    font-size: calc(2vw);
+}
+
+.CouponCard > .company {
+    text-align: center;
+    font-weight: 500;
+    font-size: larger;
+}
+
+.CouponCard > .category {
+    text-align: center;
+    font-weight: 500;
+    font-size: larger;
+}
+
+.CouponCard > .description {
+    text-align: center;
+    font-size: large;
+}
+
+.CouponCard > .amount {
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.CouponCard > .price {
+    font-size: x-large;
+    font-weight: bolder;
+    color: chartreuse;
+}
+
+.CouponCard > .endDate {
+    font-size: x-large;
+    font-weight: bolder;
+    color: red;
+}
+
