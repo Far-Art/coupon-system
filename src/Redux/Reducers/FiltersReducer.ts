@@ -1,3 +1,4 @@
+import { FilterTypes } from "../../Models/FilterTypes";
 import { FilterAction, FilterActionType } from "../Actions/FilterAction";
 import { FiltersAppState } from "../States/FiltersAppState";
 
@@ -8,24 +9,41 @@ export function FiltersReducer(currentState:FiltersAppState = new FiltersAppStat
 
     const newState = {...currentState};
 
-    let currentFilters:any[] | undefined = newState.activeFilters.get(action.filterKey);
-
     switch(action.type){
+        /* Adding filter */
         case FilterActionType.ADD: 
-            if(currentFilters === undefined){
-                newState.activeFilters.set(action.filterKey, [action.filterValue]);
-            } else {
-                currentFilters.push(action.filterValue);
-                newState.activeFilters.set(action.filterKey, currentFilters);
-                console.log(newState);
+            switch(action.filterKey){
+                case FilterTypes.CATEGORIES:
+                    newState.categories.push(action.filterValue);
+                    break;
+                case FilterTypes.PRICE:
+                    newState.price.push(action.filterValue);
+                    break;
+                case FilterTypes.COMPANIES:
+                    newState.companies.push(action.filterValue);
+                    break;
+                case FilterTypes.TEXT:
+                    newState.freeText = action.filterValue;
+                    break;
             }
             break;
+
+        /* Removing filter */
         case FilterActionType.REMOVE:
-            // if(currentState.filters.has(action.filterType) && currentState.filters.get(action.filterType)?.includes(action.filter)){
-            //     newState.filters.get(action.filterType)?.filter(function(value, index, arr){
-            //         return value !== action.filter;
-            //     })
-            // }
+            switch(action.filterKey){
+                case FilterTypes.CATEGORIES:
+                    newState.categories = newState.categories.filter(c => c !== action.filterValue);
+                    break;
+                case FilterTypes.PRICE:
+                    newState.price = [];
+                    break;
+                case FilterTypes.COMPANIES:
+                    newState.companies = [];
+                    break;
+                case FilterTypes.TEXT:
+                    newState.freeText = "";
+                    break;
+            }
             break;
     }
     return newState;

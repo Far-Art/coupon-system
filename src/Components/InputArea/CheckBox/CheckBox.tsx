@@ -1,6 +1,6 @@
 import React from "react";
 import { FilterTypes } from "../../../Models/FilterTypes";
-import { addFilter } from "../../../Redux/Actions/FilterAction";
+import { addFilter, removeFilter } from "../../../Redux/Actions/FilterAction";
 import store from "../../../Redux/Store/Store";
 import "./CheckBox.css";
 
@@ -20,7 +20,7 @@ function CheckBox({filterKey, filterValue}:CheckBoxProps): JSX.Element {
         if(!checked){
             store.dispatch(addFilter(filterKey, filterValue));
         } else {
-            // store.dispatch();
+            store.dispatch(removeFilter(filterKey, filterValue));
         }
       };
 
