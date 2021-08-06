@@ -1,5 +1,9 @@
 .Menu {
     display: inline-block;
     position: absolute;
-	background-color: blue;
+    z-index: 3;
+    background: url("../../../Assets/Images/ZigZagBG.svg");
+    background-size: 10%;
+    border-radius: 35px;
+    padding: 10px;
 }

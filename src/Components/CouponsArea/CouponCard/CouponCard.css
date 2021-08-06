@@ -1,59 +1,112 @@
 .CouponCard {
-    /* position: relative; */
-	/* background-image: linear-gradient(red, yellow); */
+    position: relative;
+    background: url("../../../Assets/Images/ZigZagBG.svg") center;
+    background-size: calc(40px + 3vw);
     border-radius: 300px;
-    margin:auto;
-    max-width: 80vw;
-    /* overflow: hidden; */
-    /* min-height: 150px; */
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    /* transform: rotateZ(10deg); */
+    margin:calc(2% + 30px) auto;
+    max-width: 1000px;
+    text-align: center;
+    padding: calc(5px + 0.1vw);
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    height: 200px;
+    animation: out 1s ease;
+}
+
+.CouponCard:hover {
+    /* animation: grow 1s timing-function delay iteration-count direction fill-mode; */
+    /* animation: in 1s ease; */
+    /* animation-fill-mode: both; */
 }
 
 .CouponCard * {
-    position: relative;
     z-index: 2;
+}
+
+.Dashed_border {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    border: calc(4px + 0.05vw) dashed white;
+    border-radius: inherit;
+}
+
+.Image_container {
+	transform: translate(0%,-50%);
+	top: 50%;
+	right: -5px;
+    position: absolute;
+    height: 190px;
+    width: 190px;
+    margin: auto;
+    border-radius: 100vw;
+    border: calc(5px + 0.05vw) solid white;
+    overflow: hidden;
+    background: white;
+}
+
+.Image_container * {
+    height: calc(100%);
+    width: 100%;
+}
+
+.Price_tag {
+    position: absolute;
+    right: -40px;
+    top: 135px;
+    background-image: url("../../../Assets/Icons/PriceLabel.svg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 120px;
+    width: 55px;
+    transform: rotate(-35deg);
+}
+
+.CouponCard .title {
+    margin: auto;
+    font-weight: bold;
+    font-size: calc(15px + 0.4vw);
+    color: white;
+    width: 60%;
+}
+
+.CouponCard .company {
+    margin: 50px 0;
+    font-weight: 500;
+    font-size: calc(8px + 0.4vw);
+    color: white;
+}
+
+.CouponCard .category {
     top: 0;
+    margin: calc(10px + 0.5%) 0;
+    font-weight: 300;
+    font-size: calc(7px + 0.2vw);
+    color: white;
 }
 
-.CouponCard > .title {
-    text-align: center;
-    font-weight: 500;
-    font-size: calc(2vw);
-}
-
-.CouponCard > .company {
-    text-align: center;
-    font-weight: 500;
-    font-size: larger;
-}
-
-.CouponCard > .category {
-    text-align: center;
-    font-weight: 500;
-    font-size: larger;
-}
-
-.CouponCard > .description {
-    text-align: center;
-    font-size: large;
-}
-
-.CouponCard > .amount {
-    font-size: x-large;
+.CouponCard .price {
     font-weight: bolder;
+    color: white;
 }
 
-.CouponCard > .price {
-    font-size: x-large;
-    font-weight: bolder;
-    color: chartreuse;
+@keyframes in {
+    0% {
+        transform: scale(100%);
+    }
+    
+    100% {
+        transform: scale(110%);
+    }
 }
 
-.CouponCard > .endDate {
-    font-size: x-large;
-    font-weight: bolder;
-    color: red;
+@keyframes out {
+    0% {
+        transform: scale(110%);
+    }
+    
+    100% {
+        transform: scale(100%);
+    }
 }
 

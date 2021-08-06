@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -24,46 +26,51 @@
     width: 100vw;
 }
 
-.Layout {
-    background: url("../../../Assets/Images/kitten.jpg") right no-repeat ;
-    background-size: cover;
-    /* background: url("../../../Assets/Images/IconGridBG.svg") right;
-    background-size: 50%; */
-    height: 100vh;
-}
-
-.NavBar {
+header {
     position: sticky;
+    z-index: 6;
     top: 0;
 }
 
+.Layout {
+    background: url("../../../Assets/Images/IconGridBG.svg") center;
+    background-size: 50%;
+    background-attachment:local;
+    height: 100vh;
+    overflow: auto;
+    z-index: 2;
+}
+
 /*TODO CHECK IF POSITION CAN BE REPLACED WITH DEFAULT*/
-.Footer{
-    position: absolute;
+.Footer {
+    position: fixed;
     bottom: 0;
     width: 100%;
 }
 
 /* GLOBAL CLASSES DOWN BELLOW*/
 /* ALL GLOBAL CLASSES WRITTEN IN CAPS */
+
 /* global class for transparent elements */
 .TRANSPARENT {
-    background: rgba(199, 233, 216, 0.5);
-    backdrop-filter: blur(3px);
+    background: rgba(248, 243, 246, 0.4);
+    backdrop-filter: blur(10px) saturate(150%) brightness(110%);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.1);
 }
 
 .TRANSPARENT * {
-    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.7);
+    text-shadow: 0 0 10px rgb(255, 255, 255),0 0px 30px rgb(255, 255, 255);
 }
 
+/* global class for forms */
 .FORM {
     border-radius: 40px;
     text-align: center;
     padding: 20px 5px;
 }
 
+/* global class for fields and links */
 .FIELD, .LINK {
     font-family:'Montserrat', sans-serif;
     border: 1px solid rgba(0, 0, 0, 0);
@@ -105,6 +112,7 @@
     padding: 0.4vh 10px;
 }
 
+/* global class for elements that would block entire page */
 .BLOCKER{
     position: absolute;
     top: 0;

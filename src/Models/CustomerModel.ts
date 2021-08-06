@@ -5,6 +5,5 @@ export class CustomerModel{
     firstName:string = "";
     lastName:string = "";
     email:string = "";
-    password:string = "";
     type:UserTypes = UserTypes.CUSTOMER;
 }

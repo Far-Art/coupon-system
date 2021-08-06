@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Layout from './Components/LayoutArea/Layout/Layout';
+import State_Data_Fetcher from './Data/State_Data_Fetcher/State_Data_Fetcher';
 
 ReactDOM.render(
   <React.StrictMode>
     <Layout />
+    <State_Data_Fetcher/>
   </React.StrictMode>,
   document.getElementById('root')
 );

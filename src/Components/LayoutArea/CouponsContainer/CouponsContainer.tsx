@@ -1,34 +1,45 @@
-import axios from "axios";
 import { Component } from "react";
+import { RouteComponentProps } from "react-router-dom";
 import { Unsubscribe } from "redux";
 import { CouponModel } from "../../../Models/CouponModel";
-import { fetchAllCoupons } from "../../../Redux/Actions/CouponsActionCreators";
+import { FiltersAppState } from "../../../Redux/States/FiltersAppState";
 import store from "../../../Redux/Store/Store";
-import globals from "../../../Services/Globals";
 import CouponCard from "../../CouponsArea/CouponCard/CouponCard";
 import "./CouponsContainer.css";
 
-interface CouponsState {
-    coupons:CouponModel[];
+interface RouteParam{
+    id:string;
 }
 
-class CouponsContainer extends Component<{}, CouponsState> {
+interface CouponsContainerState {
+    coupons: CouponModel[];
+    filters?: FiltersAppState;
+}
+
+interface CouponsContainerProps extends RouteComponentProps<RouteParam> {
+    coupon:CouponModel;
+}
+
+class CouponsContainer extends Component<CouponsContainerProps, CouponsContainerState> {
     
     private unsubscribe!: Unsubscribe;
     
-    public constructor(props: {}) {
+    public constructor(props: CouponsContainerProps) {
         super(props);
         this.state = {
             coupons: []
         };
     }
 
-    async componentDidMount(){
-        const response = await axios.get<CouponModel[]>(globals.urls.coupons);
+    componentDidMount(){   
+        const id = +this.props.match.params.id;
         this.unsubscribe = store.subscribe(() => {
-            this.setState({coupons: store.getState().couponsState.coupons});
+            if(id > 0){
+                this.setState({coupons:store.getState().couponsState.coupons.filter(c => c.id == id)});
+            } else {
+                this.setState({coupons: store.getState().couponsState.coupons});
+            }
         });
-        store.dispatch(fetchAllCoupons(response.data));
     }
 
     componentWillUnmount(){

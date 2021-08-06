@@ -1,6 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
 import Cart from "../Cart/Cart";
-import FiltersContainer from "../FiltersContainer/FiltersContainer";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Menu from "../Menu/Menu";
@@ -15,14 +14,10 @@ function Layout(): JSX.Element {
             <BrowserRouter>
                 <header>
                     <Header />
+                    <nav>
+                        <NavBar />
+                    </nav>
                 </header>
-                <nav>
-                    <NavBar />
-                    <Cart />
-                </nav>
-                <menu>
-                    <Menu />
-                </menu>
                 <main>
                     <Routing />
                     <WelcomeScreen />

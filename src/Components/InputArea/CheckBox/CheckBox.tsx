@@ -1,16 +1,30 @@
 import React from "react";
+import { FilterTypes } from "../../../Models/FilterTypes";
+import { addFilter } from "../../../Redux/Actions/FilterAction";
+import store from "../../../Redux/Store/Store";
 import "./CheckBox.css";
 
-function CheckBox(): JSX.Element {
+interface CheckBoxProps{
+    filterKey:FilterTypes;
+    filterValue:string | number;
+}
+
+function CheckBox({filterKey, filterValue}:CheckBoxProps): JSX.Element {
 
     const [checked, setChecked] = React.useState(false);
 
     const handleChange = () => {
         setChecked(!checked);
+
+        /* update filters global state */ 
+        if(!checked){
+            store.dispatch(addFilter(filterKey, filterValue));
+        } else {
+            // store.dispatch();
+        }
       };
 
     return (
-        
         <div className="CheckBox">
 			<label>
                 <input 
@@ -18,7 +32,7 @@ function CheckBox(): JSX.Element {
                     checked={checked}
                     onChange={handleChange}
                 />
-                Some Value
+                {filterValue}
             </label>
         </div>
     );

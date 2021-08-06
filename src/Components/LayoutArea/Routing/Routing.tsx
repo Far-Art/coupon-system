@@ -1,6 +1,8 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 import Page404 from "../../SharedArea/Page404/Page404";
+import CompaniesContainer from "../CompaniesContainer/CompaniesContainer";
 import CouponsContainer from "../CouponsContainer/CouponsContainer";
+import CustomersContainer from "../CustomersContainer/CustomersContainer";
 import Home from "../Home/Home";
 import Login from "../Login/Login";
 import Logout from "../Logout/Logout";
@@ -12,8 +14,10 @@ function Routing(): JSX.Element {
 			<Switch>
                 <Route path="/home" component={Home} exact />
                 <Route path="/coupons" component={CouponsContainer} exact />
-                {/* <Route path="/customers" component={} exact /> */}
-                {/* <Route path="/companies" component={} exact /> */}
+                <Route path="/coupons/:id" component={CouponsContainer} exact />
+                <Route path="/coupons/:name" component={CouponsContainer} exact />
+                <Route path="/customers" component={CustomersContainer} exact />
+                <Route path="/companies" component={CompaniesContainer} exact />
                 <Route path="/login" component={Login} exact />
                 <Route path="/signup" component={Sign_up} exact />
                 <Route path="/logout" component={Logout} exact />

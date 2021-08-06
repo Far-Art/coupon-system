@@ -1,6 +1,7 @@
 .Footer {
 	text-align: center;
 	padding: 2px;
+	z-index: 5;
 }
 
 .Footer *{

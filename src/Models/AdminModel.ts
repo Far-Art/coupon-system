@@ -5,7 +5,6 @@ export class AdminModel{
     firstName:string = "";
     lastName:string = "";
     email:string = "";
-    password:string = "";
     department?:string;
     levelOfAccess!:string;
     type:UserTypes = UserTypes.ADMIN;
