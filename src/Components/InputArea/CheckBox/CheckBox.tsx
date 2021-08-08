@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import { FilterTypes } from "../../../Models/FilterTypes";
 import { addFilter, removeFilter } from "../../../Redux/Actions/FilterAction";
 import store from "../../../Redux/Store/Store";
@@ -7,6 +7,9 @@ import "./CheckBox.css";
 interface CheckBoxProps{
     filterKey:FilterTypes;
     filterValue:string | number;
+    // checked?:boolean;
+    // onChange?:ChangeEventHandler;
+    changeEventHandler?:ChangeEventHandler;
 }
 
 function CheckBox({filterKey, filterValue}:CheckBoxProps): JSX.Element {

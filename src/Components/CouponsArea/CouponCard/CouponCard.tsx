@@ -8,8 +8,8 @@ interface CardProps {
 
 class CouponCard extends Component<CardProps> {
 
-    public constructor(props:CouponModel){
-        super({coupon: {...props}});
+    public constructor(props: CardProps){
+        super(props);
     }
       
     public render():JSX.Element {
@@ -17,7 +17,7 @@ class CouponCard extends Component<CardProps> {
             <div className="CouponCard" >
                 <div className="Dashed_border">
                     <div className="Image_container">
-                        <img className="CENTERED" src={this.props.coupon.image} />
+                        <img className="CENTERED" src={this.props.coupon.image} alt="coupon_image" />
                     </div>
                     
                     <p className="title CENTERED">{this.props.coupon.title}</p>

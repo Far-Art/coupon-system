@@ -4,7 +4,7 @@
 
 .Header_Background {
     background: url("../../../Assets/Images/ZigZagBG.svg") center;
-    background-size: 5%;
+    background-size: calc(50px + 1%);
     opacity: 0.91;
     padding: 25px;
     text-align: center;

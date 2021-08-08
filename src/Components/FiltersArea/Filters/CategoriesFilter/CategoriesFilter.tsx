@@ -10,6 +10,7 @@ function CategoriesFilter(): JSX.Element {
    
     const distinctCategories = categoriesAsSet(store.getState().couponsState.coupons);
     const [, setCategories] = useState(distinctCategories);
+    
 
     useEffect(() => {
         store.subscribe(() => setCategories(categoriesAsSet(store.getState().couponsState.coupons)));

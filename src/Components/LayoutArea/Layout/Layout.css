@@ -33,8 +33,8 @@ header {
 }
 
 .Layout {
-    background: url("../../../Assets/Images/IconGridBG.svg") center;
-    background-size: 50%;
+    background: url("../../../Assets/Images/IconGridBG.svg") top;
+    background-size: calc(400px + 20%);
     background-attachment:local;
     height: 100vh;
     overflow: auto;

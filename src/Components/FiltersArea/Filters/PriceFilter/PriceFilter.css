@@ -1,8 +1,8 @@
-.CategoriesFilter {
+.PriceFilter {
 	margin: 0 auto 30px auto;
 }
 
-.CategoriesFilter > p {
+.PriceFilter p{
     font-weight: 500;
     margin: 10px auto;
     text-align: center;

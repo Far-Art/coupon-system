@@ -3,15 +3,13 @@ import { FilterAction, FilterActionType } from "../Actions/FilterAction";
 import { FiltersAppState } from "../States/FiltersAppState";
 
 export function FiltersReducer(currentState:FiltersAppState = new FiltersAppState(), action:FilterAction):FiltersAppState{
-    
-    // TODO Check this FC for proper functionality
-    // TODO SIMPLIFY Filters Functions after FilterAppState simplifications
 
     const newState = {...currentState};
 
     switch(action.type){
         /* Adding filter */
         case FilterActionType.ADD: 
+            newState.filtersActive = true;
             switch(action.filterKey){
                 case FilterTypes.CATEGORIES:
                     newState.categories.push(action.filterValue);
@@ -45,6 +43,18 @@ export function FiltersReducer(currentState:FiltersAppState = new FiltersAppStat
                     break;
             }
             break;
+            // TODO Reset state of checkboxes on clear
+        case FilterActionType.CLEAR:
+            newState.categories = [];
+            newState.companies = [];
+            newState.price = [];
+            newState.freeText = "";
     }
+    
+    /* check if all filters disabled */
+    if(newState.categories.length === 0 && newState.companies.length === 0 && newState.price.length === 0 && newState.freeText.length === 0){
+        newState.filtersActive = false;
+    }
+
     return newState;
 }
