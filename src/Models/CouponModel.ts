@@ -1,6 +1,6 @@
 export class CouponModel{
     id!:number;
-    company!:string;
+    companyName!:string;
     category!:string;
     title!:string;
     description?:string;

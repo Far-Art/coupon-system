@@ -1,3 +1,14 @@
 .Login {
-    z-index: 4;
+    z-index: 5;
+    display: inline;
+}
+
+.Login > button {
+    margin: 0;
+}
+
+.Login > .Login__Form{
+    position: fixed;
+    transform: translate(-50%, 30px);
+    left: 50%;
 }

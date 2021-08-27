@@ -5,7 +5,6 @@ import reportWebVitals from './reportWebVitals';
 import Layout from './Components/LayoutArea/Layout/Layout';
 import STATE_DATA_FETCHER from './Data/STATE_DATA_FETCHER';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <Layout />

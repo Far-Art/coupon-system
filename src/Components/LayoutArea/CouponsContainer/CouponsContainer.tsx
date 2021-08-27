@@ -59,7 +59,7 @@ class CouponsContainer extends Component<CouponsContainerProps, CouponsContainer
 
                 /* init arrays with coupons by filters */
                 const categoriesArr = allCouponsArray.filter(c => categoriesFilter.includes(this.convertString(c.category)));
-                const companiesArr = allCouponsArray.filter(c => companiesFilter.includes(c.company));
+                const companiesArr = allCouponsArray.filter(c => companiesFilter.includes(c.companyName));
 
                 /* leave only distinct coupons */
                 let distinctCoupons = Array.from(new Set<CouponModel>(categoriesArr.concat(companiesArr)));
@@ -99,7 +99,7 @@ class CouponsContainer extends Component<CouponsContainerProps, CouponsContainer
         return searchArray.filter(function(coupon:CouponModel){
             return (coupon.title.toLowerCase().indexOf(text) > -1 ||
                 (coupon.description === undefined ? coupon.title.toLowerCase().indexOf(text) > -1 : coupon.description.toLowerCase().indexOf(text) > -1) ||
-                coupon.company.toString().toLowerCase().indexOf(text) > -1);
+                coupon.companyName.toString().toLowerCase().indexOf(text) > -1);
             }
         );
     }

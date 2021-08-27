@@ -21,7 +21,7 @@ class CouponCard extends Component<CardProps> {
                     </div>
                     
                     <p className="title CENTERED">{this.props.coupon.title}</p>
-                    <p className="company CENTERED">{"By " + this.props.coupon.company}</p>
+                    <p className="company CENTERED">{"By ''" + this.props.coupon.companyName + "''"}</p>
                     <p className="category CENTERED">{this.props.coupon.category}</p>
                     
                     <div className="Price_tag">
