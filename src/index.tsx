@@ -3,12 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Layout from './Components/LayoutArea/Layout/Layout';
-import STATE_DATA_FETCHER from './Data/STATE_DATA_FETCHER';
+import { Provider } from 'react-redux';
+import {store, persistor} from './Redux/Store/Store';
+import { PersistGate } from "redux-persist/integration/react";
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Layout />
-    <STATE_DATA_FETCHER/>
+      <Provider store={store}>
+        <BrowserRouter>
+          <PersistGate persistor={persistor}>
+            <Layout />
+          </PersistGate>
+        </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

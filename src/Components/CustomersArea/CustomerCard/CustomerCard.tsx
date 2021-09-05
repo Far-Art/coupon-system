@@ -8,7 +8,7 @@ interface CardProps{
 function CustomerCard(props:CardProps): JSX.Element { 
     return (
         <div className="CustomerCard">
-			{props.customer.firstName}
+			{props.customer.name}
             <br/>
             {props.customer.lastName}
         </div>

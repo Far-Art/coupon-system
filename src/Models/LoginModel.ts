@@ -1,6 +1,9 @@
-import { UserTypes } from "./UserTypes";
+import { ClientType } from "./ClientType";
 
 export class LoginModel {
-    public email:string = "";
-    public password:string ="";
+    public id!:number;
+    public email!:string;
+    public fullName!:string;
+    public password!:string;
+    public clientType!:ClientType;
 }

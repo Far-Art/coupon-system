@@ -10,20 +10,22 @@ export function companyReducer(currentState:CompaniesAppState = new CompaniesApp
 
     switch(action.type){
         case CompaniesActionType.ADD:
-            newState.companies.push(action.payload);
+            newState.appCompaniesList.push(action.payload);
             break;
         case CompaniesActionType.GET_SINGLE:
-            newState.companies = action.payload;
+            newState.appCompaniesList = action.payload;
             break;
         case CompaniesActionType.FETCH_ALL:
-            newState.companies = action.payload;
+            newState.appCompaniesList = action.payload;
             break;
         case CompaniesActionType.DELETE:
-            newState.companies = newState.companies.filter(c => c.id !== action.payload);
+            newState.appCompaniesList = newState.appCompaniesList.filter(c => c.id !== action.payload);
             break;
         case CompaniesActionType.UPDATE:
-            newState.companies = updateCustomer(newState.companies, action.payload);
+            newState.appCompaniesList = updateCustomer(newState.appCompaniesList, action.payload);
             break;
+        default:
+            return currentState;
     }
     return newState;
 }

@@ -12,13 +12,13 @@ export function FiltersReducer(currentState:FiltersAppState = new FiltersAppStat
             newState.filtersActive = true;
             switch(action.filterKey){
                 case FilterTypes.CATEGORIES:
-                    newState.categories.push(action.filterValue);
+                    newState.categoriesList.push(action.filterValue);
                     break;
                 case FilterTypes.PRICE:
-                    newState.price.push(action.filterValue);
+                    newState.priceList.push(action.filterValue);
                     break;
                 case FilterTypes.COMPANIES:
-                    newState.companies.push(action.filterValue);
+                    newState.companiesList.push(action.filterValue);
                     break;
                 case FilterTypes.TEXT:
                     newState.freeText = action.filterValue;
@@ -30,13 +30,13 @@ export function FiltersReducer(currentState:FiltersAppState = new FiltersAppStat
         case FilterActionType.REMOVE:
             switch(action.filterKey){
                 case FilterTypes.CATEGORIES:
-                    newState.categories = newState.categories.filter(c => c !== action.filterValue);
+                    newState.categoriesList = newState.categoriesList.filter(c => c !== action.filterValue);
                     break;
                 case FilterTypes.PRICE:
-                    newState.price = [];
+                    newState.priceList = [];
                     break;
                 case FilterTypes.COMPANIES:
-                    newState.companies = [];
+                    newState.companiesList = [];
                     break;
                 case FilterTypes.TEXT:
                     newState.freeText = "";
@@ -45,14 +45,18 @@ export function FiltersReducer(currentState:FiltersAppState = new FiltersAppStat
             break;
             // TODO Reset state of checkboxes on clear
         case FilterActionType.CLEAR:
-            newState.categories = [];
-            newState.companies = [];
-            newState.price = [];
+            newState.categoriesList = [];
+            newState.companiesList = [];
+            newState.priceList = [];
             newState.freeText = "";
+            break;
+        
+        default:
+            return currentState;
     }
     
     /* check if all filters disabled */
-    if(newState.categories.length === 0 && newState.companies.length === 0 && newState.price.length === 0 && newState.freeText.length === 0){
+    if(newState.categoriesList.length === 0 && newState.companiesList.length === 0 && newState.priceList.length === 0 && newState.freeText.length === 0){
         newState.filtersActive = false;
     }
 

@@ -1,4 +1,4 @@
-import store from "../../../../Redux/Store/Store";
+import {store} from "../../../../Redux/Store/Store";
 import "./FreeTextFilter.css";
 import { Control, useForm, useWatch  } from "react-hook-form";
 import { addFilter } from "../../../../Redux/Actions/FilterAction";

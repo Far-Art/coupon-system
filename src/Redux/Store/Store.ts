@@ -1,12 +1,15 @@
-import { combineReducers, createStore } from "redux";
-import { companyReducer } from "../Reducers/CompanyReducer";
-import { couponReducer } from "../Reducers/CouponReducer";
-import { customerReducer } from "../Reducers/CustomerReducer";
-import { FiltersReducer } from "../Reducers/FiltersReducer";
+import { createStore } from "redux";
+import { persistStore } from "redux-persist";
+import persistedReducer from "./RootReducer"
 
-const reducers = combineReducers({couponsState: couponReducer, filterState:FiltersReducer, customersState:customerReducer, companiesState:companyReducer});
+// // Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;
 
-const store = createStore(reducers, (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+export const store = createStore(persistedReducer, (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
 (window as any).__REDUX_DEVTOOLS_EXTENSION__());
 
-export default store;
+export const persistor = persistStore(store);
+
+export default {store, persistor};

@@ -1,0 +1,75 @@
+/* GLOBAL CLASSES DOWN BELLOW*/
+/* ALL GLOBAL CLASSES WRITTEN IN CAPS */
+
+/* global class for forms */
+.WHITE__BG {
+    background: rgb(250, 250, 250);
+}
+
+.FORM {
+    border-radius: 40px;
+    text-align: center;
+    padding: 20px 5px;
+}
+
+/* global class for fields and links */
+.FIELD, .LINK {
+    font-family:'Montserrat', sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 20rem;
+    padding: 0.6vh 0.7vw;
+    margin: 5px 15px;
+    font-size: 1.08em;
+    color: rgb(150, 1, 71); /* text color */
+    transition-duration: 0.3s;
+}
+
+.FIELD:hover, .LINK:hover{
+    opacity: 1;
+    border-color: rgb(150, 1, 71);
+}
+
+.FIELD:focus {
+    opacity: 1;
+    border: 1px solid rgba(0, 0, 0, 0);
+	outline: none;
+    transition-duration: 0.3s;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.FIELD::placeholder {
+    color: rgb(194, 205, 206);
+    opacity: 1; /* Firefox */
+    transition-duration: 0.3s;
+}
+
+.FIELD:focus::placeholder {
+    opacity: 0;
+    transition-duration: 0.3s;
+}
+
+.LINK {
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 0.4vh 10px;
+}
+
+/* this class makes element to be positioned in center of a screen */
+.CENTERED{
+    position: absolute;
+	transform: translate(-50%,-50%);
+	top: 50%;
+	left: 50%;
+}
+
+.DISPLAY__NONE {
+    display: none;
+}
+
+.DISPLAY__BLOCK {
+    display: block;
+}
+
+.DISPLAY__INLINE {
+    display: inline;
+}

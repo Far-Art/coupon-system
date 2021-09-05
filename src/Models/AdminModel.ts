@@ -1,11 +1,11 @@
-import { UserTypes } from "./UserTypes";
+import { ClientType } from "./ClientType";
 
 export class AdminModel{
     id!:number;
-    firstName:string = "";
-    lastName:string = "";
-    email:string = "";
+    name!:string ;
+    lastName!:string ;
+    email!:string;
     department?:string;
     levelOfAccess!:string;
-    type:UserTypes = UserTypes.ADMIN;
+    clientType:ClientType = ClientType.ADMIN;
 }

@@ -1,8 +1,8 @@
-import { UserTypes } from "./UserTypes";
+import { ClientType } from "./ClientType";
 
 export class CompanyModel{
     id!:number;
-    name:string = "";
-    email:string = "";
-    type:UserTypes = UserTypes.COMPANY;
+    name!:string;
+    email!:string;
+    clientType:ClientType = ClientType.COMPANY;
 }

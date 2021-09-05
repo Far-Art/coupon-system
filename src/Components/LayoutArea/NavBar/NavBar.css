@@ -1,4 +1,37 @@
+.NavBar {
+    padding: 10px ;
+    /* display: inline-block; */
+    display: grid;
+    grid-template-columns:1fr max-content ;
+    grid-auto-flow: column;
+    align-self: center;
+}
+
+#InfoSection{
+    text-align: center;
+}
+
+#InfoSection > * {
+    display: inline-block;
+    margin: auto;
+    word-wrap: break-word;
+}
+
+.NavBar > #InfoSection {
+    /* background-color: red; */
+    /* display: inline; */
+    margin: auto;
+    /* grid-column: 1; */
+    /* grid-row: 1; */
+}
+
+.NavBar > .Logout {
+    place-self: right;
+    justify-self: end;
+    grid-column: 2;
+    grid-column-end: auto;
+}
+
 .NavBar > p{
- font-size: larger;
- text-align: center;
+    font-size: larger;
 }

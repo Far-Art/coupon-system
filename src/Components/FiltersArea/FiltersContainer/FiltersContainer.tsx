@@ -1,5 +1,5 @@
 import { clearFilters } from "../../../Redux/Actions/FilterAction";
-import store from "../../../Redux/Store/Store";
+import {store} from "../../../Redux/Store/Store";
 import UserLayoutPreferences from "../../LayoutArea/UserLayoutConfig/UserLayoutPreferences";
 import CategoriesFilter from "../Filters/CategoriesFilter/CategoriesFilter";
 import FreeTextFilter from "../Filters/FreeTextFilter/FreeTextFilter";

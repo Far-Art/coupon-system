@@ -1,4 +1,4 @@
-import { UserTypes } from "./UserTypes";
+import { ClientType } from "./ClientType";
 
 export class SignupModel {
     public name:string = "";
@@ -6,5 +6,5 @@ export class SignupModel {
     public email:string = "";
     public password:string ="";
     public telephone?:string;
-    public clientType:UserTypes = UserTypes.CUSTOMER; /* default value is customer */
+    public clientType:ClientType = ClientType.CUSTOMER; /* default value is customer */
 }

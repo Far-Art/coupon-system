@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import store from "../../../../Redux/Store/Store";
+import {store} from "../../../../Redux/Store/Store";
 import MultiRangeSlider from "../RangeFilter/MultiRangeSlider";
 import "./PriceFilter.css";
 
@@ -10,7 +10,7 @@ function PriceFilter(): JSX.Element {
 
     useEffect(() => {
         store.subscribe(() => {
-            const pricesArr:number[] = store.getState().couponsState.coupons.map(c => c.price);
+            const pricesArr:number[] = store.getState().couponsAppState.appCouponsList.map(c => c.price);
 
             setPriceArr(
                 [Math.min(...pricesArr), Math.max(...pricesArr)]

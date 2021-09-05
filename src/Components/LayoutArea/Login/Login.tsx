@@ -2,12 +2,14 @@ import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { LoginModel } from "../../../Models/LoginModel";
 import "./Login.css";
-import { ApisUrls } from "../../../Services/ApisUrls";
+import { RouteUrls } from "../../../Services/RouteUrls";
 import axios from "axios";
 import globals from "../../../Services/Globals";
 import apiGlobalLogic from "../../../Services/ApiGlobalLogic";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { store} from "../../../Redux/Store/Store";
+import { loginAction } from "../../../Redux/Actions/ClientAction";
 
 function Login(): JSX.Element {
 
@@ -19,11 +21,18 @@ function Login(): JSX.Element {
     const send = async (login:LoginModel) => {
         try{
             const response = await axios.post<LoginModel>(globals.urls.login, login);
-            toast.success("Login successfull");
+            store.dispatch(loginAction(response.data));
             handleDisplayOnClick();
-        } catch(err) {
-            toast.error(typeof err.response?.data === "string" ? err.response?.data : "Login failed");
+            toast.success("Login successfull",{
+                theme:"colored"
+            });
+        } catch(err:any) {
+            toast.error(typeof err.response?.data === "string" ? err.response.data : "Login failed",{
+                theme:"colored",
+                toastId: err.response.data
+            });
         }
+        
     }
 
     const handleDisplayOnClick = () => {
@@ -40,7 +49,7 @@ function Login(): JSX.Element {
         <section className="Login">
             <button className="LINK" onClick={handleDisplayOnClick}>Login</button>
             <br />
-            <div className={"Login__Form TRANSPARENT FORM " + className}>
+            <div className={"Login__Form FORM WHITE__BG " + className}>
                 <h2> Login to Coupon System</h2>
                 <form onSubmit={handleSubmit(send)}>
                     <input type="email" className="FIELD" placeholder="your email here" {...register("email",{
@@ -60,10 +69,9 @@ function Login(): JSX.Element {
                     </div>
                 </form>
 
-                <NavLink to={ApisUrls.SIGNUP}>
+                <NavLink to={RouteUrls.SIGNUP}>
                     <button className="FIELD LINK" type="button" >Want to Sign up</button>
                 </NavLink>
-                
             </div>
         </section>
     );

@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Unsubscribe } from "redux";
 import { CustomerModel } from "../../../Models/CustomerModel";
 import { FiltersAppState } from "../../../Redux/States/FiltersAppState";
-import store from "../../../Redux/Store/Store";
+import {store} from "../../../Redux/Store/Store";
 import CustomerCard from "../../CustomersArea/CustomerCard/CustomerCard";
 import "./CustomersContainer.css";
 
@@ -24,7 +24,7 @@ class CustomersContainer extends Component<{}, CustomersContainerState> {
 
     async componentDidMount(){
         this.unsubscribe = store.subscribe(() => {
-            this.setState({customers: store.getState().customersState.customers});
+            this.setState({customers: store.getState().customersAppState.appCustomersList});
         });
 
     }

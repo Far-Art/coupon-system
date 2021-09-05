@@ -1,42 +1,38 @@
 import axios from "axios";
-import { useEffect } from "react";
 import { CompanyModel } from "../Models/CompanyModel";
 import { CouponModel } from "../Models/CouponModel";
 import { CustomerModel } from "../Models/CustomerModel";
 import { fetchAllCompanies } from "../Redux/Actions/CompanyAction";
-import { fetchAllCoupons } from "../Redux/Actions/CouponAction";
+import { fetchAllCoupons, fetchCouponsByCompany, fetchCouponsByCustomer } from "../Redux/Actions/CouponAction";
 import { fetchAllCustomers } from "../Redux/Actions/CustomerAction";
-import store from "../Redux/Store/Store";
-import globals from "../Services/Globals";
+import {store} from "../Redux/Store/Store";
+import globals from "./Globals";
 
 /* Fetch Data from db and update store when there is db change */
-function STATE_DATA_FETCHER() {
+export default class GlobalFetcher {
 
-    async function fetchCustomers(){
+    public async fetchAllCustomers(){
         const response:any = await axios.get<CustomerModel[]>(globals.urls.customers);
         store.dispatch(fetchAllCustomers(response.data));
     }
 
-    async function fetchCompanies(){
+    public async fetchAllCompanies(){
         const response:any = await axios.get<CompanyModel[]>(globals.urls.companies);
         store.dispatch(fetchAllCompanies(response.data));
     }
 
-    async function fetchCoupons(){
+    public async fetchAllCoupons(){
         const response:any = await axios.get<CouponModel[]>(globals.urls.coupons);
         store.dispatch(fetchAllCoupons(response.data));
     }
-    
-    useEffect(() => {
-        fetchCustomers();
-        fetchCompanies();
-        fetchCoupons();
-    })
 
-    return (
-        null
-    );
+    public async fetchCouponsByCompany(){
+        const response:any = await axios.get<CouponModel[]>(globals.urls.companies + "/coupons");
+        store.dispatch(fetchCouponsByCompany(response.data));
+    }
 
+    public async fetchCouponsByCustomer(){
+        const response:any = await axios.get<CouponModel[]>(globals.urls.customers + "/coupons");
+        store.dispatch(fetchCouponsByCustomer(response.data));
+    }
 }
-
-export default STATE_DATA_FETCHER;

@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler } from "react";
 import { FilterTypes } from "../../../Models/FilterTypes";
 import { addFilter, removeFilter } from "../../../Redux/Actions/FilterAction";
-import store from "../../../Redux/Store/Store";
+import {store} from "../../../Redux/Store/Store";
 import "./CheckBox.css";
 
 interface CheckBoxProps{

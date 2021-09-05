@@ -1,12 +1,12 @@
 import "./Header.css";
-import logo from "../../../Assets/Logo/icon.svg"
+import logo from "../../../Assets/Logo/logo-bordo.svg"
 import { NavLink } from "react-router-dom";
-import { ApisUrls } from "../../../Services/ApisUrls";
+import { RouteUrls } from "../../../Services/RouteUrls";
 
 function Header(): JSX.Element {
     return (
         <div className="Header">
-            <NavLink to={ApisUrls.HOME}>
+            <NavLink to={RouteUrls.HOME}>
                 <div className="Header_Background">
                     <img id="logo" src={logo} alt="logo" />
                     <h1>Coupon As Art</h1>

@@ -3,21 +3,23 @@ class Globals{
 
 class DevelopmentGlobals extends Globals{
     public urls = {
-        signup: "http://localhost:8080/customers/register",
-        login: "http://localhost:8080/customers/login",
-        companies: "http://localhost:8080/companies/",
-        customers: "http://localhost:8080/customers/",
-        coupons: "http://localhost:8080/coupons/"
+        signup: "http://localhost:8080/register",
+        login: "http://localhost:8080/login",
+        logout: "http://localhost:8080/logout",
+        companies: "http://localhost:8080/companies",
+        customers: "http://localhost:8080/customers",
+        coupons: "http://localhost:8080/coupons"
     }
 }
 
 class ProductionGlobals extends Globals{
     public urls = {
-        signup: "http://localhost:8080/customers/register",
-        login: "http://localhost:8080/customers/login",
-        companies: "http://localhost:8080/companies/",
-        customers: "http://localhost:8080/customers/",
-        coupons: "http://localhost:8080/coupons/"
+        signup: "http://localhost:8080/register",
+        login: "http://localhost:8080/login",
+        logout: "http://localhost:8080/logout",
+        companies: "http://localhost:8080/companies",
+        customers: "http://localhost:8080/customers",
+        coupons: "http://localhost:8080/coupons"
     }
 }
 

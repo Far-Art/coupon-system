@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { CompanyModel } from "../../../Models/CompanyModel";
-import store from "../../../Redux/Store/Store";
+import {store} from "../../../Redux/Store/Store";
 import CompanyCard from "../../CompaniesArea/CompanyCard/CompanyCard";
 import "./CompaniesContainer.css";
 
@@ -12,7 +12,7 @@ function CompaniesContainer(): JSX.Element {
     
     useEffect(() => {
         store.subscribe(() => {
-            companies = store.getState().companiesState.companies;
+            companies = store.getState().companiesAppState.appCompaniesList;
          })
     })
     

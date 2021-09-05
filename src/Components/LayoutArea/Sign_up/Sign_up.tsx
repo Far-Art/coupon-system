@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SignupModel } from "../../../Models/SignupModel";
-import { UserTypes } from "../../../Models/UserTypes";
+import { ClientType } from "../../../Models/ClientType";
 import apiGlobalLogic from "../../../Services/ApiGlobalLogic";
-import { ApisUrls } from "../../../Services/ApisUrls";
+import { RouteUrls } from "../../../Services/RouteUrls";
 import globals from "../../../Services/Globals";
 import "./Sign_up.css";
 
@@ -58,8 +58,8 @@ function Sign_up(): JSX.Element {
 
                 <div>
                     <select className="FIELD" {...register("clientType")}>
-                        <option value={UserTypes.CUSTOMER}>Customer</option>
-                        <option value={UserTypes.COMPANY}>Company</option>
+                        <option value={ClientType.CUSTOMER}>Customer</option>
+                        <option value={ClientType.COMPANY}>Company</option>
                     </select>
                     <button type="submit" className="FIELD LINK">Sign-up</button>
                 </div>
@@ -67,7 +67,7 @@ function Sign_up(): JSX.Element {
             </form>
             
             {/* navigate to login form */}
-            <NavLink to={ApisUrls.LOGIN}>
+            <NavLink to={RouteUrls.LOGIN}>
                 <button className="FIELD LINK" type="button" >Want to Login</button>
             </NavLink>
         </div>

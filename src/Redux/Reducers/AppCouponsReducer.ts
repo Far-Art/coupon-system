@@ -2,32 +2,33 @@ import { CouponModel } from "../../Models/CouponModel";
 import { CouponAction, CouponActionType } from "../Actions/CouponAction";
 import { CouponsAppState } from "../States/CouponsAppState";
 
-export function couponReducer(currentState:CouponsAppState = new CouponsAppState(), action:CouponAction): CouponsAppState {
-    
-    //TODO Check this FC for proper functionality
+export function appCouponsReducer(currentState:CouponsAppState = new CouponsAppState(), action:CouponAction): CouponsAppState {
 
     const newState = {...currentState};
-
+    console.log("AppCoupon reducer");
     switch(action.type){
         case CouponActionType.ADD:
-            newState.coupons.push(action.payload);
+            newState.appCouponsList.push(action.payload);
             break;
         case CouponActionType.GET_SINGLE:
-            newState.coupons = action.payload;
+            newState.appCouponsList = action.payload;
             break;
         case CouponActionType.FETCH_ALL:
-            newState.coupons = action.payload;
+            newState.appCouponsList = action.payload;
             break;
         case CouponActionType.DELETE:
-            newState.coupons = newState.coupons.filter(c => c.id !== action.payload);
+            newState.appCouponsList = newState.appCouponsList.filter(c => c.id !== action.payload);
             break;
         case CouponActionType.UPDATE:
-            newState.coupons = updateCoupon(newState.coupons, action.payload);
+            newState.appCouponsList = updateCoupon(newState.appCouponsList, action.payload);
             break;
+        default:
+            return currentState;
     }
     return newState;
 }
 
+// TODO CHECK THIS FOR PROPER FUNCTIONING
 function updateCoupon(couponsList:CouponModel[], toUpdate:CouponModel):CouponModel[]{
     for(let i = 0; i < couponsList.length; i++){
         if(couponsList[i].id === toUpdate.id){

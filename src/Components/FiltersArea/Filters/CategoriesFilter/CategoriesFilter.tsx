@@ -1,19 +1,19 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { FilterTypes } from "../../../../Models/FilterTypes";
-import store from "../../../../Redux/Store/Store";
+import {store} from "../../../../Redux/Store/Store";
 import CheckBox from "../../../InputArea/CheckBox/CheckBox";
 import "./CategoriesFilter.css";
 
 function CategoriesFilter(): JSX.Element {
 
    
-    const distinctCategories = categoriesAsSet(store.getState().couponsState.coupons);
+    const distinctCategories = categoriesAsSet(store.getState().couponsAppState.appCouponsList);
     const [, setCategories] = useState(distinctCategories);
     
 
     useEffect(() => {
-        store.subscribe(() => setCategories(categoriesAsSet(store.getState().couponsState.coupons)));
+        store.subscribe(() => setCategories(categoriesAsSet(store.getState().couponsAppState.appCouponsList)));
     })
 
     function categoriesAsSet(arr: any[]){

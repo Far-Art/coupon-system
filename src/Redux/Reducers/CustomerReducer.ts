@@ -10,20 +10,22 @@ export function customerReducer(currentState:CustomersAppState = new CustomersAp
 
     switch(action.type){
         case CustomerActionType.ADD:
-            newState.customers.push(action.payload);
+            newState.appCustomersList.push(action.payload);
             break;
         case CustomerActionType.GET_SINGLE:
-            newState.customers = action.payload;
+            newState.appCustomersList = action.payload;
             break;
         case CustomerActionType.FETCH_ALL:
-            newState.customers = action.payload;
+            newState.appCustomersList = action.payload;
             break;
         case CustomerActionType.DELETE:
-            newState.customers = newState.customers.filter(c => c.id !== action.payload);
+            newState.appCustomersList = newState.appCustomersList.filter(c => c.id !== action.payload);
             break;
         case CustomerActionType.UPDATE:
-            newState.customers = updateCustomer(newState.customers, action.payload);
+            newState.appCustomersList = updateCustomer(newState.appCustomersList, action.payload);
             break;
+        default:
+            return currentState;
     }
     return newState;
 }

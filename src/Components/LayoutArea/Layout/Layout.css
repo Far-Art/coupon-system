@@ -17,130 +17,23 @@
     width: 100%;
 }
 
-#root {
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-}
-
-header {
+header, .Header {
     position: sticky;
     z-index: 6;
     top: 0;
 }
 
 .Layout {
-    background: url("../../../Assets/Images/IconBG.png") top;
-    background-size: calc(100px + 10%);
-    background-attachment:local;
-    height: 100vh;
+    background-image: url("../../../Assets/Images/IconBG.png");
+    background-size: calc(200px + 10%);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     overflow: auto;
     z-index: 2;
 }
 
-/*TODO CHECK IF POSITION CAN BE REPLACED WITH DEFAULT*/
-.Footer {
-    position: fixed;
-    bottom: 0;
+footer, .Footer {
+    margin-top: auto;
     width: 100%;
 }
-
-/* GLOBAL CLASSES DOWN BELLOW*/
-/* ALL GLOBAL CLASSES WRITTEN IN CAPS */
-
-/* global class for transparent elements */
-.TRANSPARENT {
-    background: rgba(248, 243, 246, 0.4);
-    backdrop-filter: blur(10px) saturate(150%) brightness(110%);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 45px rgba(0, 0, 0, 0.1);
-}
-
-.TRANSPARENT * {
-    text-shadow: 0 0 10px rgb(255, 255, 255),0 0px 30px rgb(255, 255, 255);
-}
-
-/* global class for forms */
-.FORM {
-    border-radius: 40px;
-    text-align: center;
-    padding: 20px 5px;
-}
-
-/* global class for fields and links */
-.FIELD, .LINK {
-    font-family:'Montserrat', sans-serif;
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-radius: 20rem;
-    padding: 0.6vh 0.7vw;
-    margin: 5px 15px;
-    font-size: 1.08em;
-    color: rgb(150, 1, 71); /* text color */
-    transition-duration: 0.3s;
-}
-
-.FIELD:hover, .LINK:hover{
-    opacity: 1;
-    border-color: rgb(150, 1, 71);
-}
-
-.FIELD:focus {
-    opacity: 1;
-    border: 1px solid rgba(0, 0, 0, 0);
-	outline: none;
-    transition-duration: 0.3s;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-}
-
-.FIELD::placeholder {
-    color: rgb(194, 205, 206);
-    opacity: 1; /* Firefox */
-    transition-duration: 0.3s;
-}
-
-.FIELD:focus::placeholder {
-    opacity: 0;
-    transition-duration: 0.3s;
-}
-
-.LINK {
-    text-decoration: none;
-    background: rgba(255, 255, 255, 0.7);
-    padding: 0.4vh 10px;
-}
-
-/* global class for elements that would block entire page */
-.BLOCKER{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    backdrop-filter: blur(40px) brightness(80%);
-    z-index: 3;
-}
-
-/* this class makes element to be positioned in center of a screen */
-.CENTERED{
-    position: absolute;
-	transform: translate(-50%,-50%);
-	top: 50%;
-	left: 50%;
-}
-
-.DISPLAY__NONE {
-    display: none;
-}
-
-.DISPLAY__BLOCK {
-    display: block;
-}
-
-.DISPLAY__INLINE {
-    display: inline;
-}
-
-
