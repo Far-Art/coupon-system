@@ -6,4 +6,6 @@ export enum RouteUrls{
     COMPANIES = "/companies",
     CUSTOMERS = "/customers",
     COUPONS = "/coupons",
+    CART = "/cart",
+    PROFILE = "/profile",
 }

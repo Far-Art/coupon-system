@@ -35,4 +35,11 @@ export default class GlobalFetcher {
         const response:any = await axios.get<CouponModel[]>(globals.urls.customers + "/coupons");
         store.dispatch(fetchCouponsByCustomer(response.data));
     }
+
+    // TODO FIX THIS METHOD
+    public async purchaseCoupon(couponId:number){
+        const response:any = await axios.post<string>(globals.urls.purchaseSingle + "/" + couponId);
+        // store.dispatch(fetchCouponsByCustomer(response.data));
+        console.log(response.data);
+    }
 }

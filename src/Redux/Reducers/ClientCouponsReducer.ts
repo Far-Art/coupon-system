@@ -1,20 +1,21 @@
-import { ClientAction, ClientActionType } from "../Actions/ClientAction";
+import { CouponAction, CouponActionType } from "../Actions/CouponAction";
 import { ClientCouponsAppState } from "../States/ClientCouponsAppState";
 
-export function clientCouponsReducer(currentState:ClientCouponsAppState = new ClientCouponsAppState(), action:ClientAction): ClientCouponsAppState {
+export function clientCouponsReducer(currentState:ClientCouponsAppState = new ClientCouponsAppState(), action:CouponAction): ClientCouponsAppState {
 
-    // TODO Check if this reducer needed
     const newState = {...currentState};
+
     switch (action.type) {
-        case ClientActionType.LOGIN:
-            
+        case CouponActionType.FETCH_BY_COMPANY:
+            newState.clientCouponsList = action.payload;
             break;
-    
+        case CouponActionType.FETCH_BY_CUSTOMER:
+            newState.clientCouponsList = action.payload;
+            break;
         default:
-            break;
+            return currentState;
     }
-    // newState.clientCouponsList = action.payload;
-    console.log("ClientCoupons reducer");
-    console.log(action.payload);
+    newState.clientCouponsList = action.payload;
+
     return newState;
 }

@@ -7,7 +7,8 @@ export interface CartAction{
 
 export enum CartActionType{
     ADD_TO_CART = "ADD_TO_CART",
-    DELETE_FROM_CART = "DELETE_FROM_CART"
+    DELETE_FROM_CART = "DELETE_FROM_CART",
+    CLEAR_CART = "CLEAR_CART"
 }
 
 export function addToCart(item:CouponModel):CartAction{
@@ -16,4 +17,8 @@ export function addToCart(item:CouponModel):CartAction{
 
 export function deleteFromCart(item:CouponModel):CartAction{
     return {type: CartActionType.DELETE_FROM_CART, payload:item};
+}
+
+export function clearCart():CartAction{
+    return {type: CartActionType.CLEAR_CART, payload:new CouponModel};
 }

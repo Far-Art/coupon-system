@@ -9,6 +9,7 @@ import "../../../ToastifyNotifications/ToastifyStyle.css"
 import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import slide_in_right from "../../../ToastifyNotifications/ToastTransition";
+import Menu from "../Menu/Menu";
 
 function Layout(): JSX.Element {
     return (
@@ -21,11 +22,12 @@ function Layout(): JSX.Element {
                     pauseOnHover={false} 
                 /> 
                 <header>
-                    <Header />
-                    <nav>
-                        <NavBar />
-                    </nav>
+                    <Header /> 
                 </header>
+                <nav>
+                    <NavBar />
+                    <Menu />
+                </nav>
                 <main>
                     <Routing />
                 </main>

@@ -13,43 +13,66 @@ import { loginAction } from "../../../Redux/Actions/ClientAction";
 
 function Login(): JSX.Element {
 
-    // TODO implement global notification element
     const {register, handleSubmit} = useForm<LoginModel>();
     const [displayed, setDisplayed] = useState(false);
-    const [className, setClassName] = useState("DISPLAY__NONE");
+    const [displayClass, setdisplayClass] = useState("DISPLAY__NONE");
     
+    // const send = async (login:LoginModel) => {
+    //     try{
+    //         const response = await axios.post<LoginModel>(globals.urls.login, login);
+    //         store.dispatch(loginAction(response.data));
+    //         handleDisplayOnClick();
+    //         toast.success("Login successfull",{
+    //             theme:"colored"
+    //         });
+    //     } catch(err:any) {
+    //         toast.error(typeof err.response?.data === "string" ? err.response.data : "Login failed",{
+    //             theme:"colored",
+    //             toastId: err.response.data
+    //         });
+    //     }
+        
+    // }
     const send = async (login:LoginModel) => {
         try{
-            const response = await axios.post<LoginModel>(globals.urls.login, login);
+            const response = await toast.promise(axios.post<LoginModel>(globals.urls.login, login),
+                {
+                    pending: "Loging in",
+                    success: "Login successful",
+                    error: ""
+                },
+                {
+                    toastId: "PendingToast",
+                    theme: "colored"
+                });
+
             store.dispatch(loginAction(response.data));
             handleDisplayOnClick();
-            toast.success("Login successfull",{
-                theme:"colored"
-            });
+
         } catch(err:any) {
+            toast.dismiss("PendingToast");
             toast.error(typeof err.response?.data === "string" ? err.response.data : "Login failed",{
                 theme:"colored",
-                toastId: err.response.data
+                toastId: "LoginFailedToast"
             });
         }
-        
     }
 
     const handleDisplayOnClick = () => {
         if(displayed){
             setDisplayed(false);
-            setClassName("DISPLAY__NONE");
+            setdisplayClass("DISPLAY__NONE");
         } else {
             setDisplayed(true);
-            setClassName("DISPLAY__INLINE");
+            setdisplayClass("DISPLAY__INLINE");
         }
     }
 
     return (
         <section className="Login">
-            <button className="LINK" onClick={handleDisplayOnClick}>Login</button>
+            <button className="APP__BUTTON" onClick={handleDisplayOnClick}>Login</button>
             <br />
-            <div className={"Login__Form FORM WHITE__BG " + className}>
+            <div className={"Login__Form FORM WHITE__BG " + displayClass}>
                 <h2> Login to Coupon System</h2>
                 <form onSubmit={handleSubmit(send)}>
                     <input type="email" className="FIELD" placeholder="your email here" {...register("email",{
@@ -63,14 +86,14 @@ function Login(): JSX.Element {
                         minLength:apiGlobalLogic.forms.fieldsMinLength.password
                     })} />
                     <br/>
-
+                    
                     <div>
-                        <button type="submit" className="FIELD LINK">Login</button>
+                        <button  type="submit" className="APP__BUTTON">Login</button>
                     </div>
                 </form>
 
                 <NavLink to={RouteUrls.SIGNUP}>
-                    <button className="FIELD LINK" type="button" >Want to Sign up</button>
+                    <button className="APP__BUTTON" type="button" >Want to Sign up</button>
                 </NavLink>
             </div>
         </section>

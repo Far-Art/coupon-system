@@ -1,3 +1,30 @@
 .Cart {
-	
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Cart__empty_view {
+    text-align: center;
+    font-size: 4rem;
+}
+
+.Cart .APP_BUTTON {
+    text-align: center;
+}
+
+.Button__Container{
+    display: flex;
+}
+
+.CartInfoField {
+    color: rgb(150, 1, 71);
+    max-width: 300px;
+    font-size: 1rem;
+    font-weight: bolder;
+    padding: 8px 15px;
+    margin: 5px 10px;
+    border: 1px solid rgba(150, 1, 71, 0.4);
+    background: white;
+    border-radius: 100px;
 }

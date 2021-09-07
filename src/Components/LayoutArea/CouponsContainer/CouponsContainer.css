@@ -1,32 +1,36 @@
 .CouponsContainer {
-    /* display: flex;
-    flex-direction: column; */
+    padding: 10px;
 }
 
 .Coupons__table{
+    display: flex;
+    justify-content: space-around;
     border-collapse: collapse;
-}
-
-.Coupons__table ol{
-    backdrop-filter: blur(5px);
-    padding: 0;
-    margin: 20px;
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
 }
 
 .Coupons__table tr:nth-child(1){
     background: url("../../../Assets/Images/ZigZagBG.svg") center;
-    background-size: 5%;
+    background-size: 3%;
     color: white;
+    font-style: oblique;
+}
+
+.Coupons__table tr{
+    background: rgba(228, 223, 223, 0.3);
+
 }
 
 .Coupons__table tr:nth-child(even){
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .Coupons__table tr:nth-child(n+2):hover{
-    background: crimson;
+    background: rgb(224, 26, 66);
     color: white;
     cursor: pointer;
+    border: 1px solid white;
 }
 
 .Coupons__table .table__center_text{
@@ -34,6 +38,12 @@
 }
 
 .Coupons__table th, td{
-    border: 1px solid grey;
+    border: 1px solid rgba(121, 116, 116, 0.3);
     padding: 8px 15px;
+}
+
+.Coupon__title {
+    font-weight: bold;
+    font-style:oblique;
+    text-decoration: underline;
 }

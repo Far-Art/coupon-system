@@ -8,17 +8,15 @@ import "./NavBar.css";
 function NavBar(): JSX.Element {
 
     const currentClient = useAppSelector(state => state.currentClientState.client);
-
-    const timeNow = new Date();
     
     function renderClientInfo(){
         if(currentClient !== undefined){
             return <>
-                <p>Good {timeOfDay()} {nameToCapital(currentClient.name) + " " + nameToCapital(currentClient.clientType !== ClientType.COMPANY ? (currentClient as CustomerModel).lastName : "")} </p> <Logout />
+                <p className="EMPHASIZE_TEXT_COLOR">Good {timeOfDay()} <span>{nameToCapital(currentClient.name) + " " + nameToCapital(currentClient.clientType !== ClientType.COMPANY ? (currentClient as CustomerModel).lastName : "")}</span></p> <Logout />
             </>;
         }
         return <> 
-            <p>Good {timeOfDay()} guest, please </p> <Login /> <p>for better user experience</p>
+            <p className="EMPHASIZE_TEXT_COLOR">Good {timeOfDay()} guest, please </p> <Login /> <p>for better user experience</p>
         </>;
     }
 
@@ -27,23 +25,20 @@ function NavBar(): JSX.Element {
     }
 
     function timeOfDay(){
-        if(timeNow.getHours() >= 18 && timeNow.getHours() < 21){
-            return "evening";
-        } else if(timeNow.getHours() >= 12 && timeNow.getHours() < 18) {
-            return "afternoon";
-        } else if(timeNow.getHours() >= 21 && timeNow.getHours() < 5){
+        const timeNow = new Date();
+        if(timeNow.getHours() >= 21){
             return "night";
+        } else if(timeNow.getHours() >= 18) {
+            return "evening";
+        } else if(timeNow.getHours() >= 12){
+            return "afternoon";
         }
         return "morning";
     }
 
     return (
-        <div className="NavBar WHITE__BG">
-            <section id="InfoSection">
-                {renderClientInfo()}
-            </section>
-            {/* <Menu /> */}
-            {/* <Cart /> */}
+        <div className={"NavBar WHITE__BG"}>
+            {renderClientInfo()}
         </div>
     );
 }

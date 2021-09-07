@@ -12,6 +12,9 @@ export default function cartReducer(cartState:CartAppState = new CartAppState(),
         case CartActionType.DELETE_FROM_CART:
             newState.forPurchaseCouponsList = newState.forPurchaseCouponsList.filter(c => c !== action.payload);
             break;
+        case CartActionType.CLEAR_CART:
+            newState.forPurchaseCouponsList = [];
+            break;
         default:
             return cartState;
     }

@@ -1,0 +1,12 @@
+.EmptyView {
+	display: flex;
+    justify-content: center;
+}
+
+.giphy-embed{
+    border: 8px solid white;
+    border-radius: 70px;
+    box-sizing: content-box;
+    background: white;
+    margin: 0 auto 50px auto;
+}

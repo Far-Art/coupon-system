@@ -17,10 +17,8 @@
     width: 100%;
 }
 
-header, .Header {
-    position: sticky;
-    z-index: 6;
-    top: 0;
+#root, body{
+  overflow-x: hidden;
 }
 
 .Layout {
@@ -29,7 +27,7 @@ header, .Header {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    overflow: auto;
+    overflow-y: auto;
     z-index: 2;
 }
 
@@ -37,3 +35,38 @@ footer, .Footer {
     margin-top: auto;
     width: 100%;
 }
+
+nav {
+  display: flex;
+  position: sticky;
+  top: 0;
+  flex-direction: column;
+  z-index: 9998;
+}
+
+.Menu{
+
+}
+
+/*    Custom scrollbar   
+****************************/
+
+/* width */
+::-webkit-scrollbar {
+    width: 13px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.13);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #821334;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c00a41;
+  }

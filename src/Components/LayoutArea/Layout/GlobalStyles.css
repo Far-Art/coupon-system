@@ -73,3 +73,44 @@
 .DISPLAY__INLINE {
     display: inline;
 }
+
+.EMPHASIZE_TEXT_COLOR {
+    color: rgb(150, 1, 71);
+}
+
+.APP__BUTTON {
+    color: rgb(150, 1, 71);
+    max-width: 300px;
+    font-size: 1rem;
+    padding: 8px 15px;
+    margin: 5px 10px;
+    border: 1px solid rgba(150, 1, 71, 0.4);
+    background: white;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.APP__BUTTON:hover {
+    color: white;
+    background: rgb(150, 1, 71);
+    border: 1px solid rgba(150, 1, 71, 0);
+}
+
+.APP__BUTTON:active {
+    transform: scale(98%) translateY(1px);
+    background: rgb(140, 1, 50);
+    box-shadow:inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.DISABLED_BUTTON {
+    background: rgb(201, 201, 201);
+    cursor: not-allowed;
+    border: 1px solid rgb(170, 170, 170);
+    color: grey;
+}
+
+.DISABLED_BUTTON:hover{
+    background: rgb(201, 201, 201);
+    border: 1px solid rgb(170, 170, 170);
+    color: grey;
+}

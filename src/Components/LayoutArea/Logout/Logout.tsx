@@ -16,7 +16,7 @@ function Logout(): JSX.Element {
     return (
         <section className="Logout">
 			<NavLink to={RouteUrls.HOME}>
-                <button onClick={() => clearState()} className="FIELD LINK" type="button">Logout</button>
+                <button onClick={() => clearState()} className="APP__BUTTON" type="button">Logout</button>
             </NavLink>
         </section>
     );

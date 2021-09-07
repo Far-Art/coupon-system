@@ -1,12 +1,14 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 import { RouteUrls } from "../../../Services/RouteUrls";
 import Page404 from "../../SharedArea/Page404/Page404";
+import Cart from "../Cart/Cart";
 import CompaniesContainer from "../CompaniesContainer/CompaniesContainer";
 import CouponsContainer from "../CouponsContainer/CouponsContainer";
 import CustomersContainer from "../CustomersContainer/CustomersContainer";
 import Login from "../Login/Login";
 import Logout from "../Logout/Logout";
 import MainView from "../MainView/MainView";
+import ProfileView from "../ProfileView/ProfileView";
 import Sign_up from "../Sign_up/Sign_up";
 
 function Routing(): JSX.Element {
@@ -21,6 +23,8 @@ function Routing(): JSX.Element {
                 <Route path={RouteUrls.LOGIN} component={Login} exact />
                 <Route path={RouteUrls.SIGNUP} component={Sign_up} exact />
                 <Route path={RouteUrls.LOGOUT} component={Logout} exact />
+                <Route path={RouteUrls.CART} component={Cart} exact />
+                <Route path={RouteUrls.PROFILE} component={ProfileView} exact />
                 <Redirect from="/" to={RouteUrls.HOME} exact/>
                 <Route component={Page404} exact />
             </Switch>

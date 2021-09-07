@@ -22,7 +22,7 @@ export function companyReducer(currentState:CompaniesAppState = new CompaniesApp
             newState.appCompaniesList = newState.appCompaniesList.filter(c => c.id !== action.payload);
             break;
         case CompaniesActionType.UPDATE:
-            newState.appCompaniesList = updateCustomer(newState.appCompaniesList, action.payload);
+            newState.appCompaniesList = updateCompany(newState.appCompaniesList, action.payload);
             break;
         default:
             return currentState;
@@ -30,7 +30,7 @@ export function companyReducer(currentState:CompaniesAppState = new CompaniesApp
     return newState;
 }
 
-function updateCustomer(companiesList:CompanyModel[], toUpdate:CompanyModel):CompanyModel[]{
+function updateCompany(companiesList:CompanyModel[], toUpdate:CompanyModel):CompanyModel[]{
     for(let i = 0; i < companiesList.length; i++){
         if(companiesList[i].id === toUpdate.id){
             companiesList[i] = {...toUpdate};
