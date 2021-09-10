@@ -1,3 +1,4 @@
+import { LoginResponseModel } from "../../Models/LoginResponseModel";
 import { ClientAction, ClientActionType } from "../Actions/ClientAction";
 import { CurrentClientAppState } from "../States/CurrentClientAppState";
 
@@ -7,10 +8,12 @@ export default function currentClientReducer(currentClientState:CurrentClientApp
 
     switch(action.type){
         case ClientActionType.LOGIN:
-            newState.client = action.payload;
+            newState.client = action.payload
+            newState.token = (action.payload as LoginResponseModel).token;
             break;
         case ClientActionType.LOGOUT:
             newState.client = undefined;
+            newState.token = undefined;
             break;
         default:
             return currentClientState

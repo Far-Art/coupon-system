@@ -1,32 +1,59 @@
-/* GLOBAL CLASSES DOWN BELLOW*/
-/* ALL GLOBAL CLASSES WRITTEN IN CAPS */
+/* ALL GLOBAL CLASSES WRITTEN IN CAPS AND DOUBLE UNDERSCOPE*/
 
-/* global class for forms */
-.WHITE__BG {
-    background: rgb(250, 250, 250);
+:root{
+    --white:white;
+    --white-transparent:rgba(255 255 255 / .7);
+    --wine-red:rgb(130 19 52);
+    --wine-red-transparent:rgb(130 19 52 /.5);
+    --wine-red-dark:rgb(114 17 46);
+    --wine-hover:rgb(199 5 63);
+    --glow: 0 0 10px var(--white-transparent), 0 0 20px var(--white-transparent), 0 0 20px var(--wine-hover), 0 0 40px var(--wine-hover);
+    --background-image-main: url("../../../Assets/Images/WaveLinesBG.svg") center;
+    --background-image-second: url("../../../Assets/Images/WaveLinesBG(2).svg") center;
+    --background-image-third: url("../../../Assets/Images/WaveLinesBG(3).svg") center;
+    --box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
+    --box-shadow-focus: 0 0 15px rgba(0, 0, 0, 0.3);
 }
+
+/*----------------------------------------------------------------------------*/
+
+.WHITE__BG {
+    background: var(--white-transparent);
+}
+
+/*----------------------------------------------------------------------------*/
 
 .FORM {
+    color: white;
+    background: var(--background-image-third);
     border-radius: 40px;
+    border: 3px solid var(--white-transparent);
     text-align: center;
     padding: 20px 5px;
+    box-shadow: var(--box-shadow);
 }
 
-/* global class for fields and links */
+/*----------------------------------------------------------------------------*/
+
+.LINK {
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 0.4vh 10px;
+}
+
 .FIELD, .LINK {
-    font-family:'Montserrat', sans-serif;
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 20rem;
     padding: 0.6vh 0.7vw;
     margin: 5px 15px;
     font-size: 1.08em;
-    color: rgb(150, 1, 71); /* text color */
+    color: var(--wine-red);
     transition-duration: 0.3s;
 }
 
 .FIELD:hover, .LINK:hover{
     opacity: 1;
-    border-color: rgb(150, 1, 71);
+    border-color: var(--wine-red);
 }
 
 .FIELD:focus {
@@ -34,7 +61,7 @@
     border: 1px solid rgba(0, 0, 0, 0);
 	outline: none;
     transition-duration: 0.3s;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--box-shadow-focus);
 }
 
 .FIELD::placeholder {
@@ -48,19 +75,16 @@
     transition-duration: 0.3s;
 }
 
-.LINK {
-    text-decoration: none;
-    background: rgba(255, 255, 255, 0.7);
-    padding: 0.4vh 10px;
-}
+/*----------------------------------------------------------------------------*/
 
-/* this class makes element to be positioned in center of a screen */
 .CENTERED{
     position: absolute;
 	transform: translate(-50%,-50%);
 	top: 50%;
 	left: 50%;
 }
+
+/*----------------------------------------------------------------------------*/
 
 .DISPLAY__NONE {
     display: none;
@@ -75,42 +99,50 @@
 }
 
 .EMPHASIZE_TEXT_COLOR {
-    color: rgb(150, 1, 71);
+    color: var(--wine-red);
 }
 
+/*----------------------------------------------------------------------------*/
+
 .APP__BUTTON {
-    color: rgb(150, 1, 71);
+    color: var(--wine-red);
     max-width: 300px;
-    font-size: 1rem;
-    padding: 8px 15px;
-    margin: 5px 10px;
-    border: 1px solid rgba(150, 1, 71, 0.4);
-    background: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 5px 12px;
+    margin: 4px 6px;
+    border: 1px solid var(--wine-red-transparent);
+    background: var(--white);
     border-radius: 100px;
     cursor: pointer;
+    transition-duration: .2s;
+    font-family: 'Nunito';
+    box-sizing: content-box;
 }
 
 .APP__BUTTON:hover {
     color: white;
-    background: rgb(150, 1, 71);
-    border: 1px solid rgba(150, 1, 71, 0);
+    background: var(--wine-red);
+    border: inherit solid rgba(150, 1, 71, 0);
 }
 
 .APP__BUTTON:active {
     transform: scale(98%) translateY(1px);
-    background: rgb(140, 1, 50);
+    background: var(--wine-red-dark);
     box-shadow:inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .DISABLED_BUTTON {
     background: rgb(201, 201, 201);
     cursor: not-allowed;
-    border: 1px solid rgb(170, 170, 170);
+    border: inherit solid rgb(170, 170, 170);
     color: grey;
 }
 
 .DISABLED_BUTTON:hover{
     background: rgb(201, 201, 201);
-    border: 1px solid rgb(170, 170, 170);
+    border: inherit solid rgb(170, 170, 170);
     color: grey;
 }
+
+/*----------------------------------------------------------------------------*/

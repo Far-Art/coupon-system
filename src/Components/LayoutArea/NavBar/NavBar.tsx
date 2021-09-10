@@ -1,8 +1,10 @@
 import { ClientType } from "../../../Models/ClientType";
 import { CustomerModel } from "../../../Models/CustomerModel";
 import { useAppSelector } from "../../../Redux/Hooks/hooks";
+import FlipableCard from "../FlippableSignInCard/FlippableCard";
 import Login from "../Login/Login";
 import Logout from "../Logout/Logout";
+import SignUp from "../Sign_up/Sign_up";
 import "./NavBar.css";
 
 function NavBar(): JSX.Element {
@@ -16,7 +18,17 @@ function NavBar(): JSX.Element {
             </>;
         }
         return <> 
-            <p className="EMPHASIZE_TEXT_COLOR">Good {timeOfDay()} guest, please </p> <Login /> <p>for better user experience</p>
+            {/* <p className="EMPHASIZE_TEXT_COLOR">Good {timeOfDay()} guest, please </p> <Login /> <p>for better user experience</p> */}
+            <p className="EMPHASIZE_TEXT_COLOR">Good {timeOfDay()} guest, please </p> 
+            <FlipableCard 
+                    mainButtonText="Login" 
+                    frontButtonText={"Want to sign-up"} 
+                    backButtonText={"Want to login"} 
+                    frontElement={<Login />}
+                    backElement={<SignUp />}
+                    buttonStyleClass="APP__BUTTON"
+                />
+            <p className="EMPHASIZE_TEXT_COLOR">for better user experience</p>
         </>;
     }
 
@@ -37,7 +49,7 @@ function NavBar(): JSX.Element {
     }
 
     return (
-        <div className={"NavBar WHITE__BG"}>
+        <div className={"NavBar BG__BLEND"}>
             {renderClientInfo()}
         </div>
     );

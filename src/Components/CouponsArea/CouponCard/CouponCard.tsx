@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { toast } from "react-toastify";
 import { CouponModel } from "../../../Models/CouponModel";
-import { addToCart, deleteFromCart } from "../../../Redux/Actions/CartAction";
+import { addToCart } from "../../../Redux/Actions/CartAction";
 import {store} from "../../../Redux/Store/Store";
 import "./CouponCard.css";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -12,57 +12,52 @@ interface CardProps {
     coupon:CouponModel;
 }
 
-class CouponCard extends Component<CardProps> {
-
-    public constructor(props: CardProps){
-        super(props);
-    }
+export default function CouponCard(props:CardProps): JSX.Element {
     
-    // TODO adding coupon from main view, then going to cart and going again to main view allows for duplicates
-    public render():JSX.Element {
-        return (
-            <div className="CouponCard" >
-                <div className="Dashed_border">
-                    <div className="Image_container">
-                        <img className="CENTERED" src={this.props.coupon.image} alt="coupon_image" />
-                    </div>
-                    
-                    <p className="title CENTERED">{this.props.coupon.title}</p>
-                    <p className="company CENTERED">{"By ''" + this.props.coupon.companyName + "''"}</p>
-                    <p className="category CENTERED">{this.props.coupon.category}</p>
-                    <button onClick={() => {
-                        // coupon already in cart case
-                        if(store.getState().cartAppState.forPurchaseCouponsList.includes(this.props.coupon)){
-                            toast.info(
-                                <div className="Toast__element">
-                                    <p><span className="Coupon__title">{this.props.coupon.title}</span> already in your cart</p>
-                                </div>,{
-                                    toastId: this.props.coupon.id,
-                                    theme:"colored"
-                                });
-                        }
+    function emitToast(coupon:CouponModel){
 
-                        // coupon not in cart case
-                        else {
-                            store.dispatch(addToCart(this.props.coupon));
-                            toast.success(
-                                <div className="Toast__element">
-                                    <p>"{this.props.coupon.title}"</p>
-                                    <p>added to cart</p>
-                                </div>,{
-                                    theme:"colored",
-                                    icon: <Icon component={ShoppingCartIcon}/>
-                                });
-                            }
-                        }
-                    }>Add to Cart</button>
-                    <div className="Price_tag">
-                        <p className="price CENTERED">{this.props.coupon.price === 0 ? "FREE" : this.props.coupon.price + AppCurrencySymbol }</p>
-                    </div>
+        // coupon already in cart case
+        if(store.getState().cartAppState.forPurchaseCouponsList.find(c => c.id === coupon.id) !== undefined){
+            toast.warn(
+                <div className="Toast__element">
+                    <p><span className="Coupon__title">{coupon.title}</span> already in your cart</p>
+                </div>,{
+                    toastId: coupon.id,
+                    theme:"colored"
+                });
+        }
+
+        // coupon not in cart case
+        else {
+            store.dispatch(addToCart(coupon));
+            toast.success(
+                <div className="Toast__element">
+                    <p>"{coupon.title}"</p>
+                    <p>added to cart</p>
+                </div>,{
+                    theme:"colored",
+                    icon: <Icon component={ShoppingCartIcon}/>
+                });
+            }
+    }
+
+    return (
+        <div className="CouponCard" >
+            <div className="Dashed_border">
+                <div className="Image_container">
+                    <img className="CENTERED" src={props.coupon.image} alt="coupon_image" />
+                </div>
+                    
+                <p className="title CENTERED">{props.coupon.title}</p>
+                <p className="company CENTERED">{"By ''" + props.coupon.companyName + "''"}</p>
+                <p className="category CENTERED">{props.coupon.category}</p>
+                    
+                <button className="CardButton APP__BUTTON" onClick={() => emitToast(props.coupon)}>Add to Cart</button>
+
+                <div className="Price_tag">
+                    <p className="price CENTERED">{props.coupon.price === 0 ? "FREE" : props.coupon.price + AppCurrencySymbol }</p>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
-
-export default CouponCard;

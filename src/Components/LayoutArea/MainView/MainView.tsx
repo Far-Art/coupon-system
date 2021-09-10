@@ -8,7 +8,7 @@ import CouponsContainer from "../CouponsContainer/CouponsContainer";
 import "./MainView.css";
 import { CouponModel } from "../../../Models/CouponModel";
 
-function MainView(): JSX.Element {
+export default function MainView(): JSX.Element {
 
     const [coupons, setCoupons] = useState<CouponModel[]>([]);
     const [fetcher] = useState(new GlobalFetcher());
@@ -16,18 +16,26 @@ function MainView(): JSX.Element {
         state.currentClientState.client
     );
 
+    // on mount
+    useEffect(() => {
+        if(client?.clientType === undefined || client?.clientType === ClientType.CUSTOMER){
+            fetcher.fetchAllCoupons().then(() => setCoupons(store.getState().couponsAppState.appCouponsList));
+        }
+    },[client]);
+
     useEffect(() => {
         switch (client?.clientType) {
             case ClientType.COMPANY:
+                console.log("hereeee");
                 fetcher.fetchCouponsByCompany().then(() => {
                     setCoupons(store.getState().clientCouponsState.clientCouponsList);
                 });
                 break;
-            default:
-                setCoupons(store.getState().couponsAppState.appCouponsList);
-                break;
+            // default:
+            //     setCoupons(store.getState().couponsAppState.appCouponsList);
+            //     break;
         }
-    },[client, fetcher]);
+    },[client]);
 
     function render() { 
         switch (client?.clientType) {
@@ -45,5 +53,3 @@ function MainView(): JSX.Element {
     );
 
 }
-
-export default MainView;

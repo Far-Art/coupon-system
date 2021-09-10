@@ -4,4 +4,5 @@ import { CustomerModel } from "../../Models/CustomerModel";
 
 export class CurrentClientAppState {
     client : CustomerModel | CompanyModel | AdminModel | undefined;
+    token : string | undefined;
 }

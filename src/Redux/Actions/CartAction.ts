@@ -20,5 +20,5 @@ export function deleteFromCart(item:CouponModel):CartAction{
 }
 
 export function clearCart():CartAction{
-    return {type: CartActionType.CLEAR_CART, payload:new CouponModel};
+    return {type: CartActionType.CLEAR_CART, payload:new CouponModel()};
 }

@@ -1,4 +1,3 @@
-import { BrowserRouter } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
@@ -20,14 +19,16 @@ function Layout(): JSX.Element {
                     autoClose={3000} 
                     transition={slide_in_right} 
                     pauseOnHover={false} 
-                /> 
-                <header>
-                    <Header /> 
-                </header>
-                <nav>
-                    <NavBar />
-                    <Menu />
-                </nav>
+                />
+                <section className="HEADER_BG">
+                    <header>
+                        <Header /> 
+                    </header>
+                    <nav>
+                        <NavBar />
+                        <Menu />
+                    </nav>
+                </section>
                 <main>
                     <Routing />
                 </main>

@@ -1,0 +1,50 @@
+.FlippableCard {
+    display: inline-flex;
+    z-index: 19999;
+    flex-direction: column;
+    position: relative;
+    -webkit-perspective: 3500px;
+    perspective: 3500px;
+    -webkit-transition: all 1s linear;
+    transition: all 1s linear;
+}
+
+.card {
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: all 1s cubic-bezier(0.175, 0.205, 0.22, 1.275);
+    transition: all 1s cubic-bezier(0.175, 0.205, 0.22, 1.275);
+}
+
+.face {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.face > button {
+    align-self: center;
+}
+
+.front{
+    z-index:1;
+}
+
+.back {
+    -webkit-transform: rotateY(180deg) translate(50%);
+    transform: rotateY(180deg) translate(50%);
+}
+
+.flipped {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}

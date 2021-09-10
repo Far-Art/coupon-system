@@ -1,75 +1,107 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SignupModel } from "../../../Models/SignupModel";
 import { ClientType } from "../../../Models/ClientType";
 import apiGlobalLogic from "../../../Services/ApiGlobalLogic";
-import { RouteUrls } from "../../../Services/RouteUrls";
 import globals from "../../../Services/Globals";
 import "./Sign_up.css";
+import { useState } from "react";
 
 function Sign_up(): JSX.Element {
     
-    const {register, handleSubmit} = useForm<SignupModel>();
+    const {register, handleSubmit, setValue, reset} = useForm<SignupModel>({
+        defaultValues: {"clientType":ClientType.CUSTOMER},
+      });
+
+    const [clientType, setClientType] = useState(ClientType.CUSTOMER);
     
     const send = async (signup:SignupModel) => {
         try{
             await axios.post<SignupModel>(globals.urls.signup, signup);
-            toast.success(signup.email + " signed-up successfully");
-        } catch(err) {
-            toast.error(err.message);
+            toast.success(signup.email + " signed-up successfully", {
+                theme:"colored"
+            });
+        } catch(err:any) {
+            toast.error(err.message,{
+                theme:"colored"
+            });
+        }
+    }
+
+    function handleChange(event:React.ChangeEvent<HTMLSelectElement>){
+        switch(event.target.value){
+            case "COMPANY":
+                console.log();
+                setValue("clientType", ClientType.COMPANY);
+                setClientType(ClientType.COMPANY);
+                break;
+            default:
+                setValue("clientType", ClientType.CUSTOMER);
+                setClientType(ClientType.CUSTOMER);
+                break;
+        }
+    }
+
+    function requiredFields(){
+        switch(clientType){
+            case ClientType.CUSTOMER:
+                return(<>
+                    <input type="text" className="FIELD" placeholder="first name" {...register("name",{
+                        required:true,
+                        minLength: apiGlobalLogic.forms.fieldsMinLength.name
+                    })} />
+
+                    <input type="text" className="FIELD" placeholder="last name" {...register("lastName",{
+                        required:true,
+                        minLength:apiGlobalLogic.forms.fieldsMinLength.name
+                    })} />
+                </>);
+            case ClientType.COMPANY:
+                return(<>
+                    <input type="text" className="FIELD" placeholder="company name" {...register("name",{
+                        required:true,
+                        minLength: apiGlobalLogic.forms.fieldsMinLength.name
+                    })} />
+                </>);
         }
     }
 
     return (
-        <div className="Sign_up CENTERED TRANSPARENT FORM">
+        <div className="Sign_up FORM">
 			<h2> Sign-up to Coupon System</h2>
             <form onSubmit={handleSubmit(send)}>
-                <input type="text" className="FIELD" placeholder="your first name here" {...register("name",{
-                    required:true,
-                    minLength: apiGlobalLogic.forms.fieldsMinLength.name
-                })} />
-                <br/>
 
-                <input type="text" className="FIELD" placeholder="your last name here" {...register("lastName",{
-                    required:true,
-                    minLength:apiGlobalLogic.forms.fieldsMinLength.name
-                })} />
-                <br/>
+                {requiredFields()}
 
-                <input type="tel" className="FIELD" placeholder="your telephone here" {...register("telephone",{
+                <input type="tel" className="FIELD" placeholder="telephone" {...register("telephone",{
                     required:false,
                     minLength: apiGlobalLogic.forms.fieldsMinLength.telephone
                 })} />
-                <br/>
 
-                <input type="email" className="FIELD" placeholder="your email here" {...register("email",{
+                <input type="email" className="FIELD" placeholder="email" {...register("email",{
                     required:true,
                     minLength:apiGlobalLogic.forms.fieldsMinLength.email
                 })} />
-                <br/>
 
-                <input type="password" className="FIELD" placeholder="your password here" {...register("password",{
+                <input type="password" className="FIELD" placeholder="password" {...register("password",{
                     required:true,
                     minLength:apiGlobalLogic.forms.fieldsMinLength.password
                 })} />
+
+                <a onClick={() => {
+                    reset();
+                    setClientType(ClientType.CUSTOMER);
+                }} className="ClearForm">reset form</a>
                 <br/>
 
-                <div>
-                    <select className="FIELD" {...register("clientType")}>
-                        <option value={ClientType.CUSTOMER}>Customer</option>
-                        <option value={ClientType.COMPANY}>Company</option>
-                    </select>
-                    <button type="submit" className="FIELD LINK">Sign-up</button>
-                </div>
+                <select className="FIELD" onChange={(event) => handleChange(event)} >
+                    <option value={ClientType.CUSTOMER}>Customer</option>
+                    <option value={ClientType.COMPANY}>Company</option>
+                </select>
+                <button type="submit" className="FIELD LINK APP__BUTTON">Sign-up</button>
                 
             </form>
-            
-            {/* navigate to login form */}
-            <NavLink to={RouteUrls.LOGIN}>
-                <button className="FIELD LINK" type="button" >Want to Login</button>
-            </NavLink>
         </div>
     );
 }

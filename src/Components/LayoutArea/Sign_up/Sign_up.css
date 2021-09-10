@@ -1,3 +1,12 @@
-.Sign_up {
-	background-color: thistle;
+.Sign_up .ClearForm {
+	color: white;
+	cursor: pointer;
+}
+
+.Sign_up .ClearForm:hover {
+	text-decoration: underline;
+}
+
+.Sign_up .ClearForm:active {
+	text-decoration: underline;
 }

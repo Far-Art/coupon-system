@@ -1,9 +1,9 @@
 import { ClientType } from "../../Models/ClientType";
-import { LoginModel } from "../../Models/LoginModel";
+import { LoginResponseModel } from "../../Models/LoginResponseModel";
 
 export interface ClientAction{
     type:ClientActionType;
-    clientType: ClientType | undefined;
+    clientType?: ClientType;
     payload?:any;
 }
 
@@ -12,8 +12,8 @@ export enum ClientActionType{
     LOGOUT = "LOGOUT"
 }
 
-export function loginAction(login:LoginModel):ClientAction{
-    return {type: ClientActionType.LOGIN, clientType:login.clientType, payload:login};
+export function loginAction(login:LoginResponseModel):ClientAction{
+    return {type: ClientActionType.LOGIN, clientType: login.clientType, payload:login};
 }
 
 export function logoutAction():ClientAction{

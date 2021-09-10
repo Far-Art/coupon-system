@@ -4,7 +4,7 @@ class Globals{
 class DevelopmentGlobals extends Globals{
     public urls = {
         signup: "http://localhost:8080/register",
-        login: "http://localhost:8080/companies/login",
+        login: "http://localhost:8080/login",
         logout: "http://localhost:8080/logout",
         companies: "http://localhost:8080/companies",
         customers: "http://localhost:8080/customers",
@@ -16,7 +16,7 @@ class DevelopmentGlobals extends Globals{
 class ProductionGlobals extends Globals{
     public urls = {
         signup: "http://localhost:8080/register",
-        login: "http://localhost:8080/companies/login",
+        login: "http://localhost:8080/login",
         logout: "http://localhost:8080/logout",
         companies: "http://localhost:8080/companies",
         customers: "http://localhost:8080/customers",

@@ -1,0 +1,49 @@
+.CreateNewItem {
+	
+}
+
+.DropDown {
+  position: relative;
+  display: inline-block;
+}
+
+.DropDownContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.DropDownContent a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.DropDownContent a:hover {
+  background-color: #f1f1f1
+}
+
+/* Show the dropdown menu on hover */
+.DropDown:hover .DropDownContent {
+  display: block;
+}
+
+/* Style The Dropdown Button */
+.DropBtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.DropDown:hover .DropBtn {
+  background-color: #3e8e41;
+}

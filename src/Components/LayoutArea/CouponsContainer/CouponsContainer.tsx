@@ -7,10 +7,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Icon from '@material-ui/core/Icon';
 import "./CouponsContainer.css";
-import { useState } from "react";
 import { store } from "../../../Redux/Store/Store";
 import { deleteFromCart } from "../../../Redux/Actions/CartAction";
 import AppCurrencySymbol from "../../../Services/Currency";
+import EmptyView from "../EmptyView/EmptyView";
 
 interface ContainerProps{
     couponsList: CouponModel[]; // coupons list
@@ -22,13 +22,50 @@ interface ContainerProps{
 
 function CouponsContainer(props:ContainerProps): JSX.Element {
 
+    // This function invoked on list render
+    function renderAsList(coupons:CouponModel[]){
+        return(
+            <table className="Coupons__table">
+                <tbody>
+                    <tr >
+                        {couponEntries(new CouponModel()).map(attr => <th key={attr.key}>{attr.key.split(/(?=[A-Z])/).map(str => str.toLowerCase()).join(' ')}</th>)}
+                    </tr>
+                    {coupons.map(c => 
+                        <tr className={setWarningClass(c)} onClick={() => emitToast(c)} key={c.id}> 
+                            {couponEntries(c).map(t => <td className="table__center_text" key={t.key}>{t.value}</td>)}          
+                        </tr>)}
+                </tbody>
+            </table>
+        );
+    }
+
+    /* if amount is zero or end date is near, set warn class */
+    function setWarningClass (coupon:CouponModel){
+        const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
+        if(coupon.amount === 0 || Date.parse(new Date(coupon.endDate).toLocaleDateString()) <= timeNowInMillis){
+            return "Warn";
+        }
+        return "";
+        
+    }
+
+    // This function invoked on cards render
+    function renderAsCards(coupons:CouponModel[]){
+        return coupons.map(c => <CouponCard coupon={c} key={c.id} />);
+    }
+
+    // This function invoked when coupons list is empty
+    function renderEmptyView(){
+        return(
+        <>
+            <h1>No Coupons left</h1>
+            <EmptyView />
+        </>);
+    }
+
     function deleteFromCartHandler(coupon:CouponModel){
         toast.dismiss(coupon.id);
         store.dispatch(deleteFromCart(coupon));
-    }
-
-    function cancel(toastId:any){
-        toast.dismiss(toastId);
     }
 
     const emitToast = (coupon:CouponModel) => {
@@ -50,7 +87,7 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
                     <div>
                         <span>Delete coupon <span className="Coupon__title">'{coupon.title}'</span> ?</span>
                         <button onClick={() => deleteFromCartHandler(coupon)} className="Toast__button" ><Icon component={CheckIcon} /></button>
-                        <button onClick={() => cancel(coupon.id)} className="Toast__button" ><Icon component={CloseIcon} /></button>
+                        <button onClick={() => toast.dismiss(coupon.id)} className="Toast__button" ><Icon component={CloseIcon} /></button>
                     </div>
                 )
             }
@@ -68,7 +105,6 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
             });
     }
 
-    // TODO This method executes 704 times every time re render hapens. make it performant
     /* retrieve coupon values and store as object array of key value */
     function couponEntries(coupon:CouponModel){
         const entries:{key:string, value:any}[] = [];
@@ -94,34 +130,43 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
 
     // rendering logic
     const render = () =>{
+        let couponsList;
         if(props.couponsList.length === 0){
-            return;
+            return renderEmptyView();
         }
-        if(props.asList){
-            return(
-                <table className="Coupons__table">
-                    <tbody>
-                        <tr>
-                            {couponEntries(new CouponModel()).map(attr => <th key={attr.key}>{attr.key.split(/(?=[A-Z])/).map(str => str.toLowerCase()).join(' ')}</th>)}
-                        </tr>
-                        {props.couponsList.map(c => 
-                            <tr onClick={() => emitToast(c)} key={c.id}> 
-                                {couponEntries(c).map(t => <td className="table__center_text" key={t.key}>{t.value}</td>)}          
-                            </tr>)}
-                    </tbody>
-                </table>
-            );
-        }
-        // TODO Make date comparison
-        // TODO Parse date
+
         if(props.onlyValid){
-            const timeNow = new Date;
-            console.log(props.couponsList[1].endDate);
-            // return(props.couponsList.map(c => <CouponCard coupon={c} key={c.id} />));
+            // TODO try Make direct date comparison
+            const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
+            couponsList = props.couponsList.filter(c => 
+                {
+                    if(c.amount === 0 ){
+                        return false;
+                    } else if (Date.parse(new Date(c.endDate).toLocaleDateString()) < timeNowInMillis){
+                        return false;
+                    }
+                    return true;
+                }
+            );
+        } else {
+            couponsList = props.couponsList;
         }
-        return (props.couponsList.map(c => <CouponCard coupon={c} key={c.id} />));
+
+        if(couponsList.length === 0){
+            return renderEmptyView();
+        }
+
+        return (
+            <>
+                <div className="CouponsCounter">
+                    <span>{couponsList.length}</span> <span>coupon{couponsList.length === 1 ? "" : "s"} displayed</span>
+                </div>
+                {props.asList ? renderAsList(couponsList) : renderAsCards(couponsList)}
+            </>
+        );
     }
 
+    // paint component
     return (
         <div className="CouponsContainer">
             {render()}

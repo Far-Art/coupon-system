@@ -1,5 +1,33 @@
 .CouponsContainer {
     padding: 10px;
+    text-align: center;
+}
+
+.CouponsContainer .CouponsCounter{
+    display: inline-flex;
+    padding: 5px 20px;
+    height: 40px;
+    color: var(--white);
+    font-size: 120%;
+    font-weight: 400;
+    background: var(--wine-red);
+    margin: 10px 0;
+    text-align: center;
+    border-radius: 50px;
+    box-shadow: 1px 6px 10px rgba(0 0 0 / .2);
+}
+
+.CouponsCounter > *{
+    padding-top: 2px;
+}
+
+.CouponsCounter span:nth-child(1) {
+    font-weight: 800;
+    margin: 0 6px 0 0;
+}
+
+.CouponsContainer > h1 {
+	color: var(--wine-red);
 }
 
 .Coupons__table{
@@ -10,10 +38,12 @@
     border-radius: 20px;
 }
 
+
+
 .Coupons__table tr:nth-child(1){
-    background: url("../../../Assets/Images/ZigZagBG.svg") center;
-    background-size: 3%;
-    color: white;
+    background: var(--background-image-main);
+    background-size: 100%;
+    color: var(--white);
     font-style: oblique;
 }
 
@@ -27,8 +57,8 @@
 }
 
 .Coupons__table tr:nth-child(n+2):hover{
-    background: rgb(224, 26, 66);
-    color: white;
+    background: var(--wine-hover) !important;
+    color: var(--white);
     cursor: pointer;
     border: 1px solid white;
 }
@@ -47,3 +77,31 @@
     font-style:oblique;
     text-decoration: underline;
 }
+
+.Coupons__table .Warn {
+    -webkit-animation: flickerAnimation 5s infinite;
+   -moz-animation: flickerAnimation 5s infinite;
+   -o-animation: flickerAnimation 5s infinite;
+    animation: flickerAnimation 5s infinite;
+}
+
+@keyframes flickerAnimation {
+    0%   { background:rgba(255, 166, 0, 0.2); }
+    50%  { background:rgba(255, 145, 0, 0.5); }
+    100% { background:rgba(255, 166, 0, 0.2); }
+  }
+  @-o-keyframes flickerAnimation{
+    0%   { background:rgba(255, 166, 0, 0.2); }
+    50%  { background:rgba(255, 145, 0, 0.5); }
+    100% { background:rgba(255, 166, 0, 0.2); }
+  }
+  @-moz-keyframes flickerAnimation{
+    0%   { background:rgba(255, 166, 0, 0.2); }
+    50%  { background:rgba(255, 145, 0, 0.5); }
+    100% { background:rgba(255, 166, 0, 0.2); }
+  }
+  @-webkit-keyframes flickerAnimation{
+    0%   { background:rgba(255, 166, 0, 0.2); }
+    50%  { background:rgba(255, 145, 0, 0.5); }
+    100% { background:rgba(255, 166, 0, 0.2); }
+  }

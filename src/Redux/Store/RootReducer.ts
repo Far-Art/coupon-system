@@ -21,7 +21,11 @@ const rootReducer = combineReducers({
 
 const persistConfig = {
     key: "root",
-    storage,
+    storage: storage,
+    blacklist:["couponsAppState", 
+        "customersAppState", 
+        "companiesAppState", 
+        "clientCouponsState"]
 }
 
 export default persistReducer(persistConfig, rootReducer);

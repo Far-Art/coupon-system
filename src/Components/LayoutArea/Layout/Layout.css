@@ -12,6 +12,13 @@
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
+* input {
+  -webkit-user-select: text; /* Chrome, Opera, Safari */
+  -moz-user-select: text; /* Firefox 2+ */
+  -ms-user-select: text; /* IE 10+ */
+  user-select: text; /* Standard syntax */
+}
+
 * img {
     max-width: 100%;
     width: 100%;
@@ -27,8 +34,14 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    overflow-y: auto;
     z-index: 2;
+    overflow: hidden;
+}
+
+.HEADER_BG {
+  background: var(--background-image-main);
+  background-size: 100% 150%;
+  border-radius: 0 0 50px 50px;
 }
 
 footer, .Footer {
@@ -44,29 +57,30 @@ nav {
   z-index: 9998;
 }
 
-.Menu{
-
-}
-
 /*    Custom scrollbar   
 ****************************/
 
 /* width */
 ::-webkit-scrollbar {
-    width: 13px;
-  }
+  width: 13px;
+}
   
   /* Track */
-  ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.13);
-  }
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.13);
+}
   
   /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #821334;
-  }
+::-webkit-scrollbar-thumb {
+  background: var(--wine-red-dark);
+}
   
   /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #c00a41;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--wine-hover);
+}
+
+  /* Handle on active */
+::-webkit-scrollbar-thumb:active {
+  background: var(--wine-red);
+}
