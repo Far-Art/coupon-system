@@ -1,0 +1,40 @@
+.EditableTD {
+    padding: 0;
+    height: 60px;
+    
+}
+
+.EditableTD > input, select {
+    text-align: center;
+    height: 80%;
+    border: 2px solid transparent;
+    width: 85%;
+    border-radius: 50px;
+    padding: 10px;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.EditableTD > input:hover, select:hover {
+    box-shadow: inset 0 0 10px rgba(0 0 0 / .25);
+    transition: all .15s ease-in-out;
+}
+
+.EditableTD > input::-webkit-inner-spin-button {
+    height: 50px;
+    width: 60px;
+}
+
+.ui-button.ui-widget.ui-spinner-button.ui-spinner-up{
+    border: 1px solid black;
+}
+
+.EditableTD > input:focus, select:focus {
+    border: 2px solid var(--wine-red);
+    border-radius: 50px;
+    outline: none;
+    color: var(--wine-red);
+    width: 100%;
+    text-decoration: underline;
+    box-shadow: var(--box-shadow-focus);
+}

@@ -19,21 +19,9 @@ export function appCouponsReducer(currentState:CouponsAppState = new CouponsAppS
         case CouponActionType.DELETE:
             newState.appCouponsList = newState.appCouponsList.filter(c => c.id !== action.payload);
             break;
-        case CouponActionType.UPDATE:
-            newState.appCouponsList = updateCoupon(newState.appCouponsList, action.payload);
-            break;
         default:
             return currentState;
     }
     return newState;
 }
 
-// TODO CHECK THIS FOR PROPER FUNCTIONING
-function updateCoupon(couponsList:CouponModel[], toUpdate:CouponModel):CouponModel[]{
-    for(let i = 0; i < couponsList.length; i++){
-        if(couponsList[i].id === toUpdate.id){
-            couponsList[i] = {...toUpdate};
-        }
-    }
-    return couponsList;
-}

@@ -5,4 +5,5 @@ export class CompanyModel{
     name!:string;
     email!:string;
     clientType:ClientType = ClientType.COMPANY;
+    active!: boolean;
 }

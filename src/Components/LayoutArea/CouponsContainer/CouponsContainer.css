@@ -17,7 +17,7 @@
     box-shadow: 1px 6px 10px rgba(0 0 0 / .2);
 }
 
-.CouponsCounter > *{
+.CouponsCounter > * {
     padding-top: 2px;
 }
 
@@ -31,36 +31,36 @@
 }
 
 .Coupons__table{
-    display: flex;
-    justify-content: space-around;
+    display: table;
     border-collapse: collapse;
-    backdrop-filter: blur(2px);
+    backdrop-filter: var(--backdrop-blur);
     border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
 }
 
 
-
-.Coupons__table tr:nth-child(1){
+.Coupons__table > thead{
     background: var(--background-image-main);
     background-size: 100%;
     color: var(--white);
     font-style: oblique;
 }
 
-.Coupons__table tr{
+.Coupons__table > tbody tr{
     background: rgba(228, 223, 223, 0.3);
-
+    width: 100%;
+    border: none;
 }
 
 .Coupons__table tr:nth-child(even){
     background: rgba(255, 255, 255, 0.5);
 }
 
-.Coupons__table tr:nth-child(n+2):hover{
+.Coupons__table > tbody tr:hover{
     background: var(--wine-hover) !important;
     color: var(--white);
     cursor: pointer;
-    border: 1px solid white;
 }
 
 .Coupons__table .table__center_text{
@@ -69,7 +69,9 @@
 
 .Coupons__table th, td{
     border: 1px solid rgba(121, 116, 116, 0.3);
+    height: 50px;
     padding: 8px 15px;
+    border: none;
 }
 
 .Coupon__title {

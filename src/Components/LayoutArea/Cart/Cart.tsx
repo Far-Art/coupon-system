@@ -6,15 +6,12 @@ import { clearCart } from "../../../Redux/Actions/CartAction";
 import { useAppSelector } from "../../../Redux/Hooks/hooks";
 import { store } from "../../../Redux/Store/Store";
 import AppCurrencySymbol from "../../../Services/Currency";
-import GlobalFetcher from "../../../Services/GlobalFetcher";
+import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 import CouponsContainer from "../CouponsContainer/CouponsContainer";
 import EmptyView from "../EmptyView/EmptyView";
 import "./Cart.css";
-import { useState } from 'react';
 
 function Cart(): JSX.Element {
-
-    const [fetcher] = useState(new GlobalFetcher());
 
     const coupons = useAppSelector(state => 
         state.cartAppState.forPurchaseCouponsList
@@ -23,13 +20,13 @@ function Cart(): JSX.Element {
     // TODO Make this function work correctly
     function buyHandler(){
         const coupon = coupons[0];
-        fetcher.purchaseCoupon(coupon.id);
+        GlobalDataStreamer.purchaseCoupon(coupon.id);
     }
 
     function clearCartHandler(){
         toast.warning( 
         <div>
-            <span>All coupons well be deleted from your cart</span>
+            <span>All coupons will be deleted from your cart</span>
             <button onClick={() => store.dispatch(clearCart())} className="Toast__button" ><Icon component={CheckIcon} /></button>
             <button onClick={() => toast.dismiss("Cart_Clean")} className="Toast__button" ><Icon component={CloseIcon} /></button>
         </div>,
@@ -60,7 +57,7 @@ function Cart(): JSX.Element {
     return (
         <div className="Cart">
 			{coupons.length > 0 ? 
-                <CouponsContainer couponsList={coupons} asList={true} ignoreFields={["start", "amount", "id"]} />
+                <CouponsContainer couponsList={coupons} asList={true} ignoreFields={["startdate", "amount", "id", "company", "companyemail"]} />
                 :
                 <>
                     <p className="Cart__empty_view EMPHASIZE_TEXT_COLOR"> Your cart is empty </p>

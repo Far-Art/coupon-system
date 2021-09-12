@@ -14,7 +14,7 @@ function NavBar(): JSX.Element {
     function renderClientInfo(){
         if(currentClient !== undefined){
             return <>
-                <p className="EMPHASIZE_TEXT_COLOR">Good {timeOfDay()} <span>{nameToCapital(currentClient.name) + " " + nameToCapital(currentClient.clientType !== ClientType.COMPANY ? (currentClient as CustomerModel).lastName : "")}</span></p> <Logout />
+                <p className="EMPHASIZE_TEXT_COLOR">It is a good {timeOfDay()} <span>{nameToCapital(currentClient.name) + " " + nameToCapital(currentClient.clientType !== ClientType.COMPANY ? (currentClient as CustomerModel).lastName : "")}</span></p> <Logout />
             </>;
         }
         return <> 

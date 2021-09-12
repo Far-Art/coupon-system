@@ -8,6 +8,7 @@ import { customerReducer } from "../Reducers/CustomerReducer";
 import { FiltersReducer } from "../Reducers/FiltersReducer";
 import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
+import categoriesReducer from "../Reducers/CategoriesReducer";
 
 const rootReducer = combineReducers({
     currentClientState : currentClientReducer, 
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     filterAppState : FiltersReducer, 
     customersAppState : customerReducer, 
     companiesAppState : companyReducer,
-    cartAppState : cartReducer
+    cartAppState : cartReducer,
+    categoriesAppState : categoriesReducer
 });
 
 const persistConfig = {

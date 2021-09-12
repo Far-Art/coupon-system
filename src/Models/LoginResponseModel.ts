@@ -7,4 +7,5 @@ export class LoginResponseModel {
     lastName!: string;
     token!: string;
     clientType!: ClientType;
+    isActive!: boolean;
 }

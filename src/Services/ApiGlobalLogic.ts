@@ -1,16 +1,32 @@
-class ApiGlobalLogic{
-    forms = new Forms();
-}
+export default class ApiGlobalLogic{
 
-class Forms {
-    public fieldsMinLength = {
-        name: 4,
-        email: 4,
-        password: 6,
-        telephone: 10
+    public static patterns = {
+        regex:{
+            email: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
+            password: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/,
+            complexDate: /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
+            simpleDate: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
+        },
+        string: {
+            complexDate: "(?:19|20)(?:(?:[13579][26]|[02468][048])-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))|(?:[0-9]{2}-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:29|30))|(?:(?:0[13578]|1[02])-31)))",
+            integers: "[0-9]",
+            price: "\d+(,\d{2})?"
+        }
+    }
+
+    public static forms = {
+        fieldsMinLength: {
+            name: 4,
+            email: 4,
+            password: 6,
+            telephone: 9
+        },
+
+        fieldsMaxLength: {
+            name: 30,
+            email: 30,
+            password: 16,
+            telephone: 10
+        }
     }
 }
-
-const apiGlobalLogic = new ApiGlobalLogic();
-
-export default apiGlobalLogic;

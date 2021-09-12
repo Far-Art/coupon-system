@@ -15,10 +15,10 @@
     margin-left: auto;
 }
 
-.NavBar p {
+.NavBar > p {
     font-size: larger;
 }
 
-.NavBar span {
+.NavBar > span {
     font-weight: 500;
 }

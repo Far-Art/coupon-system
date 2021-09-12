@@ -11,8 +11,9 @@
     --background-image-main: url("../../../Assets/Images/WaveLinesBG.svg") center;
     --background-image-second: url("../../../Assets/Images/WaveLinesBG(2).svg") center;
     --background-image-third: url("../../../Assets/Images/WaveLinesBG(3).svg") center;
-    --box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
-    --box-shadow-focus: 0 0 15px rgba(0, 0, 0, 0.3);
+    --box-shadow: 3px 7px 40px rgba(0, 0, 0, 0.2);
+    --box-shadow-focus: 0 0 20px rgba(0, 0, 0, 0.4);
+    --backdrop-blur: blur(2px);
 }
 
 /*----------------------------------------------------------------------------*/
@@ -31,6 +32,16 @@
     text-align: center;
     padding: 20px 5px;
     box-shadow: var(--box-shadow);
+}
+
+.FORM .Error::before{
+  display: inline;
+  content: "⚠ ";
+}
+
+.FORM .Error {
+  margin: 0;
+  font-size: 15px;
 }
 
 /*----------------------------------------------------------------------------*/

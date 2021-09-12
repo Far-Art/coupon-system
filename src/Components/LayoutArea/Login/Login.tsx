@@ -1,40 +1,15 @@
 import { useForm } from "react-hook-form";
 import { LoginRequestModel } from "../../../Models/LoginRequestModel";
 import "./Login.css";
-import axios from "axios";
-import globals from "../../../Services/Globals";
-import apiGlobalLogic from "../../../Services/ApiGlobalLogic";
-import { toast } from "react-toastify";
-import { store} from "../../../Redux/Store/Store";
-import { loginAction } from "../../../Redux/Actions/ClientAction";
-import { LoginResponseModel } from "../../../Models/LoginResponseModel";
+import ApiGlobalLogic from "../../../Services/ApiGlobalLogic";
+import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 
 function Login(): JSX.Element {
 
-    const {register, handleSubmit, reset} = useForm<LoginRequestModel>();
+    const {register, handleSubmit, reset, formState: { errors }} = useForm<LoginRequestModel>();
 
-    const send = async (login:LoginRequestModel) => {
-        try{
-            const response = await toast.promise(axios.post<LoginResponseModel>(globals.urls.login, login),
-                {
-                    pending: "Loging in",
-                    success: "Login successful",
-                    error: ""
-                },
-                {
-                    toastId: "PendingToast",
-                    theme: "colored"
-                });
-
-            store.dispatch(loginAction(response.data));
-
-        } catch(err:any) {
-            toast.dismiss("PendingToast");
-            toast.error(typeof err.response?.data === "string" ? err.response.data : "Login failed",{
-                theme:"colored",
-                toastId: "LoginFailedToast"
-            });
-        }
+    const send = (login:LoginRequestModel) => {
+        GlobalDataStreamer.login(login);
     }
 
     return (
@@ -43,21 +18,31 @@ function Login(): JSX.Element {
                 <h2> Login to Coupon System</h2>
                 <form onSubmit={handleSubmit(send)}>
                     
-                    <input type="email" className="FIELD" placeholder="email" {...register("email",{
-                        required:true,
-                        minLength:apiGlobalLogic.forms.fieldsMinLength.email
+                    <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.email} type="email" className="FIELD" placeholder="email" {...register("email",{
+                        required:{value:true, message:"Email required"},
+                        minLength:{
+                            value: ApiGlobalLogic.forms.fieldsMinLength.email,
+                            message: `Email must contain at least ${ApiGlobalLogic.forms.fieldsMinLength.email} characters` 
+                            
+                        },
+                        pattern: {
+                            value: ApiGlobalLogic.patterns.regex.email,
+                            message: "Invalid email address"
+                        }
                     })} />
+                    {errors.email && <p className="Error">{errors.email.message}</p>}
 
-                    <input type="password" className="FIELD" placeholder="password" {...register("password",{
-                        required:true,
-                        minLength:apiGlobalLogic.forms.fieldsMinLength.password
-                    })} />
+                    <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.password} type="password" className="FIELD" placeholder="password" {...register("password",{
+                        required:{value:true, message:"Password required"}
+                        })} 
+                    />
+                    {errors.password && <p className="Error">{errors.password.message}</p>}
 
                     <a onClick={() => reset()} className="ClearForm">clear fields</a>
                     <br/>
                     
                     <div>
-                        <button  type="submit" className="APP__BUTTON">Login</button>
+                        <button type="submit" className="APP__BUTTON">Login</button>
                     </div>
                 </form>
             </div>

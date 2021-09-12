@@ -11,6 +11,9 @@ import { store } from "../../../Redux/Store/Store";
 import { deleteFromCart } from "../../../Redux/Actions/CartAction";
 import AppCurrencySymbol from "../../../Services/Currency";
 import EmptyView from "../EmptyView/EmptyView";
+import EditableTableRow from "./EditableTableRow";
+import { useState } from "react";
+import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 
 interface ContainerProps{
     couponsList: CouponModel[]; // coupons list
@@ -22,18 +25,38 @@ interface ContainerProps{
 
 function CouponsContainer(props:ContainerProps): JSX.Element {
 
+    const [editCouponWithId, setEditCouponWithId] = useState<number>(0);
+
     // This function invoked on list render
     function renderAsList(coupons:CouponModel[]){
         return(
             <table className="Coupons__table">
-                <tbody>
+                <thead>
                     <tr >
                         {couponEntries(new CouponModel()).map(attr => <th key={attr.key}>{attr.key.split(/(?=[A-Z])/).map(str => str.toLowerCase()).join(' ')}</th>)}
                     </tr>
+                </thead>
+                <tbody>
                     {coupons.map(c => 
-                        <tr className={setWarningClass(c)} onClick={() => emitToast(c)} key={c.id}> 
-                            {couponEntries(c).map(t => <td className="table__center_text" key={t.key}>{t.value}</td>)}          
-                        </tr>)}
+                        c.id === editCouponWithId ? 
+                        <EditableTableRow  
+                            key={c.id} 
+                            className={setWarningClass(c)} 
+                            tdClassName="table__center_text" 
+                            ignoreFields={props.ignoreFields} 
+                            nonEditableFields={["id"]} 
+                            onSave={setEditCouponWithId}
+                            coupon={c} />
+                        :
+                        <EditableTableRow 
+                            onClick={() => emitToast(c)} 
+                            key={c.id} 
+                            editable={false} 
+                            className={setWarningClass(c)} 
+                            tdClassName="table__center_text" 
+                            ignoreFields={props.ignoreFields} 
+                            coupon={c} />
+                        )}
                 </tbody>
             </table>
         );
@@ -46,7 +69,6 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
             return "Warn";
         }
         return "";
-        
     }
 
     // This function invoked on cards render
@@ -57,10 +79,10 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
     // This function invoked when coupons list is empty
     function renderEmptyView(){
         return(
-        <>
-            <h1>No Coupons left</h1>
-            <EmptyView />
-        </>);
+            <>
+                <h1>No Coupons left</h1>
+                <EmptyView />
+            </>);
     }
 
     function deleteFromCartHandler(coupon:CouponModel){
@@ -76,22 +98,38 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
                 if(props.editable){
                     return( 
                         <div>
-                            <span>Coupon id <span className="Coupon__title">'{coupon.id}'</span> </span>
-                            <button className="Toast__button" ><Icon component={EditIcon} /></button>
-                            <button className="Toast__button" ><Icon component={DeleteIcon} /></button>
+                            <span>Coupon id <span className="Coupon__title">'{coupon.id}'</span> action</span>
+                            
+                            {/* edit button */}
+                            <button onClick={() => {
+                                    setEditCouponWithId(coupon.id); 
+                                    toast.dismiss(coupon.id);
+                                }} 
+                                className="Toast__button"> <Icon component={EditIcon} /> 
+                            </button>
+
+                            {/* delete button */}
+                            <button onClick={() => {
+                                    GlobalDataStreamer.deleteCoupon(coupon.id);
+                                    toast.dismiss(coupon.id);
+                                    setEditCouponWithId(-1);
+                                }} 
+                                className="Toast__button"> <Icon component={DeleteIcon} /> 
+                            </button>
                         </div>
-                        )
+                    )
                 } 
                 // Non editable case
                 return (
                     <div>
                         <span>Delete coupon <span className="Coupon__title">'{coupon.title}'</span> ?</span>
-                        <button onClick={() => deleteFromCartHandler(coupon)} className="Toast__button" ><Icon component={CheckIcon} /></button>
-                        <button onClick={() => toast.dismiss(coupon.id)} className="Toast__button" ><Icon component={CloseIcon} /></button>
+                        <button onClick={() => deleteFromCartHandler(coupon)} className="Toast__button"> <Icon component={CheckIcon} /> </button>
+                        <button onClick={() => toast.dismiss(coupon.id)} className="Toast__button"> <Icon component={CloseIcon} /> </button>
                     </div>
                 )
             }
             , 
+            // toast properties
             {
                 toastId: coupon.id, // prevent duplicate
                 position: "top-center",
@@ -113,7 +151,7 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
                 // check for ignored fields
                 if(props.ignoreFields !== undefined && props.ignoreFields.length > 0){
                     for(const ignored of props.ignoreFields){
-                        if(key.includes(ignored)){
+                        if(key.toLowerCase() === ignored){
                             continue mainLoop;
                         }
                     }
@@ -131,7 +169,7 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
     // rendering logic
     const render = () =>{
         let couponsList;
-        if(props.couponsList.length === 0){
+        if(!props.couponsList || props.couponsList.length === 0){
             return renderEmptyView();
         }
 

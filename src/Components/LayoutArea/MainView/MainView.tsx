@@ -1,48 +1,50 @@
 import { useEffect } from "react";
-import { useState } from "react";
-import GlobalFetcher from "../../../Services/GlobalFetcher";
+import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 import { ClientType } from "../../../Models/ClientType";
 import { useAppSelector } from "../../../Redux/Hooks/hooks";
-import {store} from "../../../Redux/Store/Store";
 import CouponsContainer from "../CouponsContainer/CouponsContainer";
 import "./MainView.css";
 import { CouponModel } from "../../../Models/CouponModel";
+import { CompanyModel } from "../../../Models/CompanyModel";
 
 export default function MainView(): JSX.Element {
 
-    const [coupons, setCoupons] = useState<CouponModel[]>([]);
-    const [fetcher] = useState(new GlobalFetcher());
     const client = useAppSelector(state => 
         state.currentClientState.client
     );
 
-    // on mount
-    useEffect(() => {
-        if(client?.clientType === undefined || client?.clientType === ClientType.CUSTOMER){
-            fetcher.fetchAllCoupons().then(() => setCoupons(store.getState().couponsAppState.appCouponsList));
-        }
-    },[client]);
+    const clientCoupons:CouponModel[] = useAppSelector(state => 
+        state.clientCouponsState.clientCouponsList
+    );
+
+    const appCoupons:CouponModel[] = useAppSelector(state => 
+        state.couponsAppState.appCouponsList
+    );
 
     useEffect(() => {
         switch (client?.clientType) {
             case ClientType.COMPANY:
-                console.log("hereeee");
-                fetcher.fetchCouponsByCompany().then(() => {
-                    setCoupons(store.getState().clientCouponsState.clientCouponsList);
-                });
+                console.log("inside useEffect company");
+                if((client as CompanyModel).active){
+                    GlobalDataStreamer.fetchCouponsByCompany();
+                }
                 break;
-            // default:
-            //     setCoupons(store.getState().couponsAppState.appCouponsList);
-            //     break;
+            default:
+                GlobalDataStreamer.fetchAllCoupons();
+                break;
         }
     },[client]);
 
     function render() { 
         switch (client?.clientType) {
             case ClientType.COMPANY:
-                return <CouponsContainer couponsList={coupons} asList={true} editable={true} ignoreFields={["company"]} />;
+                if((client as CompanyModel).active){
+                    return <CouponsContainer couponsList={clientCoupons} asList={true} editable={true} ignoreFields={["companyentity", "companyemail", "companyname"]} />;
+                } else {
+                    return <div className="Pending">Your company is pending for admin approval</div>
+                }
             default:
-                return <CouponsContainer couponsList={coupons} onlyValid={true} ignoreFields={["id", "companyEmail", "amount", "start"]} />;
+                return <CouponsContainer couponsList={appCoupons} onlyValid={true} ignoreFields={["id", "companyemail", "amount", "startdate"]} />;
         }
     }
 
@@ -51,5 +53,4 @@ export default function MainView(): JSX.Element {
             {render()}
         </div>
     );
-
 }
