@@ -2,12 +2,6 @@
     margin: 0;
 }
 
-.Login > .Login__Form{
-    /* position: absolute;
-    transform: translate(-50%, 30%);
-    left: 50%; */
-}
-
 .Login .ClearForm {
 	color: white;
 	cursor: pointer;

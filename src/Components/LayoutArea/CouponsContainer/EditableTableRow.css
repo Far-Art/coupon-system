@@ -4,7 +4,7 @@
     
 }
 
-.EditableTD > input, select {
+.EditableTD > input, .EditableTD > select {
     text-align: center;
     height: 80%;
     border: 2px solid transparent;
@@ -15,7 +15,7 @@
     transition: all .3s ease-in-out;
 }
 
-.EditableTD > input:hover, select:hover {
+.EditableTD > input:hover, .EditableTD > select:hover {
     box-shadow: inset 0 0 10px rgba(0 0 0 / .25);
     transition: all .15s ease-in-out;
 }
@@ -29,7 +29,7 @@
     border: 1px solid black;
 }
 
-.EditableTD > input:focus, select:focus {
+.EditableTD > input:focus, .EditableTD > select:focus {
     border: 2px solid var(--wine-red);
     border-radius: 50px;
     outline: none;

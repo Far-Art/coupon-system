@@ -3,10 +3,13 @@
     display: flex;
     justify-content: center;
     background: var(--white);
-    z-index: 9999;
 }
 
-.NavBar * {
+.NavBar > * {
+    align-self: center;
+}
+
+.NavBar > * * {
     align-self: baseline;
 }
 

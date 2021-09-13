@@ -199,13 +199,13 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
                         return(
                             <td key={key} className={"EditableTD " + props.tdClassName}>
                                 <select  
-                                key={key}
+                                    key={key}
                                     onBlur={(event) => {
                                         setNewObjectValue(key, event.target.value);
                                     }} 
                                     onKeyDown={(event) => {if(event.key === "Enter"){
                                         (event.target as HTMLInputElement).blur();
-                                    }}}
+                                    }}} 
                                     >
                                     {categories.map(c => <option key={c} value={c}>{c}</option>)}
                                 </select>

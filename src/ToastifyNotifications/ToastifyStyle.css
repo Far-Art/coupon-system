@@ -1,4 +1,5 @@
 .Toastify__toast-container {
+  --toast-button-size: 40px;
   min-width: fit-content;
 }
 
@@ -8,13 +9,18 @@
     word-spacing: 3px;
     border-radius: 0 !important;
     text-shadow: 0 1px 13px rgba(0, 0, 0, 0.2);
-    justify-items: end;
-    justify-content: end;
+    /* justify-items: end;
+    justify-content: end; */
     align-items: center;
 }
 
 .Toastify__toast-body {
     justify-content: space-evenly;
+}
+
+.Toastify__toast-body * {
+  display: flex;
+  align-self: center;
 }
 
 .Toastify__toast--success {
@@ -29,14 +35,19 @@
     background: rgb(233, 0, 0) !important;
 }
 
-.Toast__button{
+.Toast__button {
+    display: inline-flex;
+    justify-content: center;
+    width: var(--toast-button-size);
+    height: var(--toast-button-size);
     border: none;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     background: white;
-    padding: 5px 10px;
-    margin: 5px;
+    margin: 0 5px;
     cursor: pointer;
+    transition: all .2s ease-in-out;
 }
+
 .Toast__button:hover{
     background: crimson;
     color: white;
@@ -45,11 +56,6 @@
 .Toast__button:active{
   background: rgb(184, 17, 50);
   transform: scale(96%);
-}
-
-.Toast__element > *{
-  text-align: center;
-  margin: 0;
 }
 
 .Toast__element > :nth-child(2){

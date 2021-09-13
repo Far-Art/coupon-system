@@ -1,5 +1,7 @@
 import "./FlippableCard.css";
 import { ReactElement, useState } from "react";
+import CloseIcon from '@material-ui/icons/Close';
+import Icon from '@material-ui/core/Icon';
 
 interface FlippableProps{
     mainButtonText?: string;
@@ -42,7 +44,7 @@ function FlippableCard(props:FlippableProps): JSX.Element {
     return (
         <>
             <div className="FlippableCard">
-                <button onClick={() => display()} className={props.buttonStyleClass ? props.buttonStyleClass : ""} >{props.mainButtonText ? props.mainButtonText : "2Sided Card"}</button>
+                <button onClick={() => display()} className={props.buttonStyleClass ? props.buttonStyleClass : ""} > { !isDisplayed ?  props.mainButtonText ? props.mainButtonText : "2 Sided Card" : <Icon component={CloseIcon} />}</button>
                 <div style={{display: displayed}} className={"card " + flipped}>
                     <div className="front face">
                     <button onClick={() => flip()} className={"ROTATE " + props.buttonStyleClass ? props.buttonStyleClass : ""}> {props.frontButtonText ? props.frontButtonText : "Rotate"} </button>

@@ -1,20 +1,15 @@
 .FlippableCard {
     display: inline-flex;
-    z-index: 19999;
+    z-index: 10;
     flex-direction: column;
-    position: relative;
-    -webkit-perspective: 3500px;
-    perspective: 3500px;
-    -webkit-transition: all 1s linear;
-    transition: all 1s linear;
+    -webkit-perspective: 3000px;
+    perspective: 3000px;
 }
 
 .card {
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
     position: relative;
-    flex-direction: column;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     -webkit-transition: all 1s cubic-bezier(0.175, 0.205, 0.22, 1.275);
@@ -24,11 +19,13 @@
 .face {
     display: flex;
     flex-direction: column;
+    width: 300px;
     position: absolute;
     -webkit-transform: translate(-50%);
     transform: translate(-50%);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    z-index:10;
 }
 
 .face > button {
@@ -36,7 +33,7 @@
 }
 
 .front{
-    z-index:1;
+    z-index:10;
 }
 
 .back {

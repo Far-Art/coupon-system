@@ -1,0 +1,74 @@
+.ClientCard {
+    min-height: 300px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: var(--border-radius);
+    background: rgba(255 255 255 / .4);
+    overflow: hidden;
+    backdrop-filter: var(--backdrop-blur);
+    box-shadow: var(--box-shadow);
+    margin: 20px;
+    text-align: center;
+}
+
+.ClientCardTitle{
+    color: var(--wine-red);
+    font-weight: 900;
+    font-size: 150%;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    background: var(--white);
+    border-radius: 0 0 15px 15px;
+    box-shadow: var(--box-shadow-focus);
+    padding: 1% 10%;
+}
+
+.ClientCardTable {
+    height: 100%;
+    width: 100%;
+}
+
+.ClientCardTable > * {
+    height: 100%;
+    width: 100%;
+    padding-top: 40px;
+}
+
+.ClientCardTable, .ClientCardTable tr{
+    display: flex;
+}
+
+.ClientCardTable thead{
+    color: var(--white);
+    background: var(--background-image-third);
+}
+
+.ClientCardTable thead{
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.ClientCardTable tbody td{
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.ClientCardTable tr{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ClientCardTable td:hover{
+    filter: blur(0) !important;
+    transition: all .2s linear;
+}
+
+.ClientCardTable td:active{
+    filter: blur(0) !important;
+    transition: all .2s linear;
+}
+

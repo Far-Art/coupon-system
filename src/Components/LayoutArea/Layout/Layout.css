@@ -12,6 +12,10 @@
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
+a {
+  text-decoration: none;
+}
+
 * input {
   -webkit-user-select: text; /* Chrome, Opera, Safari */
   -moz-user-select: text; /* Firefox 2+ */

@@ -2,7 +2,8 @@
 
 :root{
     --white:white;
-    --white-transparent:rgba(255 255 255 / .7);
+    --gray:rgb(112, 112, 112);
+    --white-transparent:rgba(255 255 255 / .9);
     --wine-red:rgb(130 19 52);
     --wine-red-transparent:rgb(130 19 52 /.5);
     --wine-red-dark:rgb(114 17 46);
@@ -13,7 +14,11 @@
     --background-image-third: url("../../../Assets/Images/WaveLinesBG(3).svg") center;
     --box-shadow: 3px 7px 40px rgba(0, 0, 0, 0.2);
     --box-shadow-focus: 0 0 20px rgba(0, 0, 0, 0.4);
-    --backdrop-blur: blur(2px);
+    --backdrop-blur: blur(2px) ;
+    --border-radius: 40px;
+    --nav-button-size: 50px;
+    --nav-button-border: 2px solid var(--wine-red);
+    --transition: .25s;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -27,11 +32,18 @@
 .FORM {
     color: white;
     background: var(--background-image-third);
-    border-radius: 40px;
+    border-radius: var(--border-radius);
     border: 3px solid var(--white-transparent);
     text-align: center;
     padding: 20px 5px;
     box-shadow: var(--box-shadow);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.FORM a:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .FORM .Error::before{
@@ -46,44 +58,40 @@
 
 /*----------------------------------------------------------------------------*/
 
-.LINK {
-    text-decoration: none;
-    background: rgba(255, 255, 255, 0.7);
-    padding: 0.4vh 10px;
-}
-
-.FIELD, .LINK {
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-radius: 20rem;
-    padding: 0.6vh 0.7vw;
-    margin: 5px 15px;
-    font-size: 1.08em;
+.FIELD, .LINK, .SELECT {
+    font-size: 1.1em;
+    border: none;
     color: var(--wine-red);
-    transition-duration: 0.3s;
+    background: var(--white-transparent);
+    margin: 7px auto;
+    padding: 8px 15px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
 }
 
-.FIELD:hover, .LINK:hover{
-    opacity: 1;
-    border-color: var(--wine-red);
+.FIELD:hover, .LINK:hover, .SELECT:hover{
+    background: var(--white);
 }
 
-.FIELD:focus {
-    opacity: 1;
-    border: 1px solid rgba(0, 0, 0, 0);
-	outline: none;
-    transition-duration: 0.3s;
-    box-shadow: var(--box-shadow-focus);
+.FIELD:focus-visible, .LINK:focus-visible, .SELECT:focus-visible{
+    outline: none;
+    background: var(--white);
+    box-shadow:  var(--box-shadow-focus);
 }
 
-.FIELD::placeholder {
-    color: rgb(194, 205, 206);
-    opacity: 1; /* Firefox */
-    transition-duration: 0.3s;
+.FIELD::placeholder, .SELECT::placeholder {
+    color: var(--gray);
+    transition: var(--transition);
 }
 
-.FIELD:focus::placeholder {
-    opacity: 0;
-    transition-duration: 0.3s;
+.FIELD:hover::placeholder, .SELECT:hover::placeholder {
+    color: var(--gray);
+}
+
+.SELECT {
+    font-size: 1rem;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -116,6 +124,7 @@
 /*----------------------------------------------------------------------------*/
 
 .APP__BUTTON {
+    display: inline-flex;
     color: var(--wine-red);
     max-width: 300px;
     font-size: 1.1rem;
@@ -124,11 +133,11 @@
     margin: 4px 6px;
     border: 1px solid var(--wine-red-transparent);
     background: var(--white);
-    border-radius: 100px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    transition-duration: .2s;
-    font-family: 'Nunito';
-    box-sizing: content-box;
+    transition: var(--transition);
+    justify-content: center;
+    align-items: center;
 }
 
 .APP__BUTTON:hover {
@@ -141,6 +150,45 @@
     transform: scale(98%) translateY(1px);
     background: var(--wine-red-dark);
     box-shadow:inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.NAV__BUTTON {
+    display: inline-flex;
+    justify-content: center;
+    width: var(--nav-button-size);
+    height: var(--nav-button-size);
+    align-items: center;
+    color: var(--wine-red);
+    background: var(--white);
+    border-radius: var(--border-radius);
+    border: var(--nav-button-border);
+    transition: var(--transition);
+}
+
+.NAV__BUTTON::before {
+    content: " ";
+    position: absolute;
+    z-index: 1;
+    width: calc(var(--nav-button-size) - 6px);
+    height: calc(var(--nav-button-size) - 6px);
+    border: 2px solid var(--white);
+    border-radius: var(--border-radius);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.NAV__BUTTON:hover {
+    color: var(--white);
+    background: var(--wine-red);
+    transition: var(--transition);
+}
+
+.NAV__BUTTON:hover::before {
+    opacity: 1;
+}
+
+.NAV__BUTTON:focus {
+    /* transform: translate3d(-5px, -1px, -10px); */
 }
 
 .DISABLED_BUTTON {

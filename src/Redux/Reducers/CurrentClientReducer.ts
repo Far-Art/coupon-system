@@ -15,6 +15,10 @@ export default function currentClientReducer(currentClientState:CurrentClientApp
             newState.client = undefined;
             newState.token = undefined;
             break;
+        case ClientActionType.REQUEST_INFO:
+            newState.client = action.payload;
+            newState.token = currentClientState.token;
+            break;
         default:
             return currentClientState
     }

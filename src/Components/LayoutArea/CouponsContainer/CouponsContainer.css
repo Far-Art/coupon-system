@@ -37,6 +37,7 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--box-shadow);
+    margin: auto;
 }
 
 
@@ -45,6 +46,7 @@
     background-size: 100%;
     color: var(--white);
     font-style: oblique;
+    box-shadow: var(--box-shadow-focus);
 }
 
 .Coupons__table > tbody tr{
@@ -78,6 +80,7 @@
     font-weight: bold;
     font-style:oblique;
     text-decoration: underline;
+    margin: 0 8px;
 }
 
 .Coupons__table .Warn {

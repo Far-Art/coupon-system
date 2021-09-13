@@ -38,8 +38,9 @@ function Login(): JSX.Element {
                     />
                     {errors.password && <p className="Error">{errors.password.message}</p>}
 
-                    <a onClick={() => reset()} className="ClearForm">clear fields</a>
                     <br/>
+                    <a onClick={() => reset()} className="ClearForm">clear fields</a>
+                    
                     
                     <div>
                         <button type="submit" className="APP__BUTTON">Login</button>

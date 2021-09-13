@@ -28,7 +28,7 @@ function NavBar(): JSX.Element {
                     backElement={<SignUp />}
                     buttonStyleClass="APP__BUTTON"
                 />
-            <p className="EMPHASIZE_TEXT_COLOR">for better user experience</p>
+            <p className="EMPHASIZE_TEXT_COLOR">for shopping experience</p>
         </>;
     }
 
@@ -38,7 +38,7 @@ function NavBar(): JSX.Element {
 
     function timeOfDay(){
         const timeNow = new Date();
-        if(timeNow.getHours() >= 21){
+        if(timeNow.getHours() >= 21 || timeNow.getHours() < 4){
             return "night";
         } else if(timeNow.getHours() >= 18) {
             return "evening";

@@ -1,0 +1,26 @@
+.CreateCouponForm, .CreateCouponForm form {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.CreateCouponForm form {
+    width: 100%;
+
+}
+
+.CreateCouponForm input, .CreateCouponForm select {
+    min-width: 30px;
+    width: 50%;
+}
+
+.CreateCouponForm input:focus-visible {
+    min-width: 30px;
+    width: 80%;
+}
+
+.CreateCouponForm label{
+    position: relative;
+    z-index: 2;
+}

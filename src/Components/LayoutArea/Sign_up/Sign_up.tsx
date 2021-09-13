@@ -126,6 +126,7 @@ function Sign_up(): JSX.Element {
                 })} />
                  {errors.password && <p className="Error">{errors.password.message}</p>}
 
+                <br/>
                 <a onClick={() => {
                     reset();
                     setClientType(ClientType.CUSTOMER);

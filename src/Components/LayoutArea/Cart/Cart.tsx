@@ -57,7 +57,7 @@ function Cart(): JSX.Element {
     return (
         <div className="Cart">
 			{coupons.length > 0 ? 
-                <CouponsContainer couponsList={coupons} asList={true} ignoreFields={["startdate", "amount", "id", "company", "companyemail"]} />
+                <CouponsContainer couponsList={coupons} onlyValid={true} asList={true} ignoreFields={["startdate", "amount", "id", "companyentity", "companyemail"]} />
                 :
                 <>
                     <p className="Cart__empty_view EMPHASIZE_TEXT_COLOR"> Your cart is empty </p>
