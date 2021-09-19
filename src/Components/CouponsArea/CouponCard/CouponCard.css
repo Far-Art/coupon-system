@@ -1,8 +1,7 @@
 .CouponCard {
     position: relative;
-    background: var(--background-image-main);
-    /* backdrop-filter: blur(10px); */
-    background-size: 100% 150%;
+    background: var(--background-image-cards);
+    background-size: 30%;
     margin: 10px auto calc(2% + 30px) auto;
     max-width: 800px;
     text-align: center;

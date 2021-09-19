@@ -9,11 +9,11 @@ import "./Sign_up.css";
 import { useState } from "react";
 import ApiGlobalLogic from "../../../Services/ApiGlobalLogic";
 
-function Sign_up(): JSX.Element {
+export default function Sign_up(): JSX.Element {
     
     const {register, handleSubmit, setValue, reset, formState: { errors }} = useForm<SignupModel>({
-        defaultValues: {"clientType":ClientType.CUSTOMER},
-      });
+        defaultValues: {"clientType":ClientType.CUSTOMER}
+    });
 
     const [clientType, setClientType] = useState(ClientType.CUSTOMER);
     
@@ -82,16 +82,10 @@ function Sign_up(): JSX.Element {
 
     return (
         <div className="Sign_up FORM">
-			<h2> Sign-up to Coupon System</h2>
+			<h2> Sign-up </h2>
             <form onSubmit={handleSubmit(send)}>
 
                 {requiredFields()}
-
-                <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.telephone} type="tel" className="FIELD" placeholder="telephone" {...register("telephone",{
-                    required:false,
-                    minLength: apiGlobalLogic.forms.fieldsMinLength.telephone
-                })} />
-                {errors.telephone && <p className="Error">{errors.telephone.message}</p>}
 
                 <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.email} type="email" className="FIELD" placeholder="email" {...register("email",{
                      required:{
@@ -127,10 +121,10 @@ function Sign_up(): JSX.Element {
                  {errors.password && <p className="Error">{errors.password.message}</p>}
 
                 <br/>
-                <a onClick={() => {
+                <button onClick={() => {
                     reset();
                     setClientType(ClientType.CUSTOMER);
-                }} className="ClearForm">reset form</a>
+                }} className="BUTTON__AS_LINK">reset form</button>
                 <br/>
 
                 <select className="FIELD" onChange={(event) => handleChange(event)} >
@@ -143,5 +137,3 @@ function Sign_up(): JSX.Element {
         </div>
     );
 }
-
-export default Sign_up;

@@ -12,4 +12,9 @@ export const store = createStore(persistedReducer, (window as any).__REDUX_DEVTO
 
 export const persistor = persistStore(store);
 
-export default {store, persistor};
+const reduxPersistedStore = {
+    store, 
+    persistor
+}
+
+export default reduxPersistedStore;

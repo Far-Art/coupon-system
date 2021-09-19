@@ -1,24 +1,32 @@
-import React, { ChangeEventHandler } from "react";
-import { FilterTypes } from "../../../Models/FilterTypes";
+import { ChangeEventHandler, useEffect, useState } from "react";
+import { FilterType } from "../../../Models/FilterType";
 import { addFilter, removeFilter } from "../../../Redux/Actions/FilterAction";
+import { useAppSelector } from "../../../Redux/Hooks/hooks";
 import {store} from "../../../Redux/Store/Store";
 import "./CheckBox.css";
 
 interface CheckBoxProps{
-    filterKey:FilterTypes;
+    filterKey:FilterType;
     filterValue:string | number;
-    // checked?:boolean;
-    // onChange?:ChangeEventHandler;
     changeEventHandler?:ChangeEventHandler;
 }
 
-function CheckBox({filterKey, filterValue}:CheckBoxProps): JSX.Element {
+export default function CheckBox({filterKey, filterValue}:CheckBoxProps): JSX.Element {
 
-    const [checked, setChecked] = React.useState(false);
+    const [checked, setChecked] = useState(false);
+
+    const isActive = useAppSelector(state => 
+        state.filterAppState.filtersActive
+    );
+
+    useEffect(() => {
+        if(!isActive){
+            setChecked(false);
+        }
+    },[isActive])
 
     const handleChange = () => {
         setChecked(!checked);
-
         /* update filters global state */ 
         if(!checked){
             store.dispatch(addFilter(filterKey, filterValue));
@@ -29,16 +37,15 @@ function CheckBox({filterKey, filterValue}:CheckBoxProps): JSX.Element {
 
     return (
         <div className="CheckBox">
-			<label>
+			<label className="container">
+            {filterValue.toString().toLowerCase()}
                 <input 
                     type="checkbox"
                     checked={checked}
                     onChange={handleChange}
                 />
-                {filterValue}
+                <span className="checkmark"></span>
             </label>
         </div>
     );
 }
-
-export default CheckBox;

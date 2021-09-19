@@ -21,7 +21,7 @@ export default function CreateCustomerForm(): JSX.Element {
             <form onSubmit={handleSubmit(send)}>
 
                 {/* customers first name */}
-                <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.companyName} type="text" className="FIELD" placeholder="customers first name" {...register("firstName" as "name",{
+                <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.name} type="text" className="FIELD" placeholder="customers first name" {...register("firstName" as "name",{
                     required:{
                         value: true,
                         message: "Customers first name required"},
@@ -32,7 +32,7 @@ export default function CreateCustomerForm(): JSX.Element {
                 {errors.name && <p className="Error">{errors.name.message}</p>}
 
                 {/* customers last name */}
-                <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.companyName} type="text" className="FIELD" placeholder="customers last name" {...register("lastName",{
+                <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.name} type="text" className="FIELD" placeholder="customers last name" {...register("lastName",{
                     required:{
                         value: true,
                         message: "Customers last name required"},
@@ -40,7 +40,7 @@ export default function CreateCustomerForm(): JSX.Element {
                         value: ApiGlobalLogic.forms.fieldsMinLength.name,
                         message: ApiGlobalLogic.errorDescriptions.minLength.name}
                 })} />
-                {errors.name && <p className="Error">{errors.name.message}</p>}
+                {errors.lastName && <p className="Error">{errors.lastName.message}</p>}
 
                 {/* company email */}
                 <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.email} type="email" className="FIELD" placeholder="customers email" {...register("email",{
@@ -71,10 +71,10 @@ export default function CreateCustomerForm(): JSX.Element {
                 {errors.password && <p className="Error">{errors.password.message}</p>}
 
                 <br/>
-                <a onClick={() => {
+                <button onClick={() => {
                     reset();
                     }} 
-                    className="ClearForm">reset form</a>
+                    className="BUTTON__AS_LINK">reset form</button>
                 <br/>
 
                 <button type="submit" className="FIELD LINK APP__BUTTON">Create</button>
@@ -82,8 +82,4 @@ export default function CreateCustomerForm(): JSX.Element {
             </form>
         </div>
     );
-}
-
-function handleSubmit(send: any): import("react").FormEventHandler<HTMLFormElement> | undefined {
-    throw new Error("Function not implemented.");
 }

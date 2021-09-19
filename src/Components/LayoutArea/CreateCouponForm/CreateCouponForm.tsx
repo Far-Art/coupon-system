@@ -33,7 +33,6 @@ export default function CreateCouponForm(): JSX.Element {
                     required:true,
                     })}>
                     {categories.map(category => <option key={category} value={category}>{category}</option>)}
-                    
                 </select>
 
                 {/* title */}
@@ -78,10 +77,10 @@ export default function CreateCouponForm(): JSX.Element {
                     required:{
                         value: true,
                         message: "Amount required"},
-                    // pattern: {
-                    //     value: ApiGlobalLogic.patterns.regex.numbers,
-                    //     message: "Invalid email address"
-                    // }
+                    pattern: {
+                        value: ApiGlobalLogic.patterns.regex.numbers,
+                        message: ApiGlobalLogic.errorDescriptions.badPattern.amount
+                    }
                 })} />
                 {errors.amount && <p className="Error">{errors.amount.message}</p>}
 
@@ -93,9 +92,9 @@ export default function CreateCouponForm(): JSX.Element {
                 })} />
                 {errors.price && <p className="Error">{errors.price.message}</p>}
 
-                <a onClick={() => {
+                <button onClick={() => {
                     reset();
-                }} className="ClearForm">reset form</a>
+                }} className="BUTTON__AS_LINK">reset form</button>
                 <br/>
                 <button type="submit" className="FIELD LINK APP__BUTTON">Create</button>
                 

@@ -16,7 +16,7 @@ function Menu(): JSX.Element {
     );
     
     return (
-        <div className="Menu">
+        <div className="Menu WHITE__BG">
             <NavLink className="NAV__BUTTON" to="/home">
                 <Icon className="Menu__button" component={HomeIcon} />
             </NavLink>
@@ -34,12 +34,11 @@ function Menu(): JSX.Element {
             }
 
             {/* display cart only for customers type */}
-            { client?.clientType === ClientType.CUSTOMER &&
+            { (client?.clientType === undefined || client?.clientType === ClientType.CUSTOMER) &&
                 <NavLink className="NAV__BUTTON" to="/cart">
                     <Icon className="Menu__button" component={ShoppingCartIcon} />
                 </NavLink>
             }
-            
         </div>
     );
 }

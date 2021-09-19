@@ -1,25 +1,20 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { FilterTypes } from "../../../../Models/FilterTypes";
-import {store} from "../../../../Redux/Store/Store";
+import { useEffect, useState } from "react";
+import { FilterType } from "../../../../Models/FilterType";
 import CheckBox from "../../../InputArea/CheckBox/CheckBox";
 import "./CategoriesFilter.css";
 
-function CategoriesFilter(): JSX.Element {
+interface CategoriesFilterProps {
+    categories:string[];
+}
 
-   
-    const distinctCategories = categoriesAsSet(store.getState().couponsAppState.appCouponsList);
-    const [, setCategories] = useState(distinctCategories);
-    
+function CategoriesFilter(props:CategoriesFilterProps): JSX.Element {
+
+    const [categories, setCategories] = useState<string[]>([]);
 
     useEffect(() => {
-        store.subscribe(() => setCategories(categoriesAsSet(store.getState().couponsAppState.appCouponsList)));
-    })
-
-    function categoriesAsSet(arr: any[]){
-        return [...new Set(arr.map(c => formatName(c.category)))];
-    }
-
+        setCategories(Array.from(new Set(props.categories)));
+    },[props.categories])
+        
     function formatName(value:string){
         let newString:string = value.substring(0,1).toUpperCase();
         newString += value.substring(1).toLowerCase();
@@ -32,7 +27,7 @@ function CategoriesFilter(): JSX.Element {
     return (
         <div className="CategoriesFilter">
             <p>Categories</p>
-			{distinctCategories.map(c => <CheckBox key={c} filterKey={FilterTypes.CATEGORIES} filterValue={c} />)}
+			{categories.map(c => <CheckBox key={c} filterKey={FilterType.CATEGORIES} filterValue={c} />)}
         </div>
     );
 }

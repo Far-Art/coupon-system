@@ -9,11 +9,12 @@ import Icon from '@material-ui/core/Icon';
 import "./CouponsContainer.css";
 import { store } from "../../../Redux/Store/Store";
 import { deleteFromCart } from "../../../Redux/Actions/CartAction";
-import AppCurrencySymbol from "../../../Services/Currency";
-import EmptyView from "../EmptyView/EmptyView";
+import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 import EditableTableRow from "./EditableTableRow";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
+import FiltersContainer from "../../FiltersArea/FiltersContainer/FiltersContainer";
+import { useAppSelector } from "../../../Redux/Hooks/hooks";
 
 interface ContainerProps{
     couponsList: CouponModel[]; // coupons list
@@ -25,15 +26,93 @@ interface ContainerProps{
 
 function CouponsContainer(props:ContainerProps): JSX.Element {
 
-    const [editCouponWithId, setEditCouponWithId] = useState<number>(0);
+    // sets edit mode
+    const [editCouponWithId, setEditCouponWithId] = useState<number>(0); 
+    // sets coupon fields to render
+    const [couponFieldsList, setCouponFieldsList] = useState<string[]>([]);
+    // filtered coupons list
+    const [currentCouponsList, setCurrentCouponsList] = useState<CouponModel[]>([]);
 
-    // This function invoked on list render
+    const appfilters = useAppSelector(state => 
+        state.filterAppState
+    );
+
+    useEffect(() => {
+        if(props.couponsList){
+            setCouponFieldsList(initFieldsToRender(props.couponsList[0]));
+            setCurrentCouponsList(filterCoupons(props.couponsList));
+        }
+    },[props.couponsList, appfilters]);
+
+    /* this function filters coupon list by active filters
+    ----------------------------------------------------------------------- */
+    const filterCoupons = (coupons:CouponModel[]) => {
+        let filtered = coupons; // initial list
+
+        // filter by categories and companies
+        if(appfilters.categoriesList.length > 0 || appfilters.companiesList.length > 0){
+            if(appfilters.categoriesList.length > 0 && appfilters.companiesList.length > 0){
+                filtered = filtered.filter(c => appfilters.categoriesList.includes(c.category) && appfilters.companiesList.includes(c.companyName));
+            } else if (appfilters.categoriesList.length > 0) {
+                filtered = filtered.filter(c => appfilters.categoriesList.includes(c.category));
+            } else {
+                filtered = filtered.filter(c => appfilters.companiesList.includes(c.companyName));
+            }
+        }
+
+        // filter by price
+        if(appfilters.priceList >= 0){
+            filtered = filtered.filter(c => c.price <= appfilters.priceList);
+        }
+
+        //filter by free text
+        if(appfilters.freeText.length > 0){
+            filtered = filtered.filter(c => 
+                c.title.toLowerCase().includes(appfilters.freeText) ||
+                c.description?.toLowerCase().includes(appfilters.freeText)
+            );
+        }
+        return filtered;
+    }
+
+    /* this function retrieves field names from object
+    ----------------------------------------------------------------------- */
+    function initFieldsToRender(object:any){
+        const fieldsArray:string[] = [];
+
+        if(object === undefined){
+            return fieldsArray;
+        }
+        
+        const entries = Object.entries(object);
+
+        mainLoop:
+            for(const [key, value] of entries){
+                // ignore keys with object by default
+                if((typeof value === "object" && key.toLowerCase() !== "image") || value === undefined){
+                    continue;
+                }
+                //check for ignored fields
+                if(props.ignoreFields !== undefined && props.ignoreFields.length > 0){
+                    for(const ignored of props.ignoreFields){
+                        if(key.toLowerCase() === ignored){
+                            continue mainLoop;
+                        }
+                    }
+                }
+                fieldsArray.push(key);
+            }
+        return fieldsArray;
+    }
+
+    /* This function invoked on list render
+    ----------------------------------------------------------------------- */
     function renderAsList(coupons:CouponModel[]){
         return(
             <table className="Coupons__table">
                 <thead>
                     <tr >
-                        {couponEntries(new CouponModel()).map(attr => <th key={attr.key}>{attr.key.split(/(?=[A-Z])/).map(str => str.toLowerCase()).join(' ')}</th>)}
+                        {couponFieldsList.map(attribute => <th key={attribute}>{attribute.split(/(?=[A-Z])/).map(str => str.toLowerCase()).join(' ')}</th>)}
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +141,8 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
         );
     }
 
-    /* if amount is zero or end date is near, set warn class */
+    /* if amount is zero or end date is near, set warn class
+    ----------------------------------------------------------------------- */
     function setWarningClass (coupon:CouponModel){
         const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
         if(coupon.amount === 0 || Date.parse(new Date(coupon.endDate).toLocaleDateString()) <= timeNowInMillis){
@@ -71,25 +151,27 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
         return "";
     }
 
-    // This function invoked on cards render
+    /* This function invoked on cards render
+    ----------------------------------------------------------------------- */
     function renderAsCards(coupons:CouponModel[]){
         return coupons.map(c => <CouponCard coupon={c} key={c.id} />);
     }
 
-    // This function invoked when coupons list is empty
+    /* This function invoked when coupons list is empty
+    ----------------------------------------------------------------------- */
     function renderEmptyView(){
-        return(
-            <>
-                <h1>No Coupons left</h1>
-                <EmptyView />
-            </>);
+        return <EmptyView text={ store.getState().filterAppState.filtersActive ? "No matching coupons, try changing filters" : "No coupons left"} />
     }
 
+    /* This function invoked when inside cart delete action happens
+    ----------------------------------------------------------------------- */
     function deleteFromCartHandler(coupon:CouponModel){
         toast.dismiss(coupon.id);
         store.dispatch(deleteFromCart(coupon));
     }
 
+    /* emiting toast component
+    ----------------------------------------------------------------------- */
     const emitToast = (coupon:CouponModel) => {
         toast.dismiss(); // close previous toasts
         toast.warning(
@@ -143,40 +225,17 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
             });
     }
 
-    /* retrieve coupon values and store as object array of key value */
-    function couponEntries(coupon:CouponModel){
-        const entries:{key:string, value:any}[] = [];
-        mainLoop:
-            for(const [key, value] of Object.entries(coupon)){
-                // check for ignored fields
-                if(props.ignoreFields !== undefined && props.ignoreFields.length > 0){
-                    for(const ignored of props.ignoreFields){
-                        if(key.toLowerCase() === ignored){
-                            continue mainLoop;
-                        }
-                    }
-                }
-                // append currency symbol to price
-                if(key.includes("price")){
-                    entries.push({key:key, value:value + AppCurrencySymbol});
-                } else {
-                    entries.push({key:key, value:value});
-                }
-            }
-        return entries;
-    }
-
-    // rendering logic
-    const render = () =>{
+    /* render logic
+    ----------------------------------------------------------------------- */
+    const render = () => {
         let couponsList;
         if(!props.couponsList || props.couponsList.length === 0){
             return renderEmptyView();
         }
 
         if(props.onlyValid){
-            // TODO try Make direct date comparison
             const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
-            couponsList = props.couponsList.filter(c => 
+            couponsList = currentCouponsList.filter(c => 
                 {
                     if(c.amount === 0 ){
                         return false;
@@ -187,7 +246,7 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
                 }
             );
         } else {
-            couponsList = props.couponsList;
+            couponsList = currentCouponsList;
         }
 
         if(couponsList.length === 0){
@@ -204,10 +263,14 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
         );
     }
 
-    // paint component
+    /* paint component
+    ----------------------------------------------------------------------- */
     return (
         <div className="CouponsContainer">
-            {render()}
+            <FiltersContainer coupons={props.couponsList ? props.couponsList : []} />
+            <div className="CouponsView">
+                {render()}
+            </div>
         </div>
     );
 }

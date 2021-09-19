@@ -1,4 +1,3 @@
-import { CouponModel } from "../../Models/CouponModel";
 import { CouponAction, CouponActionType } from "../Actions/CouponAction";
 import { CouponsAppState } from "../States/CouponsAppState";
 
@@ -24,4 +23,3 @@ export function appCouponsReducer(currentState:CouponsAppState = new CouponsAppS
     }
     return newState;
 }
-

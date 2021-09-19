@@ -14,12 +14,12 @@ function NavBar(): JSX.Element {
     function renderClientInfo(){
         if(currentClient !== undefined){
             return <>
-                <p className="EMPHASIZE_TEXT_COLOR">It is a good {timeOfDay()} <span>{nameToCapital(currentClient.name) + " " + nameToCapital(currentClient.clientType !== ClientType.COMPANY ? (currentClient as CustomerModel).lastName : "")}</span></p> <Logout />
+                <p>It is a good {timeOfDay()} <span>{nameToCapital(currentClient.name) + " " + nameToCapital(currentClient.clientType !== ClientType.COMPANY ? (currentClient as CustomerModel).lastName : "")}</span></p> <Logout />
             </>;
         }
         return <> 
             {/* <p className="EMPHASIZE_TEXT_COLOR">Good {timeOfDay()} guest, please </p> <Login /> <p>for better user experience</p> */}
-            <p className="EMPHASIZE_TEXT_COLOR">Good {timeOfDay()} guest, please </p> 
+            <p >Good {timeOfDay()} guest, please </p> 
             <FlipableCard 
                     mainButtonText="Login" 
                     frontButtonText={"Want to sign-up"} 
@@ -28,7 +28,7 @@ function NavBar(): JSX.Element {
                     backElement={<SignUp />}
                     buttonStyleClass="APP__BUTTON"
                 />
-            <p className="EMPHASIZE_TEXT_COLOR">for shopping experience</p>
+            <p>for shopping experience</p>
         </>;
     }
 
@@ -49,7 +49,7 @@ function NavBar(): JSX.Element {
     }
 
     return (
-        <div className={"NavBar BG__BLEND"}>
+        <div className={"NavBar WHITE__BG"}>
             {renderClientInfo()}
         </div>
     );

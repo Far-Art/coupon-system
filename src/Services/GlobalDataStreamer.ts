@@ -13,6 +13,7 @@ import { LoginRequestModel } from "../Models/LoginRequestModel";
 import { LoginResponseModel } from "../Models/LoginResponseModel";
 import { loginAction, logoutAction, requestInfo } from "../Redux/Actions/ClientAction";
 import { ClientInfoModel } from "../Models/ClientInfoModel";
+import { clearCart } from "../Redux/Actions/CartAction";
 
 // static class for data streams
 export default class GlobalDataStreamer {
@@ -34,16 +35,14 @@ export default class GlobalDataStreamer {
 
     public static async logout(){
         toast.dismiss();
-        this.emitToast("Logout", "Loggin out...");
         return axios.delete<string>(globals.urls.logout, this.appendBody())
             .then((response) => {
-                
+                this.emitToast("Logout", "Loggin out...");
                 this.warnToast("Logout", response.data);
                 store.dispatch(logoutAction());
                 return true;
             })
             .catch((error:any) => {
-                this.errorToast("Logout", error);
                 return false;
             });
     }
@@ -95,6 +94,19 @@ export default class GlobalDataStreamer {
             });
     }
 
+    public static async fetchCouponImage(imageName:string | number){
+        this.emitToast("CouponImageFetching", "Fetching image...");
+        return axios.get(globals.urls.couponImage + `/${imageName}`, {responseType:"blob"})
+            .then((response) => {
+                this.successToast("CouponImageFetching", "Fetch successful");
+                return response;
+            })
+            .catch((error:any) => {
+                this.errorToast("CouponImageFetching", error);
+                return error;
+            });
+    }
+
     public static async fetchAllCoupons(){
         await axios.get<CouponModel[]>(globals.urls.coupons)
             .then((response) => {
@@ -121,7 +133,6 @@ export default class GlobalDataStreamer {
     }
 
     public static async fetchCouponsByCustomer(){
-        
         return axios.get<CouponModel[]>(globals.urls.customers + "/coupons", this.appendBody())
             .then((response) => {
                 this.successToast("allByCustomer", "Your coupons loaded");
@@ -135,15 +146,18 @@ export default class GlobalDataStreamer {
             });
     }
 
-    // TODO FIX THIS METHOD
-    public static async purchaseCoupon(couponId:number){
-        // const request = axios.post(globals.urls.purchaseSingle + "/" + couponId, {} , {
-        //     headers:{
-        //         "Authorization": store.getState().currentClientState.token
-        //     }
-        // });
-        // store.dispatch(fetchCouponsByCustomer(response.data));
-        // this.emitToast("Updating coupon...", request, updateCoupon(coupon));
+    public static async purchaseCoupons(couponIds:number[]){
+        this.emitToast("Purchase", couponIds.length === 1 ? "Purchasing coupon ..." : "Purchasing coupons ...");
+        return axios.post<string>(globals.urls.purchase, couponIds , this.appendBody())
+            .then((response) => {
+                store.dispatch(clearCart());
+                this.successToast("Purchase", response.data);
+                return true;
+            })
+            .catch((error:any) => {
+                this.errorToast("Purchase", error);
+                return false;
+            });
     }
 
     public static async fetchAllCategories(){

@@ -1,0 +1,21 @@
+.EmptyView {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.iframegif{
+    width: 444px;
+    overflow: hidden;
+    border: 8px solid white;
+    border-radius: 70px;
+    background: white;
+    margin: 0 auto 40px auto;
+    box-sizing: content-box;
+}
+
+.EmptyViewText{
+    color:var(--wine-red);
+    font-size: 3.5rem;
+}

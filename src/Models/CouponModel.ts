@@ -12,5 +12,5 @@ export class CouponModel{
     endDate!:Date;
     amount!:number;
     price!:number;
-    image?:string;
+    image?: File;
 }

@@ -1,16 +1,13 @@
+.Login__Form {
+	background: var(--background-image-login);
+	background-size: 15%;
+}
+
+.Login__Form > h2 {
+	margin: 0;
+	font-size: 2.5rem;
+}
+
 .Login > button {
     margin: 0;
-}
-
-.Login .ClearForm {
-	color: white;
-	cursor: pointer;
-}
-
-.Login .ClearForm:hover {
-	text-decoration: underline;
-}
-
-.Login .ClearForm:active {
-	text-decoration: underline;
 }

@@ -16,7 +16,7 @@ function FlippableCard(props:FlippableProps): JSX.Element {
 
 
     const [isDisplayed, setIsDisplayed] = useState(false);
-    const [displayed, setdisplayed] = useState("none");
+    const [displayed, setdisplayed] = useState("");
 
     const [isFlipped, setIsFlipped] = useState(false);
     const [flipped, setflipped] = useState("");
@@ -34,10 +34,10 @@ function FlippableCard(props:FlippableProps): JSX.Element {
     function display(){
         if(isDisplayed){
             setIsDisplayed(false);
-            setdisplayed("none");
+            setdisplayed("");
         } else {
             setIsDisplayed(true);
-            setdisplayed("flex");
+            setdisplayed("ShowLoginMenu");
         }
     }
 
@@ -45,7 +45,7 @@ function FlippableCard(props:FlippableProps): JSX.Element {
         <>
             <div className="FlippableCard">
                 <button onClick={() => display()} className={props.buttonStyleClass ? props.buttonStyleClass : ""} > { !isDisplayed ?  props.mainButtonText ? props.mainButtonText : "2 Sided Card" : <Icon component={CloseIcon} />}</button>
-                <div style={{display: displayed}} className={"card " + flipped}>
+                <div className={"card " + flipped + " " + displayed}>
                     <div className="front face">
                     <button onClick={() => flip()} className={"ROTATE " + props.buttonStyleClass ? props.buttonStyleClass : ""}> {props.frontButtonText ? props.frontButtonText : "Rotate"} </button>
                         {props.frontElement ? props.frontElement : <div>Face of a card</div>}

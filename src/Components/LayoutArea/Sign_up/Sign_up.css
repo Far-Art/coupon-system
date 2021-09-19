@@ -1,12 +1,9 @@
-.Sign_up .ClearForm {
-	color: white;
-	cursor: pointer;
+.Sign_up {
+	background: var(--background-image-register);
+	background-size: 15%;
 }
 
-.Sign_up .ClearForm:hover {
-	text-decoration: underline;
-}
-
-.Sign_up .ClearForm:active {
-	text-decoration: underline;
+.Sign_up > h2 {
+	margin: 0;
+	font-size: 2.5rem;
 }

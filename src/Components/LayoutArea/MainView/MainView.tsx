@@ -22,9 +22,12 @@ export default function MainView(): JSX.Element {
     );
 
     useEffect(() => {
+        GlobalDataStreamer.fetchAllCategories();
+    },[])
+
+    useEffect(() => {
         switch (client?.clientType) {
             case ClientType.COMPANY:
-                console.log("inside useEffect company");
                 if((client as CompanyModel).active){
                     GlobalDataStreamer.fetchCouponsByCompany();
                 }

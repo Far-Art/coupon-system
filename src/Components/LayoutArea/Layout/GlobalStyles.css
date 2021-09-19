@@ -2,43 +2,66 @@
 
 :root{
     --white:white;
-    --gray:rgb(112, 112, 112);
-    --white-transparent:rgba(255 255 255 / .9);
-    --wine-red:rgb(130 19 52);
+    --gray:rgb(150, 150, 150);
+    --gray-light:rgb(230, 230, 230);
+    --white-transparent:rgba(255 255 255 / .5);
+    --white-semi-transparent:rgba(255 255 255 / .97);
+    --wine-red:rgb(173, 12, 60); /* #ad0c3c */
     --wine-red-transparent:rgb(130 19 52 /.5);
-    --wine-red-dark:rgb(114 17 46);
-    --wine-hover:rgb(199 5 63);
-    --glow: 0 0 10px var(--white-transparent), 0 0 20px var(--white-transparent), 0 0 20px var(--wine-hover), 0 0 40px var(--wine-hover);
-    --background-image-main: url("../../../Assets/Images/WaveLinesBG.svg") center;
-    --background-image-second: url("../../../Assets/Images/WaveLinesBG(2).svg") center;
-    --background-image-third: url("../../../Assets/Images/WaveLinesBG(3).svg") center;
-    --box-shadow: 3px 7px 40px rgba(0, 0, 0, 0.2);
+    --wine-red-dark:rgb(114, 17, 46); /* #72112e  */
+    --wine-hover:rgb(199, 5, 63); /* #c7053f */
+    --box-shadow: 3px 7px 40px rgba(0, 0, 0, 0.25);
     --box-shadow-focus: 0 0 20px rgba(0, 0, 0, 0.4);
-    --backdrop-blur: blur(2px) ;
+    --box-shadow-button: 2px 6px 15px rgba(0, 0, 0, 0.14);
+    --box-shadow-button-pressed: inset 2px 5px 7px rgba(0, 0, 0, 0.4);
+    
+    --background-image-main: url("../../../Assets/Images/wavesBG.jpg") repeat;
+    /* https://www.patterncooler.com/#a103b103c12Cd12Ce0f0g64h0C303CFB5989CE144BE21A56E0386AiB5j0k64l1F4m1F4 */
+    --background-image-logo: url("../../../Assets/Images/HalfCirclesBG3.png") repeat; 
+    /* --background-image-logo: url("../../../Assets/Images/DropletsBG3.png") repeat;  */
+    --background-image-cards: url("../../../Assets/Images/HalfCirclesBG3.png") repeat; 
+    /* --background-image-cards: url("../../../Assets/Images/DropletsBG3.png") repeat;  */
+    --background-image-login: url("../../../Assets/Images/LoginBG.png") center;
+    --background-image-register: url("../../../Assets/Images/RegisterBG.png") center;
+    --background-image-add: url("../../../Assets/Images/AddItemBG.png") center;
+
+    
+    --backdrop-blur: blur(4px) ;
     --border-radius: 40px;
     --nav-button-size: 50px;
-    --nav-button-border: 2px solid var(--wine-red);
-    --transition: .25s;
+    --nav-button-border: 0 solid var(--wine-red);
+    --transition: .3s;
+    --menu-transition: all .45s ease-in-out;
+    --filters-min-width: 300px;
+    --filter-max-height: 900px;
+
+    --z-index-1: 1;
+    --z-index-2: 2;
+    --z-index-3: 3;
+    --z-index-4: 4;
+    --z-index-ontop: 9999;
 }
 
 /*----------------------------------------------------------------------------*/
 
 .WHITE__BG {
-    background: var(--white-transparent);
+    background: var(--white-semi-transparent);
+    backdrop-filter: var(--backdrop-blur);
 }
 
 /*----------------------------------------------------------------------------*/
 
 .FORM {
-    color: white;
-    background: var(--background-image-third);
+    color: var(--wine-red);
+    /* background: var(--background-image-main); */
     border-radius: var(--border-radius);
-    border: 3px solid var(--white-transparent);
+    border: 4px solid var(--white);
     text-align: center;
     padding: 20px 5px;
     box-shadow: var(--box-shadow);
     max-width: 600px;
     margin: 20px auto;
+    backdrop-filter: blur(5px);
 }
 
 .FORM a:hover{
@@ -62,7 +85,7 @@
     font-size: 1.1em;
     border: none;
     color: var(--wine-red);
-    background: var(--white-transparent);
+    background: var(--white-semi-transparent);
     margin: 7px auto;
     padding: 8px 15px;
     text-decoration: none;
@@ -82,7 +105,7 @@
 }
 
 .FIELD::placeholder, .SELECT::placeholder {
-    color: var(--gray);
+    color: var(--gray-light);
     transition: var(--transition);
 }
 
@@ -117,10 +140,6 @@
     display: inline;
 }
 
-.EMPHASIZE_TEXT_COLOR {
-    color: var(--wine-red);
-}
-
 /*----------------------------------------------------------------------------*/
 
 .APP__BUTTON {
@@ -131,13 +150,14 @@
     font-weight: 500;
     padding: 5px 12px;
     margin: 4px 6px;
-    border: 1px solid var(--wine-red-transparent);
+    border: var(--nav-button-border);
     background: var(--white);
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: var(--transition);
     justify-content: center;
     align-items: center;
+    box-shadow: var(--box-shadow-button);
+    transition: var(--transition);
 }
 
 .APP__BUTTON:hover {
@@ -147,9 +167,8 @@
 }
 
 .APP__BUTTON:active {
-    transform: scale(98%) translateY(1px);
-    background: var(--wine-red-dark);
-    box-shadow:inset 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--box-shadow-button-pressed);
+    transition: var(--transition);
 }
 
 .NAV__BUTTON {
@@ -163,18 +182,7 @@
     border-radius: var(--border-radius);
     border: var(--nav-button-border);
     transition: var(--transition);
-}
-
-.NAV__BUTTON::before {
-    content: " ";
-    position: absolute;
-    z-index: 1;
-    width: calc(var(--nav-button-size) - 6px);
-    height: calc(var(--nav-button-size) - 6px);
-    border: 2px solid var(--white);
-    border-radius: var(--border-radius);
-    opacity: 0;
-    transition: var(--transition);
+    box-shadow: var(--box-shadow-button);
 }
 
 .NAV__BUTTON:hover {
@@ -183,25 +191,35 @@
     transition: var(--transition);
 }
 
-.NAV__BUTTON:hover::before {
-    opacity: 1;
+.NAV__BUTTON:active {
+    box-shadow: var(--box-shadow-button-pressed);
 }
 
-.NAV__BUTTON:focus {
-    /* transform: translate3d(-5px, -1px, -10px); */
-}
-
-.DISABLED_BUTTON {
-    background: rgb(201, 201, 201);
+.DISABLED__BUTTON {
+    background: var(--gray-light);
     cursor: not-allowed;
-    border: inherit solid rgb(170, 170, 170);
-    color: grey;
+    border-color: var(--gray);
+    color: var(--gray);
 }
 
-.DISABLED_BUTTON:hover{
-    background: rgb(201, 201, 201);
-    border: inherit solid rgb(170, 170, 170);
-    color: grey;
+.DISABLED__BUTTON:hover{
+    background: var(--gray-light);
+    color: var(--gray);
+}
+
+.BUTTON__AS_LINK {
+    background: none;
+    border: none;
+    color: var(--wine-red);
+    cursor: pointer;
+}
+
+.BUTTON__AS_LINK:hover{
+    text-decoration: underline;
+}
+
+.BUTTON__AS_LINK:active{
+    text-decoration: underline;
 }
 
 /*----------------------------------------------------------------------------*/

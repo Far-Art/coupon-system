@@ -7,10 +7,11 @@ export default function categoriesReducer(categoriesAppState:CategoriesAppState 
 
     switch(action.type){
         case CategoriesActionType.SYNC_CATEGORIES:
-            newState.categories = action.payload;
+            newState.categories = action.payload.map(c => c.replaceAll("_", " "));
             break;
         default:
             return categoriesAppState;
     }
     return newState;
+
 }

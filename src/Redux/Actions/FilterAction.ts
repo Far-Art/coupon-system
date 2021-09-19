@@ -1,8 +1,8 @@
-import { FilterTypes } from "../../Models/FilterTypes";
+import { FilterType } from "../../Models/FilterType";
 
 export interface FilterAction{
     type:FilterActionType;
-    filterKey?:FilterTypes;
+    filterKey?: FilterType;
     filterValue?: any;
 }
 
@@ -12,11 +12,11 @@ export enum FilterActionType{
     CLEAR = "CLEAR_FILTERS"
 }
 
-export function addFilter(filterType:FilterTypes, filter:any): FilterAction{
+export function addFilter(filterType:FilterType, filter:any): FilterAction{
     return {type: FilterActionType.ADD, filterKey: filterType, filterValue:filter};
 }
 
-export function removeFilter(filterType:FilterTypes, filter:any): FilterAction{
+export function removeFilter(filterType:FilterType, filter:any): FilterAction{
     return {type: FilterActionType.REMOVE, filterKey: filterType, filterValue:filter};
 }
 

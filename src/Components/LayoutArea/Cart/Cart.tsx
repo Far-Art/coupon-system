@@ -2,14 +2,15 @@ import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import Icon from '@material-ui/core/Icon';
 import { toast } from "react-toastify";
-import { clearCart } from "../../../Redux/Actions/CartAction";
+import { clearCart, deleteInBatchFromCart } from "../../../Redux/Actions/CartAction";
 import { useAppSelector } from "../../../Redux/Hooks/hooks";
 import { store } from "../../../Redux/Store/Store";
 import AppCurrencySymbol from "../../../Services/Currency";
 import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 import CouponsContainer from "../CouponsContainer/CouponsContainer";
-import EmptyView from "../EmptyView/EmptyView";
+import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 import "./Cart.css";
+import { useEffect, useState } from 'react';
 
 function Cart(): JSX.Element {
 
@@ -17,10 +18,22 @@ function Cart(): JSX.Element {
         state.cartAppState.forPurchaseCouponsList
     );
 
-    // TODO Make this function work correctly
+    const [state, setState] = useState<"happy" | undefined>(undefined);
+
+    useEffect(() => {
+        removeExpiredCoupons();
+    });
+
     function buyHandler(){
-        const coupon = coupons[0];
-        GlobalDataStreamer.purchaseCoupon(coupon.id);
+        if(store.getState().currentClientState.client){
+            const toPurchase = coupons.map(c => c.id);
+            GlobalDataStreamer.purchaseCoupons(toPurchase).then(() => setState("happy"));
+        } else {
+            toast.warn("You must be logged in for making purchases", {
+                toastId: "NotLoggedInToast",
+                theme: "colored"
+            });
+        }
     }
 
     function clearCartHandler(){
@@ -38,11 +51,22 @@ function Cart(): JSX.Element {
         });
     }
 
+    function removeExpiredCoupons(){
+        const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
+        const toDelete:number[] = [];
+        for(const c of coupons){
+            if(Date.parse(new Date(c.endDate).toLocaleDateString()) < timeNowInMillis) {
+                toDelete.push(c.id);
+            }
+        }
+        store.dispatch(deleteInBatchFromCart(toDelete));
+    }
+
     function classNameHandler(){
         if(coupons.length > 0){
             return "";
         } else {
-            return "DISABLED_BUTTON";
+            return "DISABLED__BUTTON";
         }
     }
 
@@ -57,21 +81,20 @@ function Cart(): JSX.Element {
     return (
         <div className="Cart">
 			{coupons.length > 0 ? 
-                <CouponsContainer couponsList={coupons} onlyValid={true} asList={true} ignoreFields={["startdate", "amount", "id", "companyentity", "companyemail"]} />
+                <CouponsContainer couponsList={coupons} asList={true} ignoreFields={["startdate", "amount", "id", "companyentity", "companyemail"]} />
                 :
                 <>
-                    <p className="Cart__empty_view EMPHASIZE_TEXT_COLOR"> Your cart is empty </p>
-                    <EmptyView />
+                    <EmptyView state={state} text="Your cart is empty" />
                 </>
             }
             
             <div className="Button__Container">
                 <button disabled={isDisabledHandler()} onClick={() => buyHandler()} className={"APP__BUTTON " + classNameHandler()} >Buy</button>
-                <p className="CartInfoField EMPHASIZE_TEXT_COLOR">{coupons.length} {coupons.length === 1 ? <span>coupon</span> : <span>coupons</span>} in cart</p>
-                <p className="CartInfoField EMPHASIZE_TEXT_COLOR">Total price {coupons.reduce((sum, currentCoupon) => sum + currentCoupon.price, 0)}{AppCurrencySymbol}</p>
+                <p className="CartInfoField">{coupons.length} {coupons.length === 1 ? <span>coupon</span> : <span>coupons</span>} in cart</p>
+                <p className="CartInfoField">Total price {coupons.reduce((sum, currentCoupon) => sum + currentCoupon.price, 0)}{AppCurrencySymbol}</p>
                 <button disabled={isDisabledHandler()} onClick={() => clearCartHandler()} className={"APP__BUTTON " + classNameHandler()} >Clear cart</button>
             </div>
-        </div>   
+        </div>  
     );
 }
 

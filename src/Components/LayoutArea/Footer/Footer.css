@@ -5,5 +5,5 @@
 }
 
 .Footer *{
-	color: black;
+	color: var(--wine-red);
 }

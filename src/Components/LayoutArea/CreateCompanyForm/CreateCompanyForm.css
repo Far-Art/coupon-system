@@ -1,3 +1,25 @@
 .CreateCompanyForm {
-	
+    width: 40%;
+    min-width: 300px;
+}
+
+.CreateCompanyForm, .CreateCompanyForm form  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.CreateCompanyForm form {
+    width: 100%;
+}
+
+.CreateCompanyForm input, .CreateCompanyForm select {
+    min-width: 30px;
+    width: 85%;
+}
+
+.CreateCompanyForm label{
+    position: relative;
+    z-index: 2;
 }

@@ -2,14 +2,15 @@
     padding: 0 5px 0 15px;
     display: flex;
     justify-content: center;
-    background: var(--white);
+    z-index: var(--z-index-4);
 }
 
 .NavBar > * {
+    color: var(--wine-red);
     align-self: center;
 }
 
-.NavBar > * * {
+.NavBar > * *{
     align-self: baseline;
 }
 

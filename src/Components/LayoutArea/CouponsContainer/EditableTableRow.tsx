@@ -9,6 +9,7 @@ import ApiGlobalLogic from "../../../Services/ApiGlobalLogic";
 import { toast } from "react-toastify";
 import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 import React from "react";
+import AppCurrencySymbol from "../../../Services/Currency";
 
 interface EditableTableRowProps{
     coupon:CouponModel;
@@ -28,6 +29,12 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
 
     const [categories] = useState<string[]>(store.getState().categoriesAppState.categories);
 
+    useEffect(() => {
+        {(props.editable === undefined ? true : props.editable) && emitToast()}
+        toast.update("TableEditToast", {
+            render: toastComponent(newObject)
+        });
+    },[newObject]);
 
     const setNewObjectValue = (key:any, value:any) => {
         const map:Map<any, any> = new Map(Object.entries(newObject));
@@ -64,17 +71,24 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
         )
     }
 
-    useEffect(() => {
-        {(props.editable === undefined ? true : props.editable) && emitToast()}
-        toast.update("TableEditToast", {
-            render: toastComponent(newObject)
-        });
-    },[newObject]);
+    // ignore fields that represent an object
+    function testValue(key:string, value:any){
+        if(typeof value === "object"){
+            return false;
+        }
+        return true;
+    }
+
+    // function testValue(key:string, value:any){
+    //     if(typeof value === "object" && key.toLowerCase() !== "image"){
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
     function emitToast(){
         toast.warning(
-            toastComponent,
-            {
+            toastComponent, {
                 toastId: "TableEditToast",
                 theme:"colored",
                 position:"top-center",
@@ -83,8 +97,11 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
     }
 
     function render() {
-            return Object.entries(newObject).map(([key, value]) => {
+            const objectEntries = Object.entries(newObject).filter(([key, value]) => {
+                return testValue(key, value);
+            });
 
+            return objectEntries.map(([key, value]) => {
                 // check for ignored fields
                 if(props.ignoreFields){
                     for(const ignored of props.ignoreFields){
@@ -93,26 +110,26 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
                         }
                     }
                 }
-
                 // check for non editable fields
                 if(props.nonEditableFields){
                     for(const nonEditable of props.nonEditableFields){
                         if(key.toLowerCase().includes(nonEditable)){
                             return (
-                                <td key={key} className={ props.tdClassName}>
+                                <td key={key} className={"EditableTD " + props.tdClassName}>
                                     {value}
                                 </td>
                             );
                         }
                     }
-                } else if (props.editable === false){
+                } 
+                // check if edit is not allowed
+                else if (props.editable === false){
                     return (
-                        <td key={key} className={props.tdClassName}>
-                            {value}
+                        <td key={key} className={"EditableTD " + props.tdClassName}>
+                            {key.includes("price") ? value + AppCurrencySymbol : value}
                         </td>
                     );
                 }
-
                 // set pattern and type for input
                 let type = "text";
                 let pattern:any = "";
@@ -128,7 +145,7 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
                 } 
                 // test for price
                 else if (key.toLowerCase().includes("price")){
-                    type = "number";
+                    type = "price";
                     pattern = ApiGlobalLogic.patterns.string.price;
                 } 
                 // test for number
@@ -143,6 +160,10 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
                 // test for category
                 else if (key.toLowerCase().includes("category")){
                     type = "categories";
+                }
+                // test for image
+                else if (key.toLowerCase().includes("image")){
+                    type = "image";
                 }
 
                 switch(type){
@@ -189,7 +210,7 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
                                     onKeyDown={(event) => {if(event.key === "Enter"){
                                         (event.target as HTMLInputElement).blur();
                                     }}} 
-                                    min={0}
+                                    min={0} 
                                     type={ type } 
                                     defaultValue={ value } 
                                 />
@@ -206,11 +227,27 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
                                     onKeyDown={(event) => {if(event.key === "Enter"){
                                         (event.target as HTMLInputElement).blur();
                                     }}} 
+                                    defaultValue={value}
                                     >
                                     {categories.map(c => <option key={c} value={c}>{c}</option>)}
                                 </select>
                             </td>
                         );
+                    case "image":
+                            return(
+                                <td key={key} className={"EditableTD " + props.tdClassName}>
+                                    <input 
+                                    onBlur={(event) => {
+                                        setNewObjectValue(key, event.target.value);
+                                    }} 
+                                    onKeyDown={(event) => {if(event.key === "Enter"){
+                                        (event.target as HTMLInputElement).blur();
+                                    }}} 
+                                    type={ "file" } 
+                                    defaultValue={ value } 
+                                />
+                                </td>
+                            );
                     default:
                         return(
                             <td  key={key} className={"EditableTD " + props.tdClassName}>

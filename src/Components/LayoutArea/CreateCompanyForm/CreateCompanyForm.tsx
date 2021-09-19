@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { ClientInfoModel } from "../../../Models/ClientInfoModel";
 import { ClientType } from "../../../Models/ClientType";
-import { CompanyModel } from "../../../Models/CompanyModel";
 import ApiGlobalLogic from "../../../Services/ApiGlobalLogic";
 import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 import "./CreateCompanyForm.css";
@@ -61,10 +60,10 @@ export default function CreateCompanyForm(): JSX.Element {
                 {errors.password && <p className="Error">{errors.password.message}</p>}
 
                 <br/>
-                <a onClick={() => {
+                <button onClick={() => {
                     reset();
                     }} 
-                    className="ClearForm">reset form</a>
+                    className="BUTTON__AS_LINK">reset form</button>
                 <br/>
 
                 <button type="submit" className="FIELD LINK APP__BUTTON">Create</button>

@@ -1,0 +1,18 @@
+.CompaniesFilter {
+    text-align: start;
+}
+
+.CompaniesFilter > p {
+    color: var(--wine-red);
+    font-weight: 600;
+    margin: 0 0 7px;
+    padding: 5px 0;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 0 15px rgba( 0 0 0 / .1);
+    background: var(--white-semi-transparent);
+}
+
+.CompaniesFilter > * {
+    padding: 0 0 0 10px;
+}

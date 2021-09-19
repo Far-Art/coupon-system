@@ -8,4 +8,5 @@ export class LoginResponseModel {
     token!: string;
     clientType!: ClientType;
     isActive!: boolean;
+    idleDisconnectTime!: number;
 }

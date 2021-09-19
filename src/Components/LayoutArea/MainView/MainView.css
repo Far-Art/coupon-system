@@ -1,26 +1,3 @@
 .MainView {
   text-align: center;
 }
-
-.Pending {
-    margin-top: 20px;
-    font-size: 3rem;
-    font-weight: 600;
-    color: var(--wine-red);
-    text-shadow: var(--box-shadow);
-}
-
-.FormInput{
-  height: 100px;
-  width: 100px;
-  background: chartreuse;
-  margin: 0;
-  padding: 0;
-}
-
-.inputTd{
-  /* height: 100%;
-  width: 100%; */
-  padding: 0;
-  margin: 0;
-}

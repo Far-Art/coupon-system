@@ -1,16 +1,22 @@
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
-import NavBar from "../NavBar/NavBar";
-import Routing from "../Routing/Routing";
-import "./Layout.css";
-import "./GlobalStyles.css";
 import "../../../ToastifyNotifications/ToastifyStyle.css"
-import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import slide_in_right from "../../../ToastifyNotifications/ToastTransition";
+import "./GlobalStyles.css";
+import "./Layout.css";
+import { ToastContainer} from "react-toastify";
+import Header from "../Header/Header";
+import NavBar from "../NavBar/NavBar";
 import Menu from "../Menu/Menu";
+import Routing from "../Routing/Routing";
+import Footer from "../Footer/Footer";
+
+import IdleTimerApi from "../../../Services/IdleTimerApi";
+import ImageUploadForm from "../ImageUploadForm/ImageUploadForm";
 
 function Layout(): JSX.Element {
+
+    IdleTimerApi();
+    
     return (
         <div className="Layout">
                 {/* ToastContainer renders app notifications */}
@@ -27,6 +33,7 @@ function Layout(): JSX.Element {
                     <nav>
                         <NavBar />
                         <Menu />
+                        <ImageUploadForm />
                     </nav>
                 </section>
                 <main>

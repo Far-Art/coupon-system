@@ -11,8 +11,9 @@ class DevelopmentGlobals extends Globals{
         companies: "http://localhost:8080/companies",
         customers: "http://localhost:8080/customers",
         coupons: "http://localhost:8080/coupons",
+        couponImage: "http://localhost:8080/coupons/images",
         categories: "http://localhost:8080/coupons/categories",
-        purchaseSingle : "http://localhost:8080/customers/purchase"
+        purchase : "http://localhost:8080/customers/purchase"
     }
 }
 
@@ -26,8 +27,9 @@ class ProductionGlobals extends Globals{
         companies: "http://localhost:8080/companies",
         customers: "http://localhost:8080/customers",
         coupons: "http://localhost:8080/coupons",
+        couponImage: "http://localhost:8080/coupons/images",
         categories: "http://localhost:8080/coupons/categories",
-        purchaseSingle : "http://localhost:8080/customers/purchase"
+        purchase : "http://localhost:8080/customers/purchase"
     }
 }
 

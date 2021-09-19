@@ -1,14 +1,13 @@
 .EditableTD {
-    padding: 0;
-    height: 60px;
-    
+    min-height: 20px;
+    max-height: 100px;
 }
 
 .EditableTD > input, .EditableTD > select {
     text-align: center;
-    height: 80%;
+    height: 98%;
     border: 2px solid transparent;
-    width: 85%;
+    width: 100%;
     border-radius: 50px;
     padding: 10px;
     -webkit-transition: all .3s ease-in-out;
@@ -21,8 +20,7 @@
 }
 
 .EditableTD > input::-webkit-inner-spin-button {
-    height: 50px;
-    width: 60px;
+    height: 40px;
 }
 
 .ui-button.ui-widget.ui-spinner-button.ui-spinner-up{
@@ -31,7 +29,7 @@
 
 .EditableTD > input:focus, .EditableTD > select:focus {
     border: 2px solid var(--wine-red);
-    border-radius: 50px;
+    border-radius: var(--border-radius);
     outline: none;
     color: var(--wine-red);
     width: 100%;
