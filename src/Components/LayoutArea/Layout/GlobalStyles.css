@@ -1,21 +1,41 @@
 /* ALL GLOBAL CLASSES WRITTEN IN CAPS AND DOUBLE UNDERSCOPE*/
 
 :root{
+    /* COLOR */
     --white:white;
     --gray:rgb(150, 150, 150);
     --gray-light:rgb(230, 230, 230);
-    --white-transparent:rgba(255 255 255 / .5);
+    --white-transparent:rgba(255, 255, 255, .5);
     --white-semi-transparent:rgba(255 255 255 / .97);
     --wine-red:rgb(173, 12, 60); /* #ad0c3c */
     --wine-red-transparent:rgb(130 19 52 /.5);
     --wine-red-dark:rgb(114, 17, 46); /* #72112e  */
     --wine-hover:rgb(199, 5, 63); /* #c7053f */
-    --box-shadow: 3px 7px 40px rgba(0, 0, 0, 0.25);
+
+    /* TOASTS STYLE*/
+    --toast-success-bg: rgba(0, 238, 107, 0.83);
+    --toast-warn-bg: rgba(255, 255, 255, .87);
+    --toast-error-bg: rgba(255, 0, 0, 0.75);
+
+    /* FLICKER ANIMATION */
+    --warning-background-light: rgba(201, 188, 160, 0.0);
+    --warning-background-dark: rgba(255, 0, 0, 0.1);
+    --warning-background-animation-speed: 4s infinite;
+
+    /* SHADOW */
+    --box-shadow: 3px 6px 25px rgba(0, 0, 0, 0.1);
+    --box-shadow-text: 1px 4px 12px rgba(0, 0, 0, 0.5);
     --box-shadow-focus: 0 0 20px rgba(0, 0, 0, 0.4);
     --box-shadow-button: 2px 6px 15px rgba(0, 0, 0, 0.14);
     --box-shadow-button-pressed: inset 2px 5px 7px rgba(0, 0, 0, 0.4);
+
+    /* BORDERS */
+    --nav-button-border: 0 solid var(--wine-red);
+    --toast-border: 3px solid var(--wine-red);
     
-    --background-image-main: url("../../../Assets/Images/wavesBG.jpg") repeat;
+    /* BACKGROUND IMAGES */
+    --background-image-main: url("../../../Assets/Images/HalfCirclesBG2.png") repeat; 
+    --background-image-back: url("../../../Assets/Images/IconBG.png");
     /* https://www.patterncooler.com/#a103b103c12Cd12Ce0f0g64h0C303CFB5989CE144BE21A56E0386AiB5j0k64l1F4m1F4 */
     --background-image-logo: url("../../../Assets/Images/HalfCirclesBG3.png") repeat; 
     /* --background-image-logo: url("../../../Assets/Images/DropletsBG3.png") repeat;  */
@@ -24,29 +44,44 @@
     --background-image-login: url("../../../Assets/Images/LoginBG.png") center;
     --background-image-register: url("../../../Assets/Images/RegisterBG.png") center;
     --background-image-add: url("../../../Assets/Images/AddItemBG.png") center;
-
     
-    --backdrop-blur: blur(4px) ;
+    /* EFFECTS */
+    --backdrop-blur: blur(4px);
+    --backdrop-blur-toast: blur(4px);
+
+    /* SIZES */
     --border-radius: 40px;
+    --border-radius-toast: 25px;
     --nav-button-size: 50px;
-    --nav-button-border: 0 solid var(--wine-red);
-    --transition: .3s;
-    --menu-transition: all .45s ease-in-out;
     --filters-min-width: 300px;
     --filter-max-height: 900px;
 
+    /* TRANSITION */
+    --transition: all .2s linear;
+    --menu-transition: all .45s ease-in-out;
+
+    /* Z-INDEX */
     --z-index-1: 1;
     --z-index-2: 2;
     --z-index-3: 3;
     --z-index-4: 4;
     --z-index-ontop: 9999;
+
+    
+}
+
+/*----------------------------------------------------------------------------*/
+
+.HEADER_BG {
+    background: var(--background-image-logo);
+    border-radius: 0 0 50px 50px;
+    background-size: auto 50%;
 }
 
 /*----------------------------------------------------------------------------*/
 
 .WHITE__BG {
     background: var(--white-semi-transparent);
-    backdrop-filter: var(--backdrop-blur);
 }
 
 /*----------------------------------------------------------------------------*/
@@ -161,7 +196,7 @@
 }
 
 .APP__BUTTON:hover {
-    color: white;
+    color: var(--white);
     background: var(--wine-red);
     border: inherit solid rgba(150, 1, 71, 0);
 }
@@ -222,4 +257,69 @@
     text-decoration: underline;
 }
 
-/*----------------------------------------------------------------------------*/
+/*     TOASTS STYLE
+----------------------------------------------------------------------------*/
+
+.Toastify__toast{
+    font-size: 1.05rem;
+    letter-spacing: 0.02rem;
+    border: var(--toast-border);
+    border-color: transparent;
+    transition: all .07s linear;
+    text-shadow: var(--box-shadow-text);
+    backdrop-filter: var(--backdrop-blur-toast);
+    border-radius: var(--border-radius-toast) !important;
+    padding: 0;
+    box-shadow: var(--box-shadow);
+}
+.Toastify__close-button {
+    margin-top: 3px;
+    margin-right: 6px;
+}
+
+.Toastify__toast--success {
+    background: var(--toast-success-bg) !important;
+}
+
+.Toastify__toast--warning {
+    background: var(--toast-warn-bg) !important;
+    color: var(--wine-red) !important;
+}
+
+.Toastify__progress-bar--warning {
+    background: var(--wine-red) !important;
+}
+
+.Toastify__toast--error {
+    background: var(--toast-error-bg) !important;
+}
+
+
+.Toast__button {
+    display: inline-flex;
+    color: var(--wine-red);
+    max-width: 300px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 5px 12px;
+    margin: 4px 6px;
+    border: var(--nav-button-border);
+    background: var(--white);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--box-shadow-button);
+    transition: var(--transition);
+}
+
+.Toast__button:hover {
+    color: var(--white);
+    background: var(--wine-red);
+    border: inherit solid rgba(150, 1, 71, 0);
+}
+
+.Toast__button:active{
+    box-shadow: var(--box-shadow-button-pressed);
+    transition: var(--transition);
+}

@@ -41,7 +41,7 @@
 
 .ClientCardTable thead{
     color: var(--white);
-    background: var(--background-image-third);
+    background: var(--background-image-main);
 }
 
 .ClientCardTable thead{

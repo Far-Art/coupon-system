@@ -92,7 +92,9 @@ export default function CreateCouponForm(): JSX.Element {
                 })} />
                 {errors.price && <p className="Error">{errors.price.message}</p>}
 
-                <button onClick={() => {
+                <button 
+                    type="reset" 
+                    onClick={() => {
                     reset();
                 }} className="BUTTON__AS_LINK">reset form</button>
                 <br/>

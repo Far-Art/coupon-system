@@ -1,5 +1,5 @@
 .AddItemElement {
-	
+  z-index: var(--z-index-4);
 }
 
 .DropDown {
@@ -19,6 +19,7 @@
   left: 50%;
   transform: translate(-50%);
   backdrop-filter: blur(10px);
+
 }
 
 .DropDownContent a {
@@ -33,7 +34,7 @@
 /* Change color of dropdown links on hover */
 .DropDownContent a:hover {
   background: var(--wine-hover);
-  color: white;
+  color: var(--white);
 }
 
 /* Show the dropdown menu on hover */
@@ -51,7 +52,7 @@
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .DropDown:hover .DropBtn {
   background: var(--wine-hover);
-  color: white;
+  color: var(--white);
 }
 
 .DropDown:hover .DropBtn::before {

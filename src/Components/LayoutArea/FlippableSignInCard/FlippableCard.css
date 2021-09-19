@@ -15,6 +15,7 @@
     transform-style: preserve-3d;
     -webkit-transition: all 1s cubic-bezier(0.175, 0.205, 0.22, 1.275);
     transition: all 1s cubic-bezier(0.175, 0.205, 0.22, 1.275);
+    z-index:var(--z-index-4);
 }
 
 .face {
@@ -34,7 +35,7 @@
 
 .face > button {
     align-self: center;
-    z-index:var(--z-index-3);
+    z-index:var(--z-index-4);
     margin-top: 15px;
 }
 
@@ -43,15 +44,18 @@
 }
 
 .back {
+    z-index:var(--z-index-4);
     -webkit-transform: rotateY(180deg) translate(50%);
     transform: rotateY(180deg) translate(50%);
 }
 
 .flipped {
+    z-index:var(--z-index-4);
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
 
 .ShowLoginMenu > *{
     height: 550px;
+    z-index:var(--z-index-4);
 }

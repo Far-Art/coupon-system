@@ -60,7 +60,9 @@ export default function CreateCompanyForm(): JSX.Element {
                 {errors.password && <p className="Error">{errors.password.message}</p>}
 
                 <br/>
-                <button onClick={() => {
+                <button 
+                    type="reset" 
+                    onClick={() => {
                     reset();
                     }} 
                     className="BUTTON__AS_LINK">reset form</button>

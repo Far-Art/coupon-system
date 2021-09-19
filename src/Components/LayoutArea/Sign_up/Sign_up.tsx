@@ -81,7 +81,7 @@ export default function Sign_up(): JSX.Element {
     }
 
     return (
-        <div className="Sign_up FORM">
+        <div className="Sign_up FORM WHITE__BG">
 			<h2> Sign-up </h2>
             <form onSubmit={handleSubmit(send)}>
 
@@ -121,7 +121,7 @@ export default function Sign_up(): JSX.Element {
                  {errors.password && <p className="Error">{errors.password.message}</p>}
 
                 <br/>
-                <button onClick={() => {
+                <button type="reset" onClick={() => {
                     reset();
                     setClientType(ClientType.CUSTOMER);
                 }} className="BUTTON__AS_LINK">reset form</button>

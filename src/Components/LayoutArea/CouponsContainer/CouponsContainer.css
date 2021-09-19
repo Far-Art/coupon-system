@@ -13,22 +13,30 @@
     text-align: center;
 }
 
-.CouponsView .CouponsCounter{
+.CouponsView > .CouponsCounter{
     display: inline-flex;
-    padding: 5px 20px;
-    height: 40px;
-    color: var(--white);
+    align-items: center;
+    padding: 10px;
+    margin: 15px 0;
+    /* height: 40px; */
+    color: var(--wine-red);
     font-size: 120%;
     font-weight: 400;
-    background: var(--wine-red);
-    margin: 10px 0;
+    background: var(--white-transparent);
     text-align: center;
-    border-radius: 50px;
-    box-shadow: 1px 6px 10px rgba(0 0 0 / .2);
+    border-radius: var(--border-radius);
+    backdrop-filter: var(--backdrop-blur);
+    box-shadow: var(--box-shadow);
 }
 
-.CouponsCounter > * {
-    padding-top: 2px;
+.CouponsCounter > p {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 5px 10px;
+    margin: 0;
+    box-shadow: var(--box-shadow);
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .CouponsCounter span:nth-child(1) {
@@ -53,10 +61,11 @@
 
 .Coupons__table > thead{
     background: var(--background-image-main);
-    background-size: 100%;
+    background-size: auto 160%;
     color: var(--white);
     font-style: oblique;
     box-shadow: var(--box-shadow-focus);
+    text-transform: capitalize;
 }
 
 .Coupons__table > tbody tr{
@@ -94,29 +103,29 @@
 }
 
 .Coupons__table .Warn {
-    -webkit-animation: flickerAnimation 5s infinite;
-   -moz-animation: flickerAnimation 5s infinite;
-   -o-animation: flickerAnimation 5s infinite;
-    animation: flickerAnimation 5s infinite;
+    -webkit-animation: flickerAnimation var(--warning-background-animation-speed);
+    -moz-animation: flickerAnimation var(--warning-background-animation-speed);
+    -o-animation: flickerAnimation var(--warning-background-animation-speed);
+    animation: flickerAnimation var(--warning-background-animation-speed);
 }
 
 @keyframes flickerAnimation {
-    0%   { background:rgba(255, 166, 0, 0.2); }
-    50%  { background:rgba(255, 145, 0, 0.5); }
-    100% { background:rgba(255, 166, 0, 0.2); }
-  }
-  @-o-keyframes flickerAnimation{
-    0%   { background:rgba(255, 166, 0, 0.2); }
-    50%  { background:rgba(255, 145, 0, 0.5); }
-    100% { background:rgba(255, 166, 0, 0.2); }
-  }
-  @-moz-keyframes flickerAnimation{
-    0%   { background:rgba(255, 166, 0, 0.2); }
-    50%  { background:rgba(255, 145, 0, 0.5); }
-    100% { background:rgba(255, 166, 0, 0.2); }
-  }
-  @-webkit-keyframes flickerAnimation{
-    0%   { background:rgba(255, 166, 0, 0.2); }
-    50%  { background:rgba(255, 145, 0, 0.5); }
-    100% { background:rgba(255, 166, 0, 0.2); }
-  }
+    0%   { background: var(--warning-background-light); }
+    50%  { background: var(--warning-background-dark); }
+    100% { background: var(--warning-background-light); }
+}
+@-o-keyframes flickerAnimation {
+    0%   { background: var(--warning-background-light); }
+    50%  { background: var(--warning-background-dark); }
+    100% { background: var(--warning-background-light); }
+}
+@-moz-keyframes flickerAnimation {
+    0%   { background: var(--warning-background-light); }
+    50%  { background: var(--warning-background-dark); }
+    100% { background: var(--warning-background-light); }
+}
+@-webkit-keyframes flickerAnimation {
+    0%   { background: var(--warning-background-light); }
+    50%  { background: var(--warning-background-dark); }
+    100% { background: var(--warning-background-light); }
+}

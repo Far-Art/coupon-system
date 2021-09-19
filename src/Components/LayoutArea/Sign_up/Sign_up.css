@@ -1,6 +1,7 @@
 .Sign_up {
 	background: var(--background-image-register);
 	background-size: 15%;
+	z-index: var(--z-index-4);
 }
 
 .Sign_up > h2 {

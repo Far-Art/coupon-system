@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FilterType } from "../../../../Models/FilterType";
 import CheckBox from "../../../InputArea/CheckBox/CheckBox";
 import "./CategoriesFilter.css";
@@ -9,12 +9,8 @@ interface CategoriesFilterProps {
 
 function CategoriesFilter(props:CategoriesFilterProps): JSX.Element {
 
-    const [categories, setCategories] = useState<string[]>([]);
+    const [categories] = useState<string[]>(Array.from(new Set(props.categories)));
 
-    useEffect(() => {
-        setCategories(Array.from(new Set(props.categories)));
-    },[props.categories])
-        
     function formatName(value:string){
         let newString:string = value.substring(0,1).toUpperCase();
         newString += value.substring(1).toLowerCase();

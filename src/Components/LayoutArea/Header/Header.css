@@ -10,6 +10,7 @@
 
 #logo{
     max-width: 70px;
+    filter: drop-shadow(var(--box-shadow));
 }
 
 .Header h1 {

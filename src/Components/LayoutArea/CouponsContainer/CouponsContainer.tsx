@@ -11,7 +11,7 @@ import { store } from "../../../Redux/Store/Store";
 import { deleteFromCart } from "../../../Redux/Actions/CartAction";
 import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 import EditableTableRow from "./EditableTableRow";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 import FiltersContainer from "../../FiltersArea/FiltersContainer/FiltersContainer";
 import { useAppSelector } from "../../../Redux/Hooks/hooks";
@@ -24,7 +24,7 @@ interface ContainerProps{
     ignoreFields?: string[]; // omit specified fields when rendering coupons
 }
 
-function CouponsContainer(props:ContainerProps): JSX.Element {
+export default function CouponsContainer(props:ContainerProps): JSX.Element {
 
     // sets edit mode
     const [editCouponWithId, setEditCouponWithId] = useState<number>(0); 
@@ -37,18 +37,10 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
         state.filterAppState
     );
 
-    useEffect(() => {
-        if(props.couponsList){
-            setCouponFieldsList(initFieldsToRender(props.couponsList[0]));
-            setCurrentCouponsList(filterCoupons(props.couponsList));
-        }
-    },[props.couponsList, appfilters]);
-
     /* this function filters coupon list by active filters
     ----------------------------------------------------------------------- */
-    const filterCoupons = (coupons:CouponModel[]) => {
+    const filterCoupons = useCallback((coupons:CouponModel[]) =>  {
         let filtered = coupons; // initial list
-
         // filter by categories and companies
         if(appfilters.categoriesList.length > 0 || appfilters.companiesList.length > 0){
             if(appfilters.categoriesList.length > 0 && appfilters.companiesList.length > 0){
@@ -59,12 +51,10 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
                 filtered = filtered.filter(c => appfilters.companiesList.includes(c.companyName));
             }
         }
-
         // filter by price
         if(appfilters.priceList >= 0){
             filtered = filtered.filter(c => c.price <= appfilters.priceList);
         }
-
         //filter by free text
         if(appfilters.freeText.length > 0){
             filtered = filtered.filter(c => 
@@ -73,19 +63,16 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
             );
         }
         return filtered;
-    }
+    },[appfilters]) // eslint-disable-line react-hooks/exhaustive-deps
 
     /* this function retrieves field names from object
     ----------------------------------------------------------------------- */
-    function initFieldsToRender(object:any){
+    const initFieldsToRender = useCallback((object:any) =>  {
         const fieldsArray:string[] = [];
-
         if(object === undefined){
             return fieldsArray;
         }
-        
         const entries = Object.entries(object);
-
         mainLoop:
             for(const [key, value] of entries){
                 // ignore keys with object by default
@@ -103,7 +90,14 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
                 fieldsArray.push(key);
             }
         return fieldsArray;
-    }
+    },[props.ignoreFields])
+
+    useEffect(() => {
+        if(props.couponsList){
+            setCouponFieldsList(initFieldsToRender(props.couponsList[0]));
+            setCurrentCouponsList(filterCoupons(props.couponsList));
+        }
+    },[filterCoupons, initFieldsToRender, props.couponsList]);
 
     /* This function invoked on list render
     ----------------------------------------------------------------------- */
@@ -256,7 +250,7 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
         return (
             <>
                 <div className="CouponsCounter">
-                    <span>{couponsList.length}</span> <span>coupon{couponsList.length === 1 ? "" : "s"} displayed</span>
+                        <p>{couponsList.length + " coupon" + (couponsList.length === 1 ? "" : "s") + " displayed"}</p>
                 </div>
                 {props.asList ? renderAsList(couponsList) : renderAsCards(couponsList)}
             </>
@@ -274,4 +268,3 @@ function CouponsContainer(props:ContainerProps): JSX.Element {
         </div>
     );
 }
-export default CouponsContainer;

@@ -10,9 +10,9 @@ import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 import CouponsContainer from "../CouponsContainer/CouponsContainer";
 import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 import "./Cart.css";
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-function Cart(): JSX.Element {
+export default function Cart(): JSX.Element {
 
     const coupons = useAppSelector(state => 
         state.cartAppState.forPurchaseCouponsList
@@ -20,9 +20,20 @@ function Cart(): JSX.Element {
 
     const [state, setState] = useState<"happy" | undefined>(undefined);
 
+    const removeExpiredCoupons = useCallback(() =>  {
+        const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
+        const toDelete:number[] = [];
+        for(const c of coupons){
+            if(Date.parse(new Date(c.endDate).toLocaleDateString()) < timeNowInMillis) {
+                toDelete.push(c.id);
+            }
+        }
+        store.dispatch(deleteInBatchFromCart(toDelete));
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
+
     useEffect(() => {
         removeExpiredCoupons();
-    });
+    },[removeExpiredCoupons]);
 
     function buyHandler(){
         if(store.getState().currentClientState.client){
@@ -49,17 +60,6 @@ function Cart(): JSX.Element {
             position:"top-center",
             autoClose: 10000
         });
-    }
-
-    function removeExpiredCoupons(){
-        const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
-        const toDelete:number[] = [];
-        for(const c of coupons){
-            if(Date.parse(new Date(c.endDate).toLocaleDateString()) < timeNowInMillis) {
-                toDelete.push(c.id);
-            }
-        }
-        store.dispatch(deleteInBatchFromCart(toDelete));
     }
 
     function classNameHandler(){
@@ -97,5 +97,3 @@ function Cart(): JSX.Element {
         </div>  
     );
 }
-
-export default Cart;

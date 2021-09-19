@@ -14,7 +14,7 @@ export default function Login(): JSX.Element {
 
     return (
         <section className="Login">
-            <div className="Login__Form FORM WHITE__BG">
+            <div className="Login__Form FORM">
                 <h2> Login </h2>
                 <form onSubmit={handleSubmit(send)}>
                     
@@ -36,7 +36,7 @@ export default function Login(): JSX.Element {
                     {errors.password && <p className="Error">{errors.password.message}</p>}
 
                     <br/>
-                    <button onClick={() => reset()} className="BUTTON__AS_LINK">clear fields</button>
+                    <button type="reset" onClick={() => reset()} className="BUTTON__AS_LINK">clear fields</button>
                     <br/>
                     
                     <div>

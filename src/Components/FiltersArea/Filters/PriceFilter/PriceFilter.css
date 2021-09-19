@@ -57,6 +57,7 @@
     cursor: pointer;
     border-radius: 20px;
     border: var(--nav-button-border);
+    border-width: 2px;
     transition: var(--transition);
     -webkit-transition: var(--transition);
 }
