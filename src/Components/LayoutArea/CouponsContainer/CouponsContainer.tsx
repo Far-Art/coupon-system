@@ -36,8 +36,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     ----------------------------------------------------------------------- */
     const filterCoupons = 
         (coupons: CouponModel[]) => {
-            let filteredList; // initial list
-
+            let filteredList;
             // skip coupons that are expired or amount is zero
             if(props.onlyValid){
                 const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
@@ -114,9 +113,11 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
             return tempMapArray;
         }
 
-    useEffect(() => {
-        setLocalCouponsAsMap(initLocalCouponsMap(filterCoupons(props.couponsList)));
-    }, [props.couponsList]);
+        useEffect(() => {
+            if(props.couponsList && props.couponsList.length > 0){
+                setLocalCouponsAsMap(initLocalCouponsMap(filterCoupons(props.couponsList)));
+            }
+        }, [props.couponsList, appfilters]);
 
     /* This function invoked on list render
     ----------------------------------------------------------------------- */
@@ -320,7 +321,6 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     ----------------------------------------------------------------------- */
     return (
         <div className="CouponsContainer">
-            {console.log(props.couponsList)}
             <FiltersContainer
                 coupons={props.couponsList ? props.couponsList : []}
             />

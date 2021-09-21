@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FilterType } from "../../../../Models/FilterType";
 import CheckBox from "../../../InputArea/CheckBox/CheckBox";
 import "./CategoriesFilter.css";
@@ -9,7 +9,11 @@ interface CategoriesFilterProps {
 
 export default function CategoriesFilter(props:CategoriesFilterProps): JSX.Element {
 
-    const [categories] = useState<string[]>(Array.from(new Set(props.categories)));
+    const [categories, setCategories] = useState<string[]>(Array.from(new Set(props.categories)));
+
+    useEffect(() => {
+        setCategories(Array.from(new Set(props.categories)));
+    },[props.categories])
 
     return (
         <div className="CategoriesFilter">

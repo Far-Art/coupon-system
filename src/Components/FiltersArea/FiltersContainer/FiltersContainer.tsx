@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CouponModel } from "../../../Models/CouponModel";
 import { clearFilters } from "../../../Redux/Actions/FilterAction";
 import {store} from "../../../Redux/Store/Store";
@@ -31,8 +31,7 @@ export default function FiltersContainer(props:FiltersContainerProps): JSX.Eleme
 
     return (
         <section className={"FiltersContainerSection"}>
-            {console.log("in filters")}
-            <div className={"FiltersContainer "   + view}>
+            <div className={"FiltersContainer " + view}>
                 <div className="FiltersView">
                     <CategoriesFilter categories={props.coupons.map(c => c.category)} />
                     <CompaniesFilter companies={props.coupons.map(c => c.companyName)} />
