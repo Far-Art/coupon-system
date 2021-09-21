@@ -17,10 +17,11 @@ import MainView from "../MainView/MainView";
 import ProfileView from "../ProfileView/ProfileView";
 import Sign_up from "../Sign_up/Sign_up";
 
-function Routing(): JSX.Element {
+export default function Routing(): JSX.Element {
     const client = useAppSelector(state => 
         state.currentClientState.client
     );
+
     return (
         <div className="Routing">
 			<Switch>
@@ -32,7 +33,7 @@ function Routing(): JSX.Element {
                 <Route path={RouteUrls.LOGIN} component={Login} exact />
                 <Route path={RouteUrls.SIGNUP} component={Sign_up} exact />
                 <Route path={RouteUrls.LOGOUT} component={Logout} exact />
-                <Route path={RouteUrls.CART} component={Cart} exact />
+                {(client === undefined || client?.clientType === ClientType.CUSTOMER) && <Route path={RouteUrls.CART} component={Cart} exact />}
                 <Route path={RouteUrls.PROFILE} component={ProfileView} exact />
                 {(client as ClientInfoModel)?.active && client?.clientType === ClientType.COMPANY && <Route path={RouteUrls.CREATE_COUPON} component={CreateCouponForm} exact />}
                 {client?.clientType === ClientType.ADMIN && <Route path={RouteUrls.CREATE_COMPANY} component={CreateCompanyForm} exact />}
@@ -45,5 +46,3 @@ function Routing(): JSX.Element {
         </div>
     );
 }
-
-export default Routing;

@@ -33,7 +33,7 @@ export default function CheckBox({filterKey, filterValue}:CheckBoxProps): JSX.El
         } else {
             store.dispatch(removeFilter(filterKey, filterValue));
         }
-      };
+    }
 
     return (
         <div className="CheckBox">

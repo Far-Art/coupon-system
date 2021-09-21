@@ -17,8 +17,8 @@ export default function ImageUploadForm(): JSX.Element {
         const blob = new Blob([JSON.stringify(file)]);
         let formData = new FormData();
         formData.append("file", blob);
-        console.log(blob);
-        console.log(formData);
+        // console.log(blob);
+        // console.log(formData);
         try{
             await axios.post(globals.urls.couponImage, file);
             toast.success("Uploaded successfully", {
@@ -34,7 +34,7 @@ export default function ImageUploadForm(): JSX.Element {
     const handleImage = () => {
         let image;
         const response = axios.get(globals.urls.couponImage + "/1").then((response) => {
-            console.log(response);
+            // console.log(response);
             image = response;
         });
         return image;

@@ -8,9 +8,13 @@
     --white-transparent:rgba(255, 255, 255, .5);
     --white-semi-transparent:rgba(255 255 255 / .97);
     --wine-red:rgb(173, 12, 60); /* #ad0c3c */
-    --wine-red-transparent:rgb(130 19 52 /.5);
+    --wine-red-transparent:rgb(173, 12, 60, .85);
     --wine-red-dark:rgb(114, 17, 46); /* #72112e  */
     --wine-hover:rgb(199, 5, 63); /* #c7053f */
+    
+    /* TABLE STYLE*/
+    --gray-light-even:rgba(255, 255, 255, 0.3);
+    --gray-light-odd:rgba(228, 223, 223, 0.3);
 
     /* TOASTS STYLE*/
     --toast-success-bg: rgba(0, 238, 107, 0.83);
@@ -34,7 +38,7 @@
     --toast-border: 3px solid var(--wine-red);
     
     /* BACKGROUND IMAGES */
-    --background-image-main: url("../../../Assets/Images/HalfCirclesBG2.png") repeat; 
+    --background-image-main: url("../../../Assets/Images/HalfCirclesBG2.png"); 
     --background-image-back: url("../../../Assets/Images/IconBG.png");
     /* https://www.patterncooler.com/#a103b103c12Cd12Ce0f0g64h0C303CFB5989CE144BE21A56E0386AiB5j0k64l1F4m1F4 */
     --background-image-logo: url("../../../Assets/Images/HalfCirclesBG3.png") repeat; 

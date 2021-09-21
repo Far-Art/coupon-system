@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CouponModel } from "../../../Models/CouponModel";
 import { clearFilters } from "../../../Redux/Actions/FilterAction";
 import {store} from "../../../Redux/Store/Store";
@@ -19,7 +19,7 @@ export default function FiltersContainer(props:FiltersContainerProps): JSX.Eleme
         store.dispatch(clearFilters());
     }
 
-    const [view, setView] = useState<string>("");
+    const [view, setView] = useState<string>();
 
     const toggleView = () => {
         if(view === "ShowFiltersContainer"){
@@ -31,6 +31,7 @@ export default function FiltersContainer(props:FiltersContainerProps): JSX.Eleme
 
     return (
         <section className={"FiltersContainerSection"}>
+            {console.log("in filters")}
             <div className={"FiltersContainer "   + view}>
                 <div className="FiltersView">
                     <CategoriesFilter categories={props.coupons.map(c => c.category)} />

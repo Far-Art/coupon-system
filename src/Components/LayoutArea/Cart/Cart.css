@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-.Button__Container{
+.Button__Container {
     display: flex;
     bottom: 0;
     position: sticky;

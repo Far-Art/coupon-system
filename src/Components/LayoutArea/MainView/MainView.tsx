@@ -6,6 +6,7 @@ import CouponsContainer from "../CouponsContainer/CouponsContainer";
 import "./MainView.css";
 import { CouponModel } from "../../../Models/CouponModel";
 import { CompanyModel } from "../../../Models/CompanyModel";
+import CustomersContainer from "../CustomersContainer/CustomersContainer";
 
 export default function MainView(): JSX.Element {
 

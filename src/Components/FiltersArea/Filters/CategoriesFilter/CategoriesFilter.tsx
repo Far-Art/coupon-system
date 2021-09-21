@@ -7,18 +7,9 @@ interface CategoriesFilterProps {
     categories:string[];
 }
 
-function CategoriesFilter(props:CategoriesFilterProps): JSX.Element {
+export default function CategoriesFilter(props:CategoriesFilterProps): JSX.Element {
 
     const [categories] = useState<string[]>(Array.from(new Set(props.categories)));
-
-    function formatName(value:string){
-        let newString:string = value.substring(0,1).toUpperCase();
-        newString += value.substring(1).toLowerCase();
-        if(newString.includes("_")){
-            return newString.replace("_", " ");
-        }
-        return newString;
-    }
 
     return (
         <div className="CategoriesFilter">
@@ -27,5 +18,3 @@ function CategoriesFilter(props:CategoriesFilterProps): JSX.Element {
         </div>
     );
 }
-
-export default CategoriesFilter;
