@@ -1,6 +1,6 @@
 import { ClientType } from "./ClientType";
 
-export class CompanyModel{
+export class CompanyModel {
     id!: number;
     name!: string;
     email!: string;

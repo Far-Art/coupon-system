@@ -1,44 +1,79 @@
-.CouponCard {
-    position: relative;
+.CouponCard{
     display: flex;
-    height: 500px;
-    width: 350px;
+    position: relative;
     flex-direction: column;
-    background: var(--background-image-cards);
+    padding: 0;
+    height: 560px;
+    width: 330px;
     margin: 10px auto calc(2% + 30px) auto;
-    border-radius: 100px 50px 100px 50px;
     z-index: var(--z-index-2);
-    overflow: hidden;
-    box-shadow: 0 0 0px 1px transparent, var(--box-shadow-card);
-    animation: out 1s ease;
+    background: var(--background-image-cards);
+    border-radius: 100px 50px 100px 50px;
     transition: var(--menu-transition);
+    animation: out 1s ease;
     align-items: center;
+    box-shadow: 0 0 0px 1px transparent, var(--box-shadow-card);
+    overflow: hidden;
+}
+
+.CouponCardData {
+    flex-direction: column;
+    border-radius: 100px 50px 100px 50px;
+    overflow: hidden;
+}
+
+.CouponCardData * {
+    font-family: Montserrat;
+    transition: var(--menu-transition);
+}
+
+.Price_tag {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 40px;
+    left: -60px;
+    top: 25px;
+    padding: 5px;
+    background-image: linear-gradient(90deg, var(--wine-red-dark), var(--wine-hover), var(--wine-red-dark));
+    transform: rotate(-40deg) translate3d(0,0,0);
+    z-index: var(--z-index-2);
+    border-top: 2px dashed var(--white-transparent);
+    border-bottom: 2px dashed var(--white-transparent);
+    box-shadow: 2px 4px 15px var(--black);
     
 }
 
-.CouponCard * {
-    font-family: Montserrat;
-    transition: var(--menu-transition);
+.Price_tag > * {
+    font-size: 1.25rem;
+    font-weight: 600;
 }
 
 .CouponCard:hover {
     box-shadow: 0 0 0px 1px var(--white), var(--box-shadow-card);
 }
 
-.CouponCard:hover > .Image_container {
-    transform: translateY(-250px);
-}
-
-.CouponCard:hover > .Text_container {
+.CouponCardData:hover > .Image_container {
     transform: translateY(-150px);
 }
 
-.CouponCard:hover .Description {
-    top: 0;
+.CouponCardData:hover > .Text_container {
+    transform: translateY(-100px);
+}
+
+.CouponCardData:hover .Description, .CouponCardData:hover .EndDate{
+    top: -100px;
+    opacity: 1;
+}
+
+.CouponCardData:hover .Title, .CouponCardData:hover .Category, .CouponCardData:hover .Company{
+    opacity: 0;
 }
 
 .CardButton {
-    /* top: 89%; */
+    margin: 15px 0;
 }
 
 .Image_container {
@@ -62,18 +97,6 @@
     margin: 0 15px;
 }
 
-.Price_tag {
-    position: absolute;
-    right: -40px;
-    top: 135px;
-    background-image: url("../../../Assets/Icons/PriceLabel.svg");
-    background-repeat: no-repeat;
-    background-size: auto;
-    height: 120px;
-    width: 55px;
-    transform: rotate(-35deg);
-}
-
 .CouponCard .Title {
     font-size: 1.3rem;
     color: var(--white);
@@ -84,17 +107,26 @@
 .CouponCard .Category {
     top: 0;
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: var(--white);
 }
 
 .CouponCard .Description {
     position: relative;
-    top: 200px;
+    top: 90px;
     font-weight: 500;
     font-size: 1.3rem;
     color: var(--white);
     margin: 0 15px;
+    opacity: 0;
+}
+
+.CouponCard .EndDate {
+    color: var(--white);
+    position: relative;
+    top: 50px;
+    opacity: 0;
+    margin-top: 50px;
 }
 
 .CouponCard .Price {

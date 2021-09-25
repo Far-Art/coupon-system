@@ -1,11 +1,11 @@
 import { CartAction, CartActionType } from "../Actions/CartAction";
 import { CartAppState } from "../States/CartAppState";
 
-export default function cartReducer(cartState:CartAppState = new CartAppState(), action:CartAction): CartAppState {
+export default function cartReducer(cartState: CartAppState = new CartAppState(), action: CartAction): CartAppState {
 
-    const newState = {...cartState};
+    const newState = { ...cartState };
 
-    switch(action.type){
+    switch (action.type) {
         case CartActionType.ADD_TO_CART:
             // newState.forPurchaseCouponsList.push(action.payload);
             break;

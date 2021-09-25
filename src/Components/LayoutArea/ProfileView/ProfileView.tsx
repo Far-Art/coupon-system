@@ -9,21 +9,21 @@ import "./ProfileView.css";
 
 export default function ProfileView(): JSX.Element {
 
-    const client = useAppSelector(state => 
+    const client = useAppSelector(state =>
         state.currentClientState.client
     );
 
-    const clientCoupons = useAppSelector(state => 
+    const clientCoupons = useAppSelector(state =>
         state.clientCouponsState.clientCouponsList
     );
 
     useEffect(() => {
         GlobalDataStreamer.fetchClientInfo();
-    },[]);
+    }, []);
 
     return (
         <div className="ProfileView">
-			<ClientCard client={client as ClientInfoModel} />
+            <ClientCard client={client as ClientInfoModel} />
             {client?.clientType === ClientType.CUSTOMER && <CouponsContainer ignoreFields={["id", "companyemail", "startdate", "enddate", "amount"]} couponsList={clientCoupons} />}
         </div>
     );

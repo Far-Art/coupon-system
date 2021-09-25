@@ -18,13 +18,13 @@ import ProfileView from "../ProfileView/ProfileView";
 import Sign_up from "../Sign_up/Sign_up";
 
 export default function Routing(): JSX.Element {
-    const client = useAppSelector(state => 
+    const client = useAppSelector(state =>
         state.currentClientState.client
     );
 
     return (
         <div className="Routing">
-			<Switch>
+            <Switch>
                 <Route path={RouteUrls.HOME} component={MainView} exact />
                 <Route path={RouteUrls.COUPONS} component={CouponsContainer} exact />
                 <Route path={RouteUrls.COUPONS + ":id"} component={CouponsContainer} exact />
@@ -38,7 +38,7 @@ export default function Routing(): JSX.Element {
                 {(client as ClientInfoModel)?.active && client?.clientType === ClientType.COMPANY && <Route path={RouteUrls.CREATE_COUPON} component={CreateCouponForm} exact />}
                 {client?.clientType === ClientType.ADMIN && <Route path={RouteUrls.CREATE_COMPANY} component={CreateCompanyForm} exact />}
                 {client?.clientType === ClientType.ADMIN && <Route path={RouteUrls.CREATE_CUSTOMER} component={CreateCustomerForm} exact />}
-                <Redirect from="/" to={RouteUrls.HOME} exact/>
+                <Redirect from="/" to={RouteUrls.HOME} exact />
                 <Route>
                     <EmptyView text="Page not found" />
                 </Route>

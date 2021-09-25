@@ -2,8 +2,6 @@ body {
   margin: 0;
   font-family: 'Nunito', sans-serif, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
-  -webkit-font-smoothing: auto;
-  -moz-osx-font-smoothing: auto;
 }
 
 code {

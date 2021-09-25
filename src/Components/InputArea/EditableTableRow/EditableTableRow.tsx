@@ -107,12 +107,12 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
     //         });
     // }
 
-    function setCellWidth(key:string){
-        switch (key.toLowerCase().replaceAll(" ", "")){
+    function setCellWidth(key: string) {
+        switch (key.toLowerCase().replaceAll(" ", "")) {
             case "id":
-                return {width:"50%"}
+                return { width: "50%" }
             case "amount":
-                return {width:"55%"}
+                return { width: "55%" }
         }
     }
 
@@ -152,18 +152,18 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
 
             // return (
             //     <>
-                    // <td key={key + counter++}>
-                    //     <form>
-                    //     <select 
-                    //     onChange={(event) => setValue("category", event.target.value)} 
-                    //     defaultValue={value} 
-                    //     className="SELECT" >
-                    //         {store.getState().categoriesAppState.categories.map(category => <option key={category} value={category}>{category}</option>)}
-                    //     </select>
-                    //     </form>
-                    // </td>
+            // <td key={key + counter++}>
+            //     <form>
+            //     <select 
+            //     onChange={(event) => setValue("category", event.target.value)} 
+            //     defaultValue={value} 
+            //     className="SELECT" >
+            //         {store.getState().categoriesAppState.categories.map(category => <option key={category} value={category}>{category}</option>)}
+            //     </select>
+            //     </form>
+            // </td>
             //         <td key={key + counter++}>
-                        
+
             //                 <input 
             //                     maxLength={ApiGlobalLogic.items.coupon.fieldsMaxLength.title} 
             //                     type="text" className="FIELD" 
@@ -180,12 +180,12 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
             //                     }
             //                 })} />
             //                 {errors.title && <p className="ETDError">{errors.title.message}</p>}
-                        
+
             //         </td>
             //         <td key={key + counter++}>
-                        
+
             //                 <button type="submit">submit</button>
-                        
+
             //         </td>
             //     </>
             // )
@@ -198,69 +198,71 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
             //     type = "number";
             //     pattern = ApiGlobalLogic.patterns.string.integers;
             // } 
-            switch(key.toLowerCase().replaceAll(" ", "")){
+            switch (key.toLowerCase().replaceAll(" ", "")) {
                 case "category":
                     return (
                         <td key={key + counter++}>
-                   
-                        <select 
-                            onChange={(event) => setValue("category", event.target.value)} 
-                            defaultValue={value} 
-                            className="SELECT" >
-                            {store.getState().categoriesAppState.categories.map(category => <option key={category} value={category}>{category}</option>)}
-                        </select>
-                    
+
+                            <select
+                                onChange={(event) => setValue("category", event.target.value)}
+                                defaultValue={value}
+                                className="SELECT" >
+                                {store.getState().categoriesAppState.categories.map(category => <option key={category} value={category}>{category}</option>)}
+                            </select>
+
                         </td>
                     )
                 case "title":
-                        return (
-                            <td key={key + counter++}>
-                     
-                            <input 
-                                maxLength={ApiGlobalLogic.items.coupon.fieldsMaxLength.title} 
-                                type="text" 
-                                className="FIELD" 
-                                placeholder="title" 
-                                defaultValue={value} 
-                                {...register("title",{
-                                    required:{
+                    return (
+                        <td key={key + counter++}>
+
+                            <input
+                                maxLength={ApiGlobalLogic.items.coupon.fieldsMaxLength.title}
+                                type="text"
+                                className="FIELD"
+                                placeholder="title"
+                                defaultValue={value}
+                                {...register("title", {
+                                    required: {
                                         value: true,
-                                        message: "Title required"},
+                                        message: "Title required"
+                                    },
                                     minLength: {
                                         value: ApiGlobalLogic.items.coupon.fieldsMinLength.title,
-                                        message: ApiGlobalLogic.errorDescriptions.minLength.couponTitle},
-                            })} />
+                                        message: ApiGlobalLogic.errorDescriptions.minLength.couponTitle
+                                    },
+                                })} />
                             {errors.title && <p className="ETDError">{errors.title.message}</p>}
-                    
-                            </td>
-                        )
-                    case "description":
-                        return (
-                            <td key={key + counter++}>
-                    
-                            <input 
-                                maxLength={ApiGlobalLogic.items.coupon.fieldsMaxLength.description} 
-                                type="text" 
-                                className="FIELD" 
-                                placeholder="description" 
-                                defaultValue={value} 
-                                {...register("description",{
+
+                        </td>
+                    )
+                case "description":
+                    return (
+                        <td key={key + counter++}>
+
+                            <input
+                                maxLength={ApiGlobalLogic.items.coupon.fieldsMaxLength.description}
+                                type="text"
+                                className="FIELD"
+                                placeholder="description"
+                                defaultValue={value}
+                                {...register("description", {
                                     required: false
-                            })} />
-                   
-                            </td>
-                        )
-                    case "startdate":
-                            return (
-                                <td key={key + counter++}>
-                         
-                                <input 
-                                    type="date" 
-                                    className="FIELD" 
-                                    placeholder="start date" 
-                                    defaultValue={value} 
-                                    {...register("startDate",{
-                                    required:{
+                                })} />
+
+                        </td>
+                    )
+                case "startdate":
+                    return (
+                        <td key={key + counter++}>
+
+                            <input
+                                type="date"
+                                className="FIELD"
+                                placeholder="start date"
+                                defaultValue={value}
+                                {...register("startDate", {
+                                    required: {
                                         value: true,
                                         message: "Start date required"
                                     },
@@ -269,96 +271,98 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
                                         message: "Invalid date"
                                     }
                                 })} />
-                                {errors.startDate && <p className="ETDError">{errors.startDate.message}</p>}
-                             
-                                </td>
-                            )
+                            {errors.startDate && <p className="ETDError">{errors.startDate.message}</p>}
+
+                        </td>
+                    )
                 case "enddate":
                     return (
                         <td key={key + counter++}>
-                      
-                        <input 
-                            type="date" 
-                            className="FIELD" 
-                            placeholder="end date" 
-                            defaultValue={value} 
-                            {...register("endDate",{
-                            required:{
-                                value: true,
-                                message: "End date required"
-                            },
-                            pattern: {
-                                value: ApiGlobalLogic.patterns.regex.complexDate,
-                                message: "Invalid date"
-                            }
-                        })} />
-                        {errors.endDate && <p className="ETDError">{errors.endDate.message}</p>}
-                     
+
+                            <input
+                                type="date"
+                                className="FIELD"
+                                placeholder="end date"
+                                defaultValue={value}
+                                {...register("endDate", {
+                                    required: {
+                                        value: true,
+                                        message: "End date required"
+                                    },
+                                    pattern: {
+                                        value: ApiGlobalLogic.patterns.regex.complexDate,
+                                        message: "Invalid date"
+                                    }
+                                })} />
+                            {errors.endDate && <p className="ETDError">{errors.endDate.message}</p>}
+
                         </td>
                     )
-                    case "amount":
-                        return(
-                            <td key={key + counter++}>
-                          
-                            <input 
-                                step="any" 
-                                min={ApiGlobalLogic.items.coupon.fieldsMinLength.amount} 
-                                type="number" 
-                                className="FIELD" 
-                                placeholder="amount" 
-                                defaultValue={value} 
-                                {...register("amount",{
-                                required:{
-                                    value: true,
-                                    message: "Amount required"},
-                                pattern: {
-                                    value: ApiGlobalLogic.patterns.regex.numbers,
-                                    message: ApiGlobalLogic.errorDescriptions.badPattern.amount
-                                }
-                            })} />
-                            {errors.amount && <p className="ETDError">{errors.amount.message}</p>}
-                           
-                            </td>
-                        )
-                    case "price":
-                        return(
-                            <td key={key + counter++}>
-                           
-                            <input 
-                                step="any" 
-                                min={ApiGlobalLogic.items.coupon.fieldsMinLength.price} 
-                                max={ApiGlobalLogic.items.coupon.fieldsMaxLength.price} 
-                                type="number" 
-                                className="FIELD" 
-                                placeholder="price" 
-                                defaultValue={value} 
-                                {...register("price",{
-                                required:{
-                                    value: true,
-                                    message: "Price required"}
-                             })} />
-                            {errors.price && <p className="ETDError">{errors.price.message}</p>}
-                        
-                            </td>
-                        )
-                    case "image1":
-                        return(
-                            <td key={key + counter++}>
+                case "amount":
+                    return (
+                        <td key={key + counter++}>
 
-                            <input 
-                                type="file" 
-                                className="FIELD" 
-                                placeholder="image" 
-                                defaultValue={value + ""} 
-                                {...register("image",{
-                                required: false
-                             })} />
+                            <input
+                                step="any"
+                                min={ApiGlobalLogic.items.coupon.fieldsMinLength.amount}
+                                type="number"
+                                className="FIELD"
+                                placeholder="amount"
+                                defaultValue={value}
+                                {...register("amount", {
+                                    required: {
+                                        value: true,
+                                        message: "Amount required"
+                                    },
+                                    pattern: {
+                                        value: ApiGlobalLogic.patterns.regex.numbers,
+                                        message: ApiGlobalLogic.errorDescriptions.badPattern.amount
+                                    }
+                                })} />
+                            {errors.amount && <p className="ETDError">{errors.amount.message}</p>}
+
+                        </td>
+                    )
+                case "price":
+                    return (
+                        <td key={key + counter++}>
+
+                            <input
+                                step="any"
+                                min={ApiGlobalLogic.items.coupon.fieldsMinLength.price}
+                                max={ApiGlobalLogic.items.coupon.fieldsMaxLength.price}
+                                type="number"
+                                className="FIELD"
+                                placeholder="price"
+                                defaultValue={value}
+                                {...register("price", {
+                                    required: {
+                                        value: true,
+                                        message: "Price required"
+                                    }
+                                })} />
+                            {errors.price && <p className="ETDError">{errors.price.message}</p>}
+
+                        </td>
+                    )
+                case "image1":
+                    return (
+                        <td key={key + counter++}>
+
+                            <input
+                                type="file"
+                                className="FIELD"
+                                placeholder="image"
+                                defaultValue={value + ""}
+                                {...register("image", {
+                                    required: false
+                                })} />
                             {errors.image && <p className="ETDError">{errors.image.message}</p>}
 
-                            </td>
-                        )
-                  
-                
+                        </td>
+                    )
+
+
             }
 
             // // test for email

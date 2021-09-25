@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import slide_in_right from "../../../ToastifyNotifications/ToastTransition";
 import "./GlobalStyles.css";
 import "./Layout.css";
-import { ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import Menu from "../Menu/Menu";
@@ -13,35 +13,35 @@ import IdleTimerApi from "../../../Services/IdleTimerApi";
 import ImageUploadForm from "../ImageUploadForm/ImageUploadForm";
 
 export default function Layout(): JSX.Element {
-    
+
     /* init Idle timer api class */
     new IdleTimerApi();
 
     return (
         <div onClick={() => IdleTimerApi.clientMadeAction()} className="Layout">
-                {/* ToastContainer renders app notifications */}
-                <ToastContainer 
-                    limit={7} 
-                    autoClose={3000} 
-                    transition={slide_in_right} 
-                    pauseOnHover={false} 
-                />
-                <section className="HEADER_BG">
-                    <header>
-                        <Header /> 
-                    </header>
-                    <nav>
-                        <NavBar />
-                        <Menu />
-                        <ImageUploadForm />
-                    </nav>
-                </section>
-                <main>
-                    <Routing />
-                </main>
-                <footer>
-                    <Footer />
-                </footer>
+            {/* ToastContainer renders app notifications */}
+            <ToastContainer
+                limit={7}
+                autoClose={3000}
+                transition={slide_in_right}
+                pauseOnHover={false}
+            />
+            <section className="HEADER_BG">
+                <header>
+                    <Header />
+                </header>
+                <nav>
+                    <NavBar />
+                    <Menu />
+                    <ImageUploadForm />
+                </nav>
+            </section>
+            <main>
+                <Routing />
+            </main>
+            <footer>
+                <Footer />
+            </footer>
         </div>
     );
 }

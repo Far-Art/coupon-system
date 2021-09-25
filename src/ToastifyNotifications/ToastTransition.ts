@@ -6,4 +6,3 @@ const slide_in_right = cssTransition({
 });
 
 export default slide_in_right;
-

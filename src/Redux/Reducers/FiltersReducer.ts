@@ -2,15 +2,15 @@ import { FilterType } from "../../Models/FilterType";
 import { FilterAction, FilterActionType } from "../Actions/FilterAction";
 import { FiltersAppState } from "../States/FiltersAppState";
 
-export function FiltersReducer(currentState:FiltersAppState = new FiltersAppState(), action:FilterAction):FiltersAppState{
+export function FiltersReducer(currentState: FiltersAppState = new FiltersAppState(), action: FilterAction): FiltersAppState {
 
-    const newState = {...currentState};
+    const newState = { ...currentState };
 
-    switch(action.type){
+    switch (action.type) {
         /* Adding filter */
-        case FilterActionType.ADD: 
+        case FilterActionType.ADD:
             newState.filtersActive = true;
-            switch(action.filterKey){
+            switch (action.filterKey) {
                 case FilterType.CATEGORIES:
                     newState.categoriesList.push(action.filterValue);
                     break;
@@ -28,7 +28,7 @@ export function FiltersReducer(currentState:FiltersAppState = new FiltersAppStat
 
         /* Removing filter */
         case FilterActionType.REMOVE:
-            switch(action.filterKey){
+            switch (action.filterKey) {
                 case FilterType.CATEGORIES:
                     newState.categoriesList = newState.categoriesList.filter(c => c !== action.filterValue);
                     break;
@@ -43,20 +43,20 @@ export function FiltersReducer(currentState:FiltersAppState = new FiltersAppStat
                     break;
             }
             break;
-            // TODO Reset state of checkboxes on clear
+        // TODO Reset state of checkboxes on clear
         case FilterActionType.CLEAR:
             newState.categoriesList = [];
             newState.companiesList = [];
             newState.priceList = -99;
             newState.freeText = "";
             break;
-        
+
         default:
             return currentState;
     }
-    
+
     /* check if all filters disabled */
-    if(newState.categoriesList.length === 0 && newState.companiesList.length === 0 && newState.priceList < 0 && newState.freeText.length === 0){
+    if (newState.categoriesList.length === 0 && newState.companiesList.length === 0 && newState.priceList < 0 && newState.freeText.length === 0) {
         newState.filtersActive = false;
     }
 

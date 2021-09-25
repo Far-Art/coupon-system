@@ -5,9 +5,10 @@
     --white:white;
     --gray:rgb(150, 150, 150);
     --gray-light:rgb(230, 230, 230);
-    --white-transparent:rgba(255, 255, 255, .5);
+    --white-transparent:rgba(255, 255, 255, .4);
     --white-semi-transparent:rgba(255, 255, 255, .97);
     --black-semi-transparent:rgba(0, 0, 0, .5);
+    --black:rgba(0, 0, 0, .9);
     --wine-red:rgb(173, 12, 60); /* #ad0c3c */
     --wine-red-transparent:rgb(173, 12, 60, .85);
     --wine-red-dark:rgb(114, 17, 46); /* #72112e  */

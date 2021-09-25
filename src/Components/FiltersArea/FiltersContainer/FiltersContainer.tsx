@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CouponModel } from "../../../Models/CouponModel";
 import { clearFilters } from "../../../Redux/Actions/FilterAction";
-import {store} from "../../../Redux/Store/Store";
+import { store } from "../../../Redux/Store/Store";
 import UserLayoutPreferences from "../UserLayoutConfig/UserLayoutPreferences";
 import CategoriesFilter from "../Filters/CategoriesFilter/CategoriesFilter";
 import CompaniesFilter from "../Filters/CompaniesFilter/CompaniesFilter";
@@ -13,7 +13,7 @@ interface FiltersContainerProps {
     coupons: CouponModel[];
 }
 
-export default function FiltersContainer(props:FiltersContainerProps): JSX.Element {
+export default function FiltersContainer(props: FiltersContainerProps): JSX.Element {
 
     const clearFunction = () => {
         store.dispatch(clearFilters());
@@ -22,7 +22,7 @@ export default function FiltersContainer(props:FiltersContainerProps): JSX.Eleme
     const [view, setView] = useState<string>();
 
     const toggleView = () => {
-        if(view === "ShowFiltersContainer"){
+        if (view === "ShowFiltersContainer") {
             setView("");
         } else {
             setView("ShowFiltersContainer");
@@ -42,7 +42,7 @@ export default function FiltersContainer(props:FiltersContainerProps): JSX.Eleme
                 <button className="ClearFiltersButton APP__BUTTON" onClick={clearFunction}>Clear filters</button>
             </div>
             <button onClick={() => toggleView()} className="FiltersContainerButton  APP__BUTTON">
-                <p className="FiltersText">{"filters"}</p> 
+                <p className="FiltersText">{"filters"}</p>
                 <p className="FiltersArrow">{view === "" ? ">" : "<"}</p>
             </button>
         </section>

@@ -6,12 +6,12 @@ import { NavLink } from "react-router-dom";
 import { RouteUrls } from "../../../Services/RouteUrls";
 
 interface AddItemElementProps {
-    clientType:ClientType;
+    clientType: ClientType;
 }
 
-export default function AddItemElement(props:AddItemElementProps): JSX.Element {
+export default function AddItemElement(props: AddItemElementProps): JSX.Element {
 
-    function companyOptions(){
+    function companyOptions() {
         return (
             <>
                 <NavLink to={RouteUrls.CREATE_COUPON}>Add coupon</NavLink>
@@ -19,7 +19,7 @@ export default function AddItemElement(props:AddItemElementProps): JSX.Element {
         )
     }
 
-    function adminOptions(){
+    function adminOptions() {
         return (
             <>
                 <NavLink to={RouteUrls.CREATE_CUSTOMER}>Add customer</NavLink>
@@ -28,8 +28,8 @@ export default function AddItemElement(props:AddItemElementProps): JSX.Element {
         )
     }
 
-    function render(){
-        switch(props.clientType){
+    function render() {
+        switch (props.clientType) {
             case ClientType.COMPANY:
                 return companyOptions();
             case ClientType.ADMIN:
@@ -40,7 +40,7 @@ export default function AddItemElement(props:AddItemElementProps): JSX.Element {
     return (
         <div className="AddItemElement DropDown">
             <button className="DropBtn NAV__BUTTON" >
-                <Icon onClick={() => {}} className="Menu__button" component={AddIcon} />
+                <Icon onClick={() => { }} className="Menu__button" component={AddIcon} />
             </button>
             <div className="DropDownContent">
                 {render()}

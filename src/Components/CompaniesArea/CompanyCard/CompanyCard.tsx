@@ -5,8 +5,6 @@ interface CardProps {
     company: CompanyModel;
 }
 
-function CompanyCard(props: CardProps): JSX.Element {
+export default function CompanyCard(props: CardProps): JSX.Element {
     return <div className="CompanyCard">{props.company.name}</div>;
 }
-
-export default CompanyCard;

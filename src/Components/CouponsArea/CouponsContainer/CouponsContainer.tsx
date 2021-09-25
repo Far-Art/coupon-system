@@ -112,7 +112,8 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
                         }
                     }
                     // split words by camel case before insert
-                    tempCouponAsMap.set(key.split(/(?=[A-Z])/).map(str => str.toLowerCase()).join(' '), value);
+                    tempCouponAsMap.set(key, value);
+                    // tempCouponAsMap.set(key.split(/(?=[A-Z])/).map(str => str.toLowerCase()).join(' '), value);
                 }
                 // push coupon as map to array
                 tempMapArray.push(tempCouponAsMap);

@@ -3,9 +3,9 @@ import { CouponAction, CouponActionType } from "../Actions/CouponAction";
 import { RevertAction, RevertActionType } from "../Actions/RevertAction";
 import { ClientCouponsAppState } from "../States/ClientCouponsAppState";
 
-export function clientCouponsReducer(currentState:ClientCouponsAppState = new ClientCouponsAppState(), action:CouponAction | ClientAction | RevertAction): ClientCouponsAppState {
+export function clientCouponsReducer(currentState: ClientCouponsAppState = new ClientCouponsAppState(), action: CouponAction | ClientAction | RevertAction): ClientCouponsAppState {
 
-    const newState = {...currentState};
+    const newState = { ...currentState };
 
     switch (action.type) {
         case CouponActionType.FETCH_BY_COMPANY:

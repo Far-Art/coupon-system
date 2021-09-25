@@ -9,12 +9,12 @@ import { useAppSelector } from '../../../Redux/Hooks/hooks';
 import AddItemElement from '../../InputArea/AddItemElement/AddItemElement';
 import { ClientInfoModel } from '../../../Models/ClientInfoModel';
 
-function Menu(): JSX.Element {
+export default function Menu(): JSX.Element {
 
-    const client = useAppSelector(state => 
+    const client = useAppSelector(state =>
         state.currentClientState.client
     );
-    
+
     return (
         <div className="Menu WHITE__BG">
             <NavLink className="NAV__BUTTON" to="/home">
@@ -22,19 +22,19 @@ function Menu(): JSX.Element {
             </NavLink>
 
             {/* display only if active company or admin logged in */}
-            { (client as ClientInfoModel)?.active && (client?.clientType === ClientType.ADMIN || client?.clientType === ClientType.COMPANY) &&
+            {(client as ClientInfoModel)?.active && (client?.clientType === ClientType.ADMIN || client?.clientType === ClientType.COMPANY) &&
                 <AddItemElement clientType={client.clientType} />
             }
 
             {/* display only if client logged in */}
-            { client?.clientType !== undefined &&
+            {client?.clientType !== undefined &&
                 <NavLink className="NAV__BUTTON" to="/profile">
                     <Icon className="Menu__button" component={PersonRoundedIcon} />
                 </NavLink>
             }
 
             {/* display cart only for customers type */}
-            { (client?.clientType === undefined || client?.clientType === ClientType.CUSTOMER) &&
+            {(client?.clientType === undefined || client?.clientType === ClientType.CUSTOMER) &&
                 <NavLink className="NAV__BUTTON" to="/cart">
                     <Icon className="Menu__button" component={ShoppingCartIcon} />
                 </NavLink>
@@ -42,5 +42,3 @@ function Menu(): JSX.Element {
         </div>
     );
 }
-
-export default Menu;

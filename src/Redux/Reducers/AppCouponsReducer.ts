@@ -1,11 +1,11 @@
 import { CouponAction, CouponActionType } from "../Actions/CouponAction";
 import { CouponsAppState } from "../States/CouponsAppState";
 
-export function appCouponsReducer(currentState:CouponsAppState = new CouponsAppState(), action:CouponAction): CouponsAppState {
+export function appCouponsReducer(currentState: CouponsAppState = new CouponsAppState(), action: CouponAction): CouponsAppState {
 
-    const newState = {...currentState};
+    const newState = { ...currentState };
 
-    switch(action.type){
+    switch (action.type) {
         case CouponActionType.ADD:
             newState.appCouponsList.push(action.payload);
             break;
