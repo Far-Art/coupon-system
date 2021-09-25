@@ -42,7 +42,7 @@ export default function CreateCouponForm(): JSX.Element {
                         message: "Title required"},
                     minLength: {
                         value: ApiGlobalLogic.items.coupon.fieldsMinLength.title,
-                        message: "Title length must be greater than " + (ApiGlobalLogic.items.coupon.fieldsMinLength.title - 1) + " characters"
+                        message: ApiGlobalLogic.errorDescriptions.minLength.couponTitle
                     }
                 })} />
                 {errors.title && <p className="Error">{errors.title.message}</p>}

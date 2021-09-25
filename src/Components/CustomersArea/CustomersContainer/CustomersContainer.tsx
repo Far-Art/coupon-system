@@ -3,7 +3,7 @@ import { Unsubscribe } from "redux";
 import { CustomerModel } from "../../../Models/CustomerModel";
 import { FiltersAppState } from "../../../Redux/States/FiltersAppState";
 import {store} from "../../../Redux/Store/Store";
-import CustomerCard from "../../CustomersArea/CustomerCard/CustomerCard";
+import CustomerCard from "../CustomerCard/CustomerCard";
 import "./CustomersContainer.css";
 
 interface CustomersContainerState {

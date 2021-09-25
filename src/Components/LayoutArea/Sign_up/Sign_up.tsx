@@ -1,13 +1,11 @@
-import axios from "axios";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import { SignupModel } from "../../../Models/SignupModel";
 import { ClientType } from "../../../Models/ClientType";
 import apiGlobalLogic from "../../../Services/ApiGlobalLogic";
-import globals from "../../../Services/Globals";
 import "./Sign_up.css";
 import { useState } from "react";
 import ApiGlobalLogic from "../../../Services/ApiGlobalLogic";
+import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 
 export default function Sign_up(): JSX.Element {
     
@@ -18,16 +16,7 @@ export default function Sign_up(): JSX.Element {
     const [clientType, setClientType] = useState(ClientType.CUSTOMER);
     
     const send = async (signup:SignupModel) => {
-        try{
-            await axios.post<SignupModel>(globals.urls.signup, signup);
-            toast.success(signup.email + " signed-up successfully", {
-                theme:"colored"
-            });
-        } catch(err:any) {
-            toast.error(err.message,{
-                theme:"colored"
-            });
-        }
+        GlobalDataStreamer.signup(signup);
     }
 
     function handleChange(event:React.ChangeEvent<HTMLSelectElement>){

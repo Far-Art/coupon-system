@@ -3,13 +3,18 @@ import { LoginRequestModel } from "../../../Models/LoginRequestModel";
 import "./Login.css";
 import ApiGlobalLogic from "../../../Services/ApiGlobalLogic";
 import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
+import IdleTimerApi from "../../../Services/IdleTimerApi";
 
 export default function Login(): JSX.Element {
 
     const {register, handleSubmit, reset, formState: { errors }} = useForm<LoginRequestModel>();
 
     const send = (login:LoginRequestModel) => {
-        GlobalDataStreamer.login(login);
+        GlobalDataStreamer.login(login).then((response) => {
+            if(response){
+                IdleTimerApi.startIdleTimer();
+            }
+        });
     }
 
     return (

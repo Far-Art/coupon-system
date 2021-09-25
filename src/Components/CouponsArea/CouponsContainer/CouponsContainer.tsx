@@ -1,6 +1,5 @@
 import { toast } from "react-toastify";
 import { CouponModel } from "../../../Models/CouponModel";
-import CouponCard from "../../CouponsArea/CouponCard/CouponCard";
 import EditIcon from "@material-ui/icons/Edit";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
@@ -10,11 +9,13 @@ import "./CouponsContainer.css";
 import { store } from "../../../Redux/Store/Store";
 import { deleteFromCart } from "../../../Redux/Actions/CartAction";
 import EmptyView from "../../SharedArea/EmptyView/EmptyView";
-import EditableTableRow from "./EditableTableRow";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 import FiltersContainer from "../../FiltersArea/FiltersContainer/FiltersContainer";
 import { useAppSelector } from "../../../Redux/Hooks/hooks";
+import { useForm } from "react-hook-form";
+import CouponCard from "../CouponCard/CouponCard";
+import EditableTableRow from "../../InputArea/EditableTableRow/EditableTableRow";
 
 interface ContainerProps {
     couponsList: CouponModel[]; // coupons list
@@ -32,23 +33,29 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
 
     const appfilters = useAppSelector(state => state.filterAppState);
 
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<CouponModel>();
+
+    const send = (coupon: CouponModel) => {
+        // GlobalDataStreamer.addCoupon(coupon);
+        console.log("handle submit");
+    }
+
     /* this function filters coupon list by active filters and props
     ----------------------------------------------------------------------- */
-    const filterCoupons = 
+    const filterCoupons =
         (coupons: CouponModel[]) => {
             let filteredList;
             // skip coupons that are expired or amount is zero
-            if(props.onlyValid){
+            if (props.onlyValid) {
                 const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
-                filteredList = coupons.filter(c =>
-                    {
-                        if(c.amount === 0 ){
-                            return false;
-                        } else if (Date.parse(new Date(c.endDate).toLocaleDateString()) < timeNowInMillis){
-                            return false;
-                        }
-                        return true;
+                filteredList = coupons.filter(c => {
+                    if (c.amount === 0) {
+                        return false;
+                    } else if (Date.parse(new Date(c.endDate).toLocaleDateString()) < timeNowInMillis) {
+                        return false;
                     }
+                    return true;
+                }
                 );
             } else {
                 filteredList = coupons;
@@ -83,7 +90,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
 
     /* this function filters coupons array by provided props
     ----------------------------------------------------------------------- */
-    const initLocalCouponsMap = 
+    const initLocalCouponsMap =
         (coupons: CouponModel[]) => {
             const tempMapArray: Map<string, any>[] = [];
             if (coupons === undefined || coupons.length === 0) {
@@ -113,11 +120,11 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
             return tempMapArray;
         }
 
-        useEffect(() => {
-            if(props.couponsList && props.couponsList.length > 0){
-                setLocalCouponsAsMap(initLocalCouponsMap(filterCoupons(props.couponsList)));
-            }
-        }, [props.couponsList, appfilters]);
+    useEffect(() => {
+        if (props.couponsList && props.couponsList.length > 0) {
+            setLocalCouponsAsMap(initLocalCouponsMap(filterCoupons(props.couponsList)));
+        }
+    }, [props.couponsList, appfilters]);
 
     /* This function invoked on list render
     ----------------------------------------------------------------------- */
@@ -125,39 +132,45 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
         if (localCouponsAsMap !== undefined) {
             let counter = 1;
             return (
-                <table className="Coupons__table">
-                    <thead>
-                        <EditableTableRow
-                            object={localCouponsAsMap[0]}
-                            isHeader={true}
-                        />
-                    </thead>
-                    <tbody>
-                        {localCouponsAsMap.map(c => 
+                <form onSubmit={handleSubmit(send)}>
+                    <table className="Coupons__table">
+                        <thead>
                             <EditableTableRow
                                 key={counter++}
-                                object={c}
-                                // className={setWarningClass(c)}
-                                tdClassName="table__center_text"
-                                // ignoreFields={props.ignoreFields}
-                                // nonEditableFields={["id"]}
+                                object={localCouponsAsMap[0]}
+                                isHeader={true}
+                            />
+                        </thead>
+                        <tbody>
+                            {localCouponsAsMap.map(c =>
+                                <EditableTableRow
+                                    {...register}
+                                    key={counter++}
+                                    object={c}
+                                    editable={false}
+                                    // className={setWarningClass(c)}
+                                    tdClassName="table__center_text"
+                                    // ignoreFields={props.ignoreFields}
+                                    nonEditableFields={["id"]}
                                 // onSave={setEditCouponWithId}
-                             />
-                        )}
-                        {/* {localCouponsMap.entries().return(c =>  (
-                            <EditableTableRow
-                            key={c}
-                            object={c}
-                            className={setWarningClass(c)}
-                            tdClassName="table__center_text"
-                            ignoreFields={props.ignoreFields}
-                            nonEditableFields={["id"]}
-                            onSave={setEditCouponWithId}
-                             />
-                        ))} */}
+                                />
+                            )}
+                            {/* {localCouponsMap.entries().return(c =>  (
+                                <EditableTableRow
+                                key={c}
+                                object={c}
+                                className={setWarningClass(c)}
+                                tdClassName="table__center_text"
+                                ignoreFields={props.ignoreFields}
+                                nonEditableFields={["id"]}
+                                onSave={setEditCouponWithId}
+                                />
+                            ))} */}
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                    <button type="submit">submit</button>
+                </form>
             );
         }
     }
@@ -181,7 +194,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     function renderAsCards() {
         let counter = 1;
         if (localCouponsAsMap !== undefined) {
-            return localCouponsAsMap.map(c => <CouponCard object={c} key={counter++} />);
+            return localCouponsAsMap.map(c => <CouponCard coupon={(Object.fromEntries(c) as CouponModel)} key={counter++} />);
         }
     }
 
@@ -230,8 +243,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
                                     // setEditCouponWithId(coupon.id);
                                     toast.dismiss(coupon.id);
                                 }}
-                                className="Toast__button"
-                            >
+                                className="Toast__button">
                                 {" "}
                                 <Icon component={EditIcon} />
                             </button>
@@ -243,8 +255,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
                                     toast.dismiss(coupon.id);
                                     // setEditCouponWithId(-1);
                                 }}
-                                className="Toast__button"
-                            >
+                                className="Toast__button">
                                 {" "}
                                 <Icon component={DeleteIcon} />
                             </button>
@@ -263,15 +274,13 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
                         </span>
                         <button
                             onClick={() => deleteFromCartHandler(coupon)}
-                            className="Toast__button"
-                        >
+                            className="Toast__button">
                             {" "}
                             <Icon component={CheckIcon} />{" "}
                         </button>
                         <button
                             onClick={() => toast.dismiss(coupon.id)}
-                            className="Toast__button"
-                        >
+                            className="Toast__button">
                             {" "}
                             <Icon component={CloseIcon} />{" "}
                         </button>
@@ -300,19 +309,16 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
         if (!props.couponsList || props.couponsList.length === 0) {
             return renderEmptyView();
         }
-
         return (
             <>
                 <div className="CouponsCounter">
                     <p>
-                        {localCouponsAsMap.length +
-                            " coupon" +
+                        {localCouponsAsMap.length + " coupon" +
                             (localCouponsAsMap.length === 1 ? "" : "s") +
                             " displayed"}
                     </p>
                 </div>
-                {/* {props.asList ? renderAsList() : renderAsCards()} */}
-                {props.asList ? renderAsList() : renderAsList()}
+                {props.asList ? renderAsList() : renderAsCards()}
             </>
         );
     };
@@ -322,10 +328,9 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     return (
         <div className="CouponsContainer">
             <FiltersContainer
-                coupons={props.couponsList ? props.couponsList : []}
-            />
+                coupons={props.couponsList ? props.couponsList : []} />
             <div className="CouponsView">
-                { localCouponsAsMap?.length > 0 ? render() : <EmptyView />}
+                {localCouponsAsMap?.length > 0 ? render() : renderEmptyView()}
             </div>
         </div>
     );

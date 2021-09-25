@@ -2,26 +2,31 @@ import { ClientInfoModel } from "../../Models/ClientInfoModel";
 import { ClientType } from "../../Models/ClientType";
 import { LoginResponseModel } from "../../Models/LoginResponseModel";
 
-export interface ClientAction{
-    type:ClientActionType;
+export interface ClientAction {
+    type: ClientActionType;
     clientType?: ClientType;
-    payload?:any;
+    payload?: any;
 }
 
-export enum ClientActionType{
+export enum ClientActionType {
     LOGIN = "LOGIN",
     LOGOUT = "LOGOUT",
-    REQUEST_INFO = "REQUEST_INFO"
+    REQUEST_INFO = "REQUEST_INFO",
+    EXTEND_TOKEN = "EXTEND_TOKEN"
 }
 
-export function loginAction(login:LoginResponseModel):ClientAction{
-    return {type: ClientActionType.LOGIN, clientType: login.clientType, payload: login};
+export function loginAction(login: LoginResponseModel): ClientAction {
+    return { type: ClientActionType.LOGIN, clientType: login.clientType, payload: login };
 }
 
-export function logoutAction():ClientAction{
-    return {type: ClientActionType.LOGOUT, clientType:undefined};
+export function logoutAction(): ClientAction {
+    return { type: ClientActionType.LOGOUT, clientType: undefined };
 }
 
-export function requestInfo(info:ClientInfoModel):ClientAction{
-    return {type: ClientActionType.REQUEST_INFO, clientType: info.clientType, payload: info};
+export function requestInfo(info: ClientInfoModel): ClientAction {
+    return { type: ClientActionType.REQUEST_INFO, clientType: info.clientType, payload: info };
+}
+
+export function extendToken(): ClientAction {
+    return { type: ClientActionType.EXTEND_TOKEN };
 }

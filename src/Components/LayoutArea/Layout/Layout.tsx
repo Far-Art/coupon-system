@@ -9,16 +9,16 @@ import NavBar from "../NavBar/NavBar";
 import Menu from "../Menu/Menu";
 import Routing from "../Routing/Routing";
 import Footer from "../Footer/Footer";
-
 import IdleTimerApi from "../../../Services/IdleTimerApi";
 import ImageUploadForm from "../ImageUploadForm/ImageUploadForm";
 
-function Layout(): JSX.Element {
-
-    IdleTimerApi();
+export default function Layout(): JSX.Element {
     
+    /* init Idle timer api class */
+    new IdleTimerApi();
+
     return (
-        <div className="Layout">
+        <div onClick={() => IdleTimerApi.clientMadeAction()} className="Layout">
                 {/* ToastContainer renders app notifications */}
                 <ToastContainer 
                     limit={7} 
@@ -45,5 +45,3 @@ function Layout(): JSX.Element {
         </div>
     );
 }
-
-export default Layout;

@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import "./Menu.css";
 import { ClientType } from '../../../Models/ClientType';
 import { useAppSelector } from '../../../Redux/Hooks/hooks';
-import AddItemElement from '../AddItemElement/AddItemElement';
+import AddItemElement from '../../InputArea/AddItemElement/AddItemElement';
 import { ClientInfoModel } from '../../../Models/ClientInfoModel';
 
 function Menu(): JSX.Element {

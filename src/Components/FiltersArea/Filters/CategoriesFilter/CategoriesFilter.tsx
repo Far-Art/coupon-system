@@ -9,7 +9,7 @@ interface CategoriesFilterProps {
 
 export default function CategoriesFilter(props:CategoriesFilterProps): JSX.Element {
 
-    const [categories, setCategories] = useState<string[]>(Array.from(new Set(props.categories)));
+    const [categories, setCategories] = useState<string[]>([]);
 
     useEffect(() => {
         setCategories(Array.from(new Set(props.categories)));

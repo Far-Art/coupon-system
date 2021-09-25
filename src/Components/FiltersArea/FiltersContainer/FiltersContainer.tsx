@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CouponModel } from "../../../Models/CouponModel";
 import { clearFilters } from "../../../Redux/Actions/FilterAction";
 import {store} from "../../../Redux/Store/Store";
-import UserLayoutPreferences from "../../LayoutArea/UserLayoutConfig/UserLayoutPreferences";
+import UserLayoutPreferences from "../UserLayoutConfig/UserLayoutPreferences";
 import CategoriesFilter from "../Filters/CategoriesFilter/CategoriesFilter";
 import CompaniesFilter from "../Filters/CompaniesFilter/CompaniesFilter";
 import FreeTextFilter from "../Filters/FreeTextFilter/FreeTextFilter";

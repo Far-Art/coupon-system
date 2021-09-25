@@ -55,6 +55,9 @@
     overflow: hidden;
     box-shadow: var(--box-shadow);
     margin: auto;
+    table-layout: fixed;
+    width: 95%;
+    max-width: 1800px;
 }
 
 .Coupons__table > thead{

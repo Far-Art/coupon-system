@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 import { ClientType } from "../../../Models/ClientType";
 import { useAppSelector } from "../../../Redux/Hooks/hooks";
-import CouponsContainer from "../CouponsContainer/CouponsContainer";
+import CouponsContainer from "../../CouponsArea/CouponsContainer/CouponsContainer";
 import "./MainView.css";
 import { CouponModel } from "../../../Models/CouponModel";
 import { CompanyModel } from "../../../Models/CompanyModel";
-import CustomersContainer from "../CustomersContainer/CustomersContainer";
+import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 
 export default function MainView(): JSX.Element {
 
@@ -33,6 +33,10 @@ export default function MainView(): JSX.Element {
                     GlobalDataStreamer.fetchCouponsByCompany();
                 }
                 break;
+            case ClientType.CUSTOMER:
+                GlobalDataStreamer.fetchCouponsByCustomer();
+                GlobalDataStreamer.fetchAllCoupons();
+                break;
             default:
                 GlobalDataStreamer.fetchAllCoupons();
                 break;
@@ -45,10 +49,10 @@ export default function MainView(): JSX.Element {
                 if((client as CompanyModel).active){
                     return <CouponsContainer couponsList={clientCoupons} asList={true} editable={true} ignoreFields={["companyentity", "companyemail", "companyname"]} />;
                 } else {
-                    return <div className="Pending">Your company is pending for admin approval</div>
+                    return <EmptyView text={"Your company is pending for admin approval"}/>
                 }
             default:
-                return <CouponsContainer couponsList={appCoupons} onlyValid={true} ignoreFields={["id", "companyemail", "amount", "startdate"]} />;
+                return <CouponsContainer couponsList={appCoupons} onlyValid={true} ignoreFields={["companyemail", "amount"]} />;
         }
     }
 

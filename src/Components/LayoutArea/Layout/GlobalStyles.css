@@ -6,7 +6,8 @@
     --gray:rgb(150, 150, 150);
     --gray-light:rgb(230, 230, 230);
     --white-transparent:rgba(255, 255, 255, .5);
-    --white-semi-transparent:rgba(255 255 255 / .97);
+    --white-semi-transparent:rgba(255, 255, 255, .97);
+    --black-semi-transparent:rgba(0, 0, 0, .5);
     --wine-red:rgb(173, 12, 60); /* #ad0c3c */
     --wine-red-transparent:rgb(173, 12, 60, .85);
     --wine-red-dark:rgb(114, 17, 46); /* #72112e  */
@@ -28,10 +29,11 @@
 
     /* SHADOW */
     --box-shadow: 3px 6px 25px rgba(0, 0, 0, 0.1);
-    --box-shadow-text: 1px 4px 12px rgba(0, 0, 0, 0.5);
-    --box-shadow-focus: 0 0 20px rgba(0, 0, 0, 0.4);
-    --box-shadow-button: 2px 6px 15px rgba(0, 0, 0, 0.14);
-    --box-shadow-button-pressed: inset 2px 5px 7px rgba(0, 0, 0, 0.4);
+    --box-shadow-card: 8px 8px 0px rgba(77, 77, 77, 0.3), 5px 6px 25px rgba(0, 0, 0, .5);
+    --box-shadow-text: 1px 4px 12px rgba(0, 0, 0, .5);
+    --box-shadow-focus: 0 0 20px rgba(0, 0, 0, .4);
+    --box-shadow-button: 2px 6px 15px rgba(0, 0, 0, .14);
+    --box-shadow-button-pressed: inset 2px 5px 7px rgba(0, 0, 0, .4);
 
     /* BORDERS */
     --nav-button-border: 0 solid var(--wine-red);

@@ -1,4 +1,3 @@
-import { CouponModel } from "../../Models/CouponModel";
 import { CartAction, CartActionType } from "../Actions/CartAction";
 import { CartAppState } from "../States/CartAppState";
 
@@ -8,7 +7,7 @@ export default function cartReducer(cartState:CartAppState = new CartAppState(),
 
     switch(action.type){
         case CartActionType.ADD_TO_CART:
-            newState.forPurchaseCouponsList.push(action.payload as CouponModel);
+            // newState.forPurchaseCouponsList.push(action.payload);
             break;
         case CartActionType.DELETE_FROM_CART:
             newState.forPurchaseCouponsList = newState.forPurchaseCouponsList.filter(c => c !== action.payload);

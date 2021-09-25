@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FilterType } from "../../../../Models/FilterType";
 import CheckBox from "../../../InputArea/CheckBox/CheckBox";
 import "./CompaniesFilter.css";
@@ -9,7 +9,11 @@ interface CompaniesFilterProps {
 
 export default function CompaniesFilter(props:CompaniesFilterProps): JSX.Element {
 
-    const [companies] = useState<string[]>(Array.from(new Set(props.companies)));
+    const [companies, setCompanies] = useState<string[]>([]);
+
+    useEffect(() => {
+        setCompanies(Array.from(new Set(props.companies)));
+    },[props.companies])
 
     return (
         <div className="CompaniesFilter">

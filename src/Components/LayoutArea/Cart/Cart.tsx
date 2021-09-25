@@ -10,7 +10,7 @@ import { useAppSelector } from "../../../Redux/Hooks/hooks";
 import { store } from "../../../Redux/Store/Store";
 import AppCurrencySymbol from "../../../Services/Currency";
 import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
-import CouponsContainer from "../CouponsContainer/CouponsContainer";
+import CouponsContainer from "../../CouponsArea/CouponsContainer/CouponsContainer";
 import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 import "./Cart.css";
 import { useCallback, useEffect, useState } from "react";
