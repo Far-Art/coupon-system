@@ -2,10 +2,7 @@ import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 import Icon from "@material-ui/core/Icon";
 import { toast } from "react-toastify";
-import {
-    clearCart,
-    deleteInBatchFromCart,
-} from "../../../Redux/Actions/CartAction";
+import { clearCart, deleteInBatchFromCart } from "../../../Redux/Actions/CartAction";
 import { useAppSelector } from "../../../Redux/Hooks/hooks";
 import { store } from "../../../Redux/Store/Store";
 import AppCurrencySymbol from "../../../Services/Currency";

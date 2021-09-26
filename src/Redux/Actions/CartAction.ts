@@ -2,7 +2,7 @@ import { CouponModel } from "../../Models/CouponModel";
 
 export interface CartAction {
     type: CartActionType;
-    payload: CouponModel | number | number[];
+    payload: CouponModel | number[];
 }
 
 export enum CartActionType {
@@ -12,8 +12,8 @@ export enum CartActionType {
     CLEAR_CART = "CLEAR_CART"
 }
 
-export function addToCart(couponId: number): CartAction {
-    return { type: CartActionType.ADD_TO_CART, payload: couponId };
+export function addToCart(coupon: CouponModel): CartAction {
+    return { type: CartActionType.ADD_TO_CART, payload: coupon };
 }
 
 export function deleteFromCart(item: CouponModel): CartAction {

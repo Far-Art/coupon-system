@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import { logoutAction } from "../../../Redux/Actions/ClientAction";
 import { persistor, store } from "../../../Redux/Store/Store";
 import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
-import IdleTimerApi from "../../../Services/IdleTimerApi";
 import { RouteUrls } from "../../../Services/RouteUrls";
 import "./Logout.css";
 

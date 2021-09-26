@@ -11,8 +11,8 @@ export enum CouponActionType {
     FETCH_ALL = "FETCH_ALL_COUPONS",
     FETCH_BY_COMPANY = "FETCH_BY_COMPANY",
     FETCH_BY_CUSTOMER = "FETCH_BY_CUSTOMER",
-    DELETE = "DELETE_COUPON",
-    UPDATE = "UPDATE_COUPON",
+    DELETE_COUPON = "DELETE_COUPON",
+    UPDATE_COUPON = "UPDATE_COUPON",
 }
 
 export function addCoupon(coupon: CouponModel): CouponAction {
@@ -36,9 +36,9 @@ export function fetchCouponsByCustomer(coupons: CouponModel[]): CouponAction {
 }
 
 export function deleteCoupon(couponId: number): CouponAction {
-    return { type: CouponActionType.DELETE, payload: couponId };
+    return { type: CouponActionType.DELETE_COUPON, payload: couponId };
 }
 
 export function updateCoupon(coupon: CouponModel): CouponAction {
-    return { type: CouponActionType.UPDATE, payload: coupon };
+    return { type: CouponActionType.UPDATE_COUPON, payload: coupon };
 }

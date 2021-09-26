@@ -15,7 +15,7 @@ export function appCouponsReducer(currentState: CouponsAppState = new CouponsApp
         case CouponActionType.FETCH_ALL:
             newState.appCouponsList = action.payload;
             break;
-        case CouponActionType.DELETE:
+        case CouponActionType.DELETE_COUPON:
             newState.appCouponsList = newState.appCouponsList.filter(c => c.id !== action.payload);
             break;
         default:

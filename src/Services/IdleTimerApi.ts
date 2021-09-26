@@ -45,7 +45,7 @@ export default class IdleTimerApi {
         IdleTimerApi.updateData(); // refresh data
         if (IdleTimerApi.clientLoginTime + IdleTimerApi.idleTimerThresholdInterval > 0) {
             if (Date.now() - IdleTimerApi.clientLoginTime > IdleTimerApi.idleTimerThresholdInterval) {
-                IdleTimerApi.logoutAction();
+                IdleTimerApi.logoutAction(false);
             }
         }
     }());
@@ -154,17 +154,19 @@ export default class IdleTimerApi {
 
     /* logout function 
     ****************************************************************************/
-    private static logoutAction() {
+    private static logoutAction(dispatchToast?:boolean) {
         // clear values
         IdleTimerApi.cancelTimers();
         // dispatch logout
         logout();
         toast.dismiss();
         // emit client notification
-        toast.warning(`You were logged out for idling ${IdleTimerApi.initialIdleTimerThresholdInterval / 60_000} minutes`, {
-            toastId: "IdleLogout",
-            autoClose: false,
-            theme: "colored"
-        });
+        if(dispatchToast !== false){
+            toast.warning(`You were logged out for being idle ${IdleTimerApi.initialIdleTimerThresholdInterval / 60_000} minutes`, {
+                toastId: "IdleLogout",
+                autoClose: false,
+                theme: "colored"
+            });
+        }
     }
 }

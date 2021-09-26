@@ -3,7 +3,7 @@ import { CompanyModel } from "../Models/CompanyModel";
 import { CouponModel } from "../Models/CouponModel";
 import { CustomerModel } from "../Models/CustomerModel";
 import { fetchAllCompanies } from "../Redux/Actions/CompanyAction";
-import { fetchAllCoupons, fetchCouponsByCompany, fetchCouponsByCustomer } from "../Redux/Actions/CouponAction";
+import { deleteCoupon, fetchAllCoupons, fetchCouponsByCompany, fetchCouponsByCustomer, updateCoupon } from "../Redux/Actions/CouponAction";
 import { fetchAllCustomers } from "../Redux/Actions/CustomerAction";
 import { store } from "../Redux/Store/Store";
 import globals from "./Globals";
@@ -112,6 +112,7 @@ export default class GlobalDataStreamer {
                 this.successToast(coupon.id, response.data);
                 return true;
             })
+            .then(() => store.dispatch(updateCoupon((coupon as CouponModel))))
             .catch((error: any) => {
                 this.errorToast(coupon.id, error);
                 return false;
@@ -122,6 +123,7 @@ export default class GlobalDataStreamer {
         this.emitToast(couponId, "Deleting coupon...");
         axios.delete<string>(globals.urls.companies + "/coupons/" + couponId, this.appendBody())
             .then((response) => this.successToast(couponId, response))
+            .then(() => store.dispatch(deleteCoupon(couponId)))
             .catch((error: any) => this.errorToast(couponId, error));
     }
 

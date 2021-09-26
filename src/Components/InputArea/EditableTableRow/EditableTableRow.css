@@ -1,11 +1,26 @@
 .EditableTD {
+    position: relative;
     white-space: nowrap;
     /* min-height: 20px;
     max-height: 50px; */
     overflow: hidden;
+    min-width: 35px;
     /* height: 50px;
     width: 50px; */
-    width: 100%;
+    /* width: 100%; */
+    
+}
+
+.EditableTH {
+    /* white-space: nowrap; */
+    /* min-height: 20px;
+    max-height: 50px; */
+    overflow: hidden;
+    min-width: 35px;
+    padding: 0;
+    /* height: 50px;
+    width: 50px; */
+    /* width: 100%; */
     
 }
 
@@ -14,8 +29,9 @@
     height: 98%;
     border: 2px solid transparent;
     width: 100%;
-    border-radius: 50px;
-    padding: 10px;
+    border-radius: 8px;
+    padding: 10px 5px;
+    margin: 0 10px;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
@@ -25,17 +41,21 @@
     transition: all .15s ease-in-out;
 }
 
-.EditableTD > input::-webkit-inner-spin-button {
+/* number arrows */
+.EditableTD > input::-webkit-inner-spin-button{
+    position: relative;
     height: 40px;
+    right: -5px;
+    margin: 0;
 }
 
-.ui-button.ui-widget.ui-spinner-button.ui-spinner-up{
-    border: 1px solid black;
+/* date picker icon */
+.EditableTD > input::-webkit-calendar-picker-indicator{
+    margin: 0;
 }
 
 .EditableTD > input:focus, .EditableTD > select:focus {
     border: 2px solid var(--wine-red);
-    border-radius: var(--border-radius);
     outline: none;
     color: var(--wine-red);
     width: 100%;
@@ -43,7 +63,15 @@
     box-shadow: var(--box-shadow-focus);
 }
 
-.ETDError{
+.ETDError {
     position: absolute;
     color: red;
+}
+
+.TrInEdit {
+    background: var(--active-edit) !important;
+}
+
+.TRFocus{
+    background: tomato !important;
 }

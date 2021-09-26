@@ -28,7 +28,7 @@ export default function CouponCard(props: CardProps): JSX.Element {
 
         // coupon not in cart case
         else {
-            store.dispatch(addToCart(coupon.id));
+            store.dispatch(addToCart(coupon));
             toast.success(
                 <div className="Toast__element">
                     <p>"{coupon.title}"</p>
@@ -42,7 +42,6 @@ export default function CouponCard(props: CardProps): JSX.Element {
 
     return (
         <div className="CouponCard" >
-            {console.log(props.coupon)}
             <div className="CouponCardData">
                 <div className="Price_tag">
                     <p className="Price">{props.coupon.price === 0 ? "FREE" : props.coupon.price + " " + AppCurrencySymbol}</p>

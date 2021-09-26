@@ -9,8 +9,12 @@
 }
 
 .CouponsView {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     padding: 10px;
-    text-align: center;
+    align-items: center;
+    justify-content: start;
 }
 
 .CouponsView > .CouponsCounter{
@@ -38,11 +42,6 @@
     font-weight: 600;
 }
 
-.CouponsCounter span:nth-child(1) {
-    font-weight: 800;
-    margin: 0 6px 0 0;
-}
-
 .CouponsView > h1 {
 	color: var(--wine-red);
 }
@@ -54,7 +53,7 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--box-shadow);
-    margin: auto;
+    margin: 15px auto;
     table-layout: fixed;
     width: 95%;
     max-width: 1800px;

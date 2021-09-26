@@ -1,14 +1,22 @@
+import { useAppSelector } from "../../../Redux/Hooks/hooks";
 import CompaniesContainer from "../../CompaniesArea/CompaniesContainer/CompaniesContainer";
 import CustomersContainer from "../../CustomersArea/CustomersContainer/CustomersContainer";
 import "./ClientsContainer.css";
 
-function ClientsContainer(): JSX.Element {
+export default function ClientsContainer(): JSX.Element {
+
+    const customers = useAppSelector(state =>
+        state.customersAppState.appCustomersList
+    );
+
+    const companies = useAppSelector(state =>
+        state.companiesAppState.appCompaniesList
+    );
+
     return (
         <div className="ClientsContainer">
-			<CustomersContainer />
+            <CustomersContainer customers={customers} />
             <CompaniesContainer />
         </div>
     );
 }
-
-export default ClientsContainer;

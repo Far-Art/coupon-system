@@ -13,10 +13,11 @@
     --wine-red-transparent:rgb(173, 12, 60, .85);
     --wine-red-dark:rgb(114, 17, 46); /* #72112e  */
     --wine-hover:rgb(199, 5, 63); /* #c7053f */
-    
+
     /* TABLE STYLE*/
     --gray-light-even:rgba(255, 255, 255, 0.3);
     --gray-light-odd:rgba(228, 223, 223, 0.3);
+    --active-edit:rgba(0, 238, 107, 0.83);
 
     /* TOASTS STYLE*/
     --toast-success-bg: rgba(0, 238, 107, 0.83);
@@ -31,7 +32,7 @@
     /* SHADOW */
     --box-shadow: 3px 6px 25px rgba(0, 0, 0, 0.1);
     --box-shadow-card: 8px 8px 0px rgba(77, 77, 77, 0.3), 5px 6px 25px rgba(0, 0, 0, .5);
-    --box-shadow-text: 1px 4px 12px rgba(0, 0, 0, .5);
+    --box-shadow-text: 1px 4px 12px rgba(0, 0, 0, .3);
     --box-shadow-focus: 0 0 20px rgba(0, 0, 0, .4);
     --box-shadow-button: 2px 6px 15px rgba(0, 0, 0, .14);
     --box-shadow-button-pressed: inset 2px 5px 7px rgba(0, 0, 0, .4);
@@ -268,8 +269,10 @@
 ----------------------------------------------------------------------------*/
 
 .Toastify__toast{
-    font-size: 1.05rem;
-    letter-spacing: 0.02rem;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 1rem;
+    word-spacing: 0.1rem;
     border: var(--toast-border);
     border-color: transparent;
     transition: all .07s linear;

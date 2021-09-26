@@ -19,7 +19,7 @@ export default function FiltersContainer(props: FiltersContainerProps): JSX.Elem
         store.dispatch(clearFilters());
     }
 
-    const [view, setView] = useState<string>();
+    const [view, setView] = useState<string>("");
 
     const toggleView = () => {
         if (view === "ShowFiltersContainer") {
