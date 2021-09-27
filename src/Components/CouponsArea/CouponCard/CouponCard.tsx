@@ -40,12 +40,24 @@ export default function CouponCard(props: CardProps): JSX.Element {
         }
     }
 
+    function validStartDate(): Boolean {
+        if (props.coupon && new Date(props.coupon.startDate + "Z").getTime() >= Date.now()) {
+            return false;
+        }
+        return true;
+    }
+
     return (
-        <div className="CouponCard" >
-            <div className="CouponCardData">
-                <div className="Price_tag">
-                    <p className="Price">{props.coupon.price === 0 ? "FREE" : props.coupon.price + " " + AppCurrencySymbol}</p>
+        <div className="CouponCard">
+            <div className={"CouponCardState " + (validStartDate() ? "" : "ComingSoon")}>
+                <div className="ComingSoon_tag">
+                    <p>{`Get me from ${props.coupon.startDate}`}</p>
                 </div>
+            </div>
+            <div className="CouponCardData">
+                {validStartDate() && <div className="Price_tag">
+                    <p className="Price">{props.coupon.price === 0 ? "FREE" : props.coupon.price + " " + AppCurrencySymbol}</p>
+                </div>}
                 <div className="Image_container">
                     <img className="Image" src={globals.urls.couponImage + "/1"} alt="coupon" />
                 </div>
@@ -57,7 +69,7 @@ export default function CouponCard(props: CardProps): JSX.Element {
                     <p className="EndDate">{`Ends on ${props.coupon.endDate}`}</p>
                 </div>
             </div>
-            <button className="CardButton APP__BUTTON" onClick={() => emitToast(props.coupon)}>Add to Cart</button>
+            {validStartDate() && <button className="CardButton APP__BUTTON" onClick={() => emitToast(props.coupon)}>Add to Cart</button>}
         </div>
     );
 }

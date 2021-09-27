@@ -127,6 +127,46 @@
     color: var(--text-white);
 }
 
+.CouponCardState{
+    height: 0;
+    width: 0;
+    position: absolute;
+    z-index: var(--z-index-3);
+    display: none;
+}
+
+.ComingSoon {
+    background: var(--black-semi-transparent);
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.ComingSoon_tag {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200%;
+    height: 60px;
+    left: -50%;
+    top: 75%;
+    padding: 5px;
+    background-image: linear-gradient(90deg, var(--wine-red-dark), var(--wine-hover), var(--wine-red-dark));
+    transform: rotate(-10deg);
+    z-index: var(--z-index-2);
+    border-top: 3px dashed var(--white-transparent);
+    border-bottom: 3px dashed var(--white-transparent);
+    box-shadow: var(--box-shadow);
+}
+
+.ComingSoon_tag > * {
+    color: var(--text-white);
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 120%;
+}
+
 @keyframes in {
     0% {
         transform: scale(100%);

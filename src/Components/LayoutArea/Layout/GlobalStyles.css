@@ -38,12 +38,18 @@
     --warning-background-animation-speed: 4s infinite;
 
     /* SHADOW */
-    --box-shadow: 0 1px 1px rgba(0,0,0,0.05), 
-            0 2px 2px rgba(0,0,0,0.05), 
-            0 4px 4px rgba(0,0,0,0.05), 
-            0 8px 8px rgba(0,0,0,0.05), 
-            0 16px 16px rgba(0,0,0,0.05), 
-            0 32px 32px rgba(0,0,0,0.05);
+    --box-shadow: 0 1px 1px rgba(0,0,0,0.08), 
+            0 2px 2px rgba(0,0,0,0.06), 
+            0 4px 4px rgba(0,0,0,0.06), 
+            0 8px 8px rgba(0,0,0,0.06), 
+            0 16px 16px rgba(0,0,0,0.06), 
+            0 32px 32px rgba(0,0,0,0.04);
+    --box-shadow-light: 0 1px 1px rgba(0,0,0,0.03), 
+            0 2px 2px rgba(0,0,0,0.03), 
+            0 4px 4px rgba(0,0,0,0.02), 
+            0 8px 8px rgba(0,0,0,0.02), 
+            0 16px 16px rgba(0,0,0,0.01), 
+            0 32px 32px rgba(0,0,0,0.01);
     --box-shadow-card: 0 1px 1px rgba(0,0,0,0.12), 
             2px 2px 2px rgba(0,0,0,0.12), 
             4px 6px 6px rgba(0,0,0,0.12), 
@@ -79,6 +85,7 @@
     /* EFFECTS */
     --backdrop-blur: blur(4px);
     --backdrop-blur-toast: blur(4px);
+    --background-blend: ;
 
     /* SIZES */
     --border-radius: 40px;
@@ -106,7 +113,7 @@
     --white:rgb(66, 69, 102);
     --gray:rgb(55, 48, 75);
     --gray-light:rgb(78, 78, 110);
-    --white-transparent:rgba(83, 83, 116, 0.4);
+    --white-transparent:rgba(65, 65, 95, 0.4);
     --white-semi-transparent:rgba(24, 32, 54, 0.97);
     --black-semi-transparent:rgba(0, 0, 0, .5);
     --black:rgba(239, 236, 248, 0.9);
@@ -126,7 +133,7 @@
     --active-edit:rgba(64, 117, 88, 0.83);
 
     /* TOASTS STYLE*/
-    --toast-success-bg: rgba(38, 138, 79, 0.5);
+    --toast-success-bg: rgba(41, 116, 72, 0.8);
     --toast-warn-bg: rgba(88, 102, 129, 0.9);
     --toast-error-bg: rgba(175, 30, 30, 0.5);
 

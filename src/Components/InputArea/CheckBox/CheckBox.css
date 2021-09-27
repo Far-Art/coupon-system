@@ -34,7 +34,7 @@
 	border-color: transparent;
 	border-radius: 8px;
 	transition: var(--transition);
-	box-shadow: var(--box-shadow);
+	box-shadow: var(--box-shadow-light);
 }
 
 .checkmark:active {

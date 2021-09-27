@@ -44,7 +44,6 @@ export default function Layout(): JSX.Element {
             <footer>
                 <Footer />
             </footer>
-            <DarkMode />
         </div>
     );
 }
