@@ -24,7 +24,6 @@ export default function Layout(): JSX.Element {
     return (
         <div onClick={() => IdleTimerApi.clientMadeAction()} className="Layout" color-palette={colorPalette}>
             <DarkMode />
-            {/* ToastContainer renders app notifications */}
             <ToastContainer
                 limit={7}
                 autoClose={3000}

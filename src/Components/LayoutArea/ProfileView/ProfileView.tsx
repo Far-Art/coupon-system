@@ -6,6 +6,7 @@ import GlobalDataStreamer from "../../../Services/GlobalDataStreamer";
 import ClientCard from "../ClientCard/ClientCard";
 import CouponsContainer from "../../CouponsArea/CouponsContainer/CouponsContainer";
 import "./ProfileView.css";
+import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 
 export default function ProfileView(): JSX.Element {
 
@@ -24,7 +25,7 @@ export default function ProfileView(): JSX.Element {
     return (
         <div className="ProfileView">
             <ClientCard client={client as ClientInfoModel} />
-            {client?.clientType === ClientType.CUSTOMER && <CouponsContainer ignoreFields={["id", "companyemail", "startdate", "enddate", "amount"]} couponsList={clientCoupons} />}
+            {client?.clientType === ClientType.CUSTOMER && ((clientCoupons && clientCoupons.length) > 0 ? <CouponsContainer asList={true} insteadOfDisplayedText={"in possession"} ignoreFields={["id", "companyemail", "startdate", "enddate", "amount"]} couponsList={clientCoupons} /> : <EmptyView text="you have no purchased coupons" />)}
         </div>
     );
 }

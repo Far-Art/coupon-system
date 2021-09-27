@@ -22,6 +22,7 @@ interface ContainerProps {
     asList?: boolean; // show coupons as list instead of cards
     onlyValid?: boolean; // omit coupons with zero amount and expired date
     ignoreFields?: string[]; // omit specified fields when rendering coupons
+    insteadOfDisplayedText?: string; 
 }
 
 export default function CouponsContainer(props: ContainerProps): JSX.Element {
@@ -114,6 +115,8 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     useEffect(() => {
         if (props.couponsList && props.couponsList.length > 0) {
             setCoupons(filterCoupons(props.couponsList));
+        } else {
+            setCoupons([]);
         }
     }, [props.couponsList, appfilters]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -304,8 +307,8 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
                 <div className="CouponsCounter">
                     <p>
                         {coupons.length + " coupon" +
-                            (coupons.length === 1 ? "" : "s") +
-                            " displayed"}
+                            (coupons.length === 1 ? " " : "s ") +
+                            (props.insteadOfDisplayedText ? props.insteadOfDisplayedText : "displayed")}
                     </p>
                 </div>
                 {props.asList ? renderAsList() : renderAsCards()}
@@ -317,8 +320,8 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     ----------------------------------------------------------------------- */
     return (
         <div className="CouponsContainer">
-            <FiltersContainer
-                coupons={props.couponsList} />
+           {coupons.length > 0 && <FiltersContainer
+                coupons={props.couponsList} />}
             <div className="CouponsView">
                 {coupons.length > 0 ? render() : renderEmptyView()}
             </div>

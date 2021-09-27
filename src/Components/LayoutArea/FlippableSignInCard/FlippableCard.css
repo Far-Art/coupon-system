@@ -19,8 +19,9 @@
 }
 
 .face {
+    padding: 0 150px;
     height: 0px;
-    width: 300px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -56,6 +57,6 @@
 }
 
 .ShowLoginMenu > *{
-    height: 550px;
+    height: 600px;
     z-index:var(--z-index-4);
 }

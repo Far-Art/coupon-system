@@ -46,16 +46,16 @@ img {
     min-height: 100%;
 }
 
-footer, .Footer {
-    margin-top: auto;
-    width: 100%;
-    z-index: var(--z-index-2);
-}
-
 nav {
   display: flex;
   flex-direction: column;
   z-index: var(--z-index-4);
+}
+
+footer, .Footer {
+    margin-top: auto;
+    width: 100%;
+    z-index: var(--z-index-2);
 }
 
 /*    Custom scrollbar   

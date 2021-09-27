@@ -3,14 +3,14 @@
 }
 
 .DropDown {
-  position: relative;
+  position: relative; 
   display: inline-block;
 }
 
 .DropDownContent {
   display: none;
   position: absolute;
-  background: var(--white-transparent);
+  background: var(--white);
   min-width: 160px;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
@@ -19,13 +19,13 @@
   left: 50%;
   transform: translate(-50%);
   backdrop-filter: blur(10px);
-
 }
 
 .DropDownContent a {
-  min-height: 50px;
+  margin: auto;
+  /* min-height: 50px; */
   color: var(--wine-red);
-  padding: 12px 16px;
+  padding: 14px 16px;
   display: block;
   transition: var(--transition);
   font-weight: 600;

@@ -27,6 +27,8 @@ export default function CompaniesContainer(props: CompaniesContainerProps): JSX.
     useEffect(() => {
         if (props.companiesList && props.companiesList.length > 0) {
             setCompanies(filterCustomers(props.companiesList));
+        } else {
+            setCompanies([]);
         }
     }, [props.companiesList, appfilters]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -148,8 +150,8 @@ export default function CompaniesContainer(props: CompaniesContainerProps): JSX.
 
     return (
         <div className="CompaniesContainer">
-            <FiltersContainer
-                clients={props.companiesList} />
+            {companies.length > 0 && <FiltersContainer
+                clients={props.companiesList} />}
             <div className="CompaniesView">
                 {companies.length > 0 ? render() : renderEmptyView()}
             </div>

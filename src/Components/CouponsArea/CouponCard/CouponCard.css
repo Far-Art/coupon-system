@@ -69,6 +69,9 @@
 
 .CardButton {
     margin: 15px 0;
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
 }
 
 .Image_container {
@@ -92,10 +95,12 @@
 }
 
 .CouponCard .Title {
-    font-size: 1.3rem;
+    font-family: 'Oleo Script Swash Caps', cursive;
+    letter-spacing: 0.5px;
+    font-size: 1.5rem;
     color: var(--text-white);
-    margin: 5px 15px;
-    font-weight: 800;
+    margin: 5px;
+    font-weight: 700;
 }
 
 .CouponCard .Category {

@@ -27,6 +27,8 @@ export default function CustomersContainer(props: CustomersContainerProps): JSX.
     useEffect(() => {
         if (props.customersList && props.customersList.length > 0) {
             setCustomers(filterCustomers(props.customersList));
+        } else {
+            setCustomers([]);
         }
     }, [props.customersList, appfilters]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -148,8 +150,8 @@ export default function CustomersContainer(props: CustomersContainerProps): JSX.
 
     return (
         <div className="CustomersContainer">
-            <FiltersContainer
-                clients={props.customersList} />
+            {customers.length > 0 && <FiltersContainer
+                clients={props.customersList} />}
             <div className="CustomersView">
                 {customers.length > 0 ? render() : renderEmptyView()}
             </div>
