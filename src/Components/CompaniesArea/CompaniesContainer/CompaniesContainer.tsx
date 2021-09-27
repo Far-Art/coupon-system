@@ -150,7 +150,7 @@ export default function CompaniesContainer(props: CompaniesContainerProps): JSX.
 
     return (
         <div className="CompaniesContainer">
-            {companies.length > 0 && <FiltersContainer
+            {(props.companiesList && props.companiesList.length > 0) && <FiltersContainer
                 clients={props.companiesList} />}
             <div className="CompaniesView">
                 {companies.length > 0 ? render() : renderEmptyView()}

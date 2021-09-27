@@ -150,7 +150,7 @@ export default function CustomersContainer(props: CustomersContainerProps): JSX.
 
     return (
         <div className="CustomersContainer">
-            {customers.length > 0 && <FiltersContainer
+            {(props.customersList && props.customersList.length > 0) && <FiltersContainer
                 clients={props.customersList} />}
             <div className="CustomersView">
                 {customers.length > 0 ? render() : renderEmptyView()}

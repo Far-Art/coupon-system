@@ -320,7 +320,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     ----------------------------------------------------------------------- */
     return (
         <div className="CouponsContainer">
-           {coupons.length > 0 && <FiltersContainer
+           {(props.couponsList && props.couponsList.length) > 0 && <FiltersContainer
                 coupons={props.couponsList} />}
             <div className="CouponsView">
                 {coupons.length > 0 ? render() : renderEmptyView()}
