@@ -2,9 +2,9 @@ import axios from "axios";
 import { CompanyModel } from "../Models/CompanyModel";
 import { CouponModel } from "../Models/CouponModel";
 import { CustomerModel } from "../Models/CustomerModel";
-import { fetchAllCompanies } from "../Redux/Actions/CompanyAction";
+import { deleteCompany, fetchAllCompanies, updateCompany } from "../Redux/Actions/CompanyAction";
 import { deleteCoupon, fetchAllCoupons, fetchCouponsByCompany, fetchCouponsByCustomer, updateCoupon } from "../Redux/Actions/CouponAction";
-import { fetchAllCustomers } from "../Redux/Actions/CustomerAction";
+import { deleteCustomer, fetchAllCustomers, updateCustomer } from "../Redux/Actions/CustomerAction";
 import { store } from "../Redux/Store/Store";
 import globals from "./Globals";
 import { syncCategories } from "../Redux/Actions/CategoriesAction";
@@ -22,20 +22,30 @@ export default class GlobalDataStreamer {
     /*                      ADMIN METHODS 
     ****************************************************************/
     public static async fetchAllCustomers() {
-        await axios.get<CustomerModel[]>(globals.urls.customers, this.appendBody()).then((response) => {
+        this.emitToast("fetchAllCustomer", "Fetching customers ...");
+        await axios.get(globals.urls.customers, this.appendBody()).then((response) => {
+            toast.dismiss("fetchAllCustomer");
             store.dispatch(fetchAllCustomers(response.data));
+        })
+        .catch((error) => {
+            this.errorToast("fetchAllCustomer", error);
         });
     }
 
     public static async fetchAllCompanies() {
+        this.emitToast("fetchAllCompanies", "Fetching companies ...");
         await axios.get<CompanyModel[]>(globals.urls.companies, this.appendBody()).then((response) => {
+            toast.dismiss("fetchAllCompanies");
             store.dispatch(fetchAllCompanies(response.data));
+        })
+        .catch((error) => {
+            this.errorToast("fetchAllCompanies", error);
         });
     }
 
     public static async addCompany(company: ClientInfoModel) {
         this.emitToast("addNewCompany", "Adding company ...");
-        return axios.post<string>(globals.urls.admin + "/companies", company, this.appendBody())
+        return axios.post<string>(globals.urls.companies, company, this.appendBody())
             .then((response) => {
                 this.successToast("addNewCompany", response.data);
                 return true;
@@ -48,13 +58,66 @@ export default class GlobalDataStreamer {
 
     public static async addCustomer(customer: ClientInfoModel) {
         this.emitToast("addNewCustomer", "Adding customer ...");
-        return axios.post<string>(globals.urls.admin + "/customers", customer, this.appendBody())
+        return axios.post<string>(globals.urls.customers, customer, this.appendBody())
             .then((response) => {
                 this.successToast("addNewCustomer", response.data);
                 return true;
             })
             .catch((error: any) => {
                 this.errorToast("addNewCustomer", error);
+                return false;
+            });
+    }
+
+    public static async deleteCustomer(customerId: number) {
+        this.emitToast(customerId, "Deleting customer...");
+        return axios.delete<string>(globals.urls.customers + "/" + customerId, this.appendBody())
+            .then((response) => {
+                this.successToast(customerId, response);
+                store.dispatch(deleteCustomer(customerId));
+                return true;
+            })
+            .catch((error: any) => this.errorToast(customerId, error));
+    }
+
+    public static async deleteCompany(companyId: number) {
+        this.emitToast(companyId, "Deleting company...");
+        return axios.delete<string>(globals.urls.companies + "/" + companyId, this.appendBody())
+            .then((response) => {
+                this.successToast(companyId, response);
+                store.dispatch(deleteCompany(companyId));
+                return true;
+            })
+            .catch((error: any) => {
+                this.errorToast(companyId, error);
+                return false;
+            });
+    }
+
+    public static async updateCustomer(customer: CustomerModel) {
+        this.emitToast(customer.id, "Updating customer ...");
+        return axios.put<string>(globals.urls.customers, customer, this.appendBody())
+            .then((response) => {
+                this.successToast(customer.id, response.data);
+                store.dispatch(updateCustomer(customer));
+                return true;
+            })
+            .catch((error: any) => {
+                this.errorToast(customer.id, error);
+                return false;
+            });
+    }
+
+    public static async updateCompany(company: CompanyModel) {
+        this.emitToast(company.id, "Updating company ...");
+        return axios.put<string>(globals.urls.companies, company, this.appendBody())
+            .then((response) => {
+                this.successToast(company.id, response.data);
+                store.dispatch(updateCompany(company));
+                return true;
+            })
+            .catch((error: any) => {
+                this.errorToast(company.id, error);
                 return false;
             });
     }

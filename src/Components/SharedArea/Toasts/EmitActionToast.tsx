@@ -14,15 +14,15 @@ interface EmitActionToastProps {
     model: "CouponModel" | "CustomerModel" | "CompanyModel";
     editCallback: Function;
     editCallbackParam: any;
-    nonEditableCallbackFunction: Function;
-    nonEditableFunctionParam: any;
-    deleteCallback?: Function;
-    deleteCallbackParam?: any;
+    nonEditableCallbackFunction?: Function;
+    nonEditableFunctionParam?: any;
+    deleteCallback: Function;
+    deleteCallbackParam: any;
     isEditable: boolean;
 }
 
 const emitActionToast = (props: EmitActionToastProps) => {
-    toast.dismiss(props.object.id); // close previous toasts
+    toast.dismiss(); // close previous toasts
     toast.warning(
         () => {
             // Editable case
@@ -32,9 +32,7 @@ const emitActionToast = (props: EmitActionToastProps) => {
                         return (
                             <div>
                                 {/* message */}
-                                <span>
-                                    `Coupon id ${props.object.id} action`
-                                </span>
+                               {message()}
 
                                 {/* edit button */}
                                 <button
@@ -52,11 +50,59 @@ const emitActionToast = (props: EmitActionToastProps) => {
                                     onClick={() => {
                                         GlobalDataStreamer.deleteCoupon(props.object.id);
                                         toast.dismiss(props.object.id);
-                                        props.deleteCallback(props.deleteCallbackParam);
+                                        props.deleteCallback(-1);
                                     }}
                                     className="Toast__button">
                                     {" "}
                                     <Icon component={DeleteIcon} />
+                                </button>
+                            </div>
+                        );
+                    default:
+                        return (
+                            <div>
+                                {/* message */}
+                                {message()}
+
+                                {/* edit button */}
+                                <button
+                                    onClick={() => {
+                                        props.editCallback(props.editCallbackParam);
+                                        toast.dismiss(props.object.id);
+                                    }}
+                                    className="Toast__button">
+                                    {" "}
+                                    <Icon component={EditIcon} />
+                                </button>
+
+                                {/* delete button */}
+                                <button
+                                    onClick={() => {
+                                        switch (props.model) {
+                                            case "CustomerModel":
+                                                GlobalDataStreamer.deleteCustomer(props.object.id);
+                                                break;
+                                            case "CompanyModel":
+                                                GlobalDataStreamer.deleteCompany(props.object.id);
+                                                break;
+                                            case "CouponModel":
+                                                GlobalDataStreamer.deleteCoupon(props.object.id);
+                                                break;
+                                        }
+                                        toast.dismiss(props.object.id);
+                                        props.deleteCallback(-1);
+                                    }}
+                                    className="Toast__button">
+                                    {" "}
+                                    <Icon component={DeleteIcon} />
+                                </button>
+
+                                {/* cancel button */}
+                                <button
+                                    onClick={() => toast.dismiss(props.object.id)}
+                                    className="Toast__button">
+                                    {" "}
+                                    <Icon component={CloseIcon} />{" "}
                                 </button>
                             </div>
                         );
@@ -70,12 +116,12 @@ const emitActionToast = (props: EmitActionToastProps) => {
                             <span>
                                 Delete coupon{" "}
                                 <span className="Coupon__title">
-                                    '{(props.object as CouponModel).title}'
+                                    {(props.object as CouponModel).title}
                                 </span>{" "}
                                 ?
                             </span>
                             <button
-                                onClick={() => props.nonEditableCallbackFunction(props.object)}
+                                onClick={() => props.deleteCallback(props.deleteCallbackParam)}
                                 className="Toast__button">
                                 {" "}
                                 <Icon component={CheckIcon} />{" "}
@@ -88,6 +134,8 @@ const emitActionToast = (props: EmitActionToastProps) => {
                             </button>
                         </div>
                     );
+                default:
+
             }
 
         },
@@ -96,7 +144,7 @@ const emitActionToast = (props: EmitActionToastProps) => {
             toastId: props.object.id, // prevent duplicate
             position: "top-center",
             theme: "colored",
-            autoClose: 10000,
+            autoClose: false,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: true,
@@ -104,6 +152,30 @@ const emitActionToast = (props: EmitActionToastProps) => {
             progress: undefined,
         }
     );
+
+    function message() {
+        let clientTypeString = undefined;
+        switch (props.model) {
+            case "CompanyModel":
+                clientTypeString = "Company";
+                break;
+            case "CustomerModel":
+                clientTypeString = "Customer";
+                break;
+            case "CouponModel":
+                clientTypeString = "Coupon";
+                break;
+        }
+        return (
+            <span >
+                {`${clientTypeString} `}
+                <span className="Coupon__title">
+                    {`id ${props.object.id}`}
+                </span>
+                {`action`}
+            </span>
+        );
+    }
 };
 
 export default emitActionToast;

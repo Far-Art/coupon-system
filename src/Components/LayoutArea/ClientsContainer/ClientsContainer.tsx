@@ -5,18 +5,18 @@ import "./ClientsContainer.css";
 
 export default function ClientsContainer(): JSX.Element {
 
-    const customers = useAppSelector(state =>
+    const allCustomers = useAppSelector(state =>
         state.customersAppState.appCustomersList
     );
 
-    const companies = useAppSelector(state =>
+    const allCompanies = useAppSelector(state =>
         state.companiesAppState.appCompaniesList
     );
 
     return (
         <div className="ClientsContainer">
-            <CustomersContainer customers={customers} />
-            <CompaniesContainer />
+            <CustomersContainer customersList={allCustomers} ignoreFields={["name"]} />
+            <CompaniesContainer companiesList={allCompanies} ignoreFields={["lastname"]} />
         </div>
     );
 }

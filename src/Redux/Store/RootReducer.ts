@@ -9,6 +9,7 @@ import { FiltersReducer } from "../Reducers/FiltersReducer";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import categoriesReducer from "../Reducers/CategoriesReducer";
+import colorPaletteReducer from "../Reducers/ColorPaletteReducer";
 
 const rootReducer = combineReducers({
     currentClientState: currentClientReducer,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     customersAppState: customerReducer,
     companiesAppState: companyReducer,
     cartAppState: cartReducer,
-    categoriesAppState: categoriesReducer
+    categoriesAppState: categoriesReducer,
+    colorPaletteState: colorPaletteReducer
 });
 
 const persistConfig = {

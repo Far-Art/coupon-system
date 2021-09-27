@@ -4,12 +4,10 @@ import { ClientType } from "../../../Models/ClientType";
 import { useAppSelector } from "../../../Redux/Hooks/hooks";
 import { RouteUrls } from "../../../Services/RouteUrls";
 import Cart from "../Cart/Cart";
-import CompaniesContainer from "../../CompaniesArea/CompaniesContainer/CompaniesContainer";
 import CouponsContainer from "../../CouponsArea/CouponsContainer/CouponsContainer";
 import CreateCompanyForm from "../../InputArea/CreateCompanyForm/CreateCompanyForm";
 import CreateCouponForm from "../../InputArea/CreateCouponForm/CreateCouponForm";
 import CreateCustomerForm from "../../InputArea/CreateCustomerForm/CreateCustomerForm";
-import CustomersContainer from "../../CustomersArea/CustomersContainer/CustomersContainer";
 import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 import Login from "../Login/Login";
 import Logout from "../Logout/Logout";
@@ -28,8 +26,6 @@ export default function Routing(): JSX.Element {
                 <Route path={RouteUrls.HOME} component={MainView} exact />
                 <Route path={RouteUrls.COUPONS} component={CouponsContainer} exact />
                 <Route path={RouteUrls.COUPONS + ":id"} component={CouponsContainer} exact />
-                <Route path={RouteUrls.CUSTOMERS} component={CustomersContainer} exact />
-                <Route path={RouteUrls.COMPANIES} component={CompaniesContainer} exact />
                 <Route path={RouteUrls.LOGIN} component={Login} exact />
                 <Route path={RouteUrls.SIGNUP} component={Sign_up} exact />
                 <Route path={RouteUrls.LOGOUT} component={Logout} exact />

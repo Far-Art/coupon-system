@@ -47,7 +47,7 @@ export default function CouponCard(props: CardProps): JSX.Element {
                     <p className="Price">{props.coupon.price === 0 ? "FREE" : props.coupon.price + " " + AppCurrencySymbol}</p>
                 </div>
                 <div className="Image_container">
-                    <img className="Image" src={globals.urls.couponImage + "/1"} alt="coupon image" />
+                    <img className="Image" src={globals.urls.couponImage + "/1"} alt="coupon" />
                 </div>
                 <div className="Text_container">
                     <p className="Title">{props.coupon.title}</p>

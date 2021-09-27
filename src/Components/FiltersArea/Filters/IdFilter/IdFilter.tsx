@@ -1,5 +1,5 @@
 import { store } from "../../../../Redux/Store/Store";
-import "./FreeTextFilter.css";
+import "./IdFilter.css";
 import { Control, useForm, useWatch } from "react-hook-form";
 import { addFilter } from "../../../../Redux/Actions/FilterAction";
 import { FilterType } from "../../../../Models/FilterType";
@@ -7,10 +7,10 @@ import { useAppSelector } from "../../../../Redux/Hooks/hooks";
 import { useEffect } from "react";
 
 interface FormInput {
-    freeText: string
+    id: number
 }
 
-export default function FreeTextFilter(): JSX.Element {
+export default function IdFilter(): JSX.Element {
 
     const { register, control, handleSubmit, reset } = useForm<FormInput>();
 
@@ -18,16 +18,16 @@ export default function FreeTextFilter(): JSX.Element {
         state.filterAppState.filtersActive
     );
 
-    function FreeTextFilterWatched({ control }: { control: Control<FormInput> }) {
+    function IdFilterWatched({ control }: { control: Control<FormInput> }) {
 
-        const freeText = useWatch({
-            control, name: "freeText", defaultValue: ""
+        const id = useWatch({
+            control, name: "id", defaultValue: -99
         });
-        return <p>Free Text {freeText.length > 0 ? ": " + freeText : freeText}</p>
+        return <p>Clients id {id >= 0 ? ": " + id : ""}</p>
     }
 
     const onSubmit = (data: FormInput) => {
-        store.dispatch(addFilter(FilterType.TEXT, data.freeText));
+        store.dispatch(addFilter(FilterType.ID, data.id));
     }
 
     useEffect(() => {
@@ -38,11 +38,10 @@ export default function FreeTextFilter(): JSX.Element {
     }, [isActive, reset])
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="FreeTextFilter">
-            <FreeTextFilterWatched control={control} />
-            <input placeholder="search query" maxLength={20} className="FIELD" {...register("freeText")} />
+        <form onSubmit={handleSubmit(onSubmit)} className="IdFilter">
+            <IdFilterWatched control={control} />
+            <input placeholder="clients id query" maxLength={20} className="FIELD" {...register("id")} />
             <button className="APP__BUTTON" type="submit">Submit</button>
-
         </form>
     );
 }

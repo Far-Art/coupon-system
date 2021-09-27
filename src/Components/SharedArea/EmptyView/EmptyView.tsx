@@ -11,7 +11,6 @@ export default function EmptyView(props: EmptyViewProps): JSX.Element {
         <div className="EmptyView">
             {props.state === "happy" ? (
                 <>
-                    <p className="EmptyViewText">😉</p>
                     <iframe
                         className="iframegif"
                         scrolling="no"

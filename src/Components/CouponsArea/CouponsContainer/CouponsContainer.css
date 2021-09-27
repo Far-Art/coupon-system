@@ -14,7 +14,7 @@
     flex-wrap: wrap;
     padding: 10px;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .CouponsView > .CouponsCounter{
@@ -100,7 +100,6 @@
 .Coupon__title {
     font-weight: bold;
     font-style:oblique;
-    text-decoration: underline;
     margin: 0 8px;
 }
 

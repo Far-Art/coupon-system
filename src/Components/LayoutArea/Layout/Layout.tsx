@@ -10,15 +10,20 @@ import Menu from "../Menu/Menu";
 import Routing from "../Routing/Routing";
 import Footer from "../Footer/Footer";
 import IdleTimerApi from "../../../Services/IdleTimerApi";
-import ImageUploadForm from "../ImageUploadForm/ImageUploadForm";
+import DarkMode from "../DarkMode/DarkMode";
+import { useAppSelector } from "../../../Redux/Hooks/hooks";
 
 export default function Layout(): JSX.Element {
+
+    // store color palette subscribe
+    const colorPalette = useAppSelector(state => state.colorPaletteState.palette);
 
     /* init Idle timer api class */
     new IdleTimerApi();
 
     return (
-        <div onClick={() => IdleTimerApi.clientMadeAction()} className="Layout">
+        <div onClick={() => IdleTimerApi.clientMadeAction()} className="Layout" color-palette={colorPalette}>
+            <DarkMode />
             {/* ToastContainer renders app notifications */}
             <ToastContainer
                 limit={7}
@@ -26,22 +31,20 @@ export default function Layout(): JSX.Element {
                 transition={slide_in_right}
                 pauseOnHover={false}
             />
-            <section className="HEADER_BG">
-                <header>
-                    <Header />
-                </header>
-                <nav>
-                    <NavBar />
-                    <Menu />
-                    <ImageUploadForm />
-                </nav>
-            </section>
+            <header>
+                <Header />
+            </header>
+            <nav>
+                <NavBar />
+                <Menu />
+            </nav>
             <main>
                 <Routing />
             </main>
             <footer>
                 <Footer />
             </footer>
+            <DarkMode />
         </div>
     );
 }

@@ -1,3 +1,47 @@
 .CustomersContainer {
-	
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.CustomersContainer > .CustomersView {
+    flex-grow: 3;
+}
+
+.CustomersView {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 10px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.CustomersView > h1 {
+	color: var(--wine-red);
+}
+
+.CustomersView > .CustomersCounter{
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+    margin: 15px 0;
+    color: var(--wine-red);
+    font-size: 120%;
+    font-weight: 400;
+    background: var(--white-transparent);
+    text-align: center;
+    border-radius: var(--border-radius);
+    backdrop-filter: var(--backdrop-blur);
+    box-shadow: var(--box-shadow);
+}
+
+.CustomersCounter > p {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 5px 10px;
+    margin: 0;
+    box-shadow: var(--box-shadow);
+    font-size: 1rem;
+    font-weight: 600;
 }

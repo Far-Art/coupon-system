@@ -3,7 +3,7 @@
     width: 90%;
     max-width: 500px;
     border-radius: var(--border-radius);
-    background: rgba(255 255 255 / .4);
+    background: var(--white-transparent);
     overflow: hidden;
     backdrop-filter: var(--backdrop-blur);
     box-shadow: var(--box-shadow);
@@ -44,12 +44,17 @@
     background: var(--background-image-main);
 }
 
+.ClientCardTable thead td{
+    color: var(--text-white);
+}
+
 .ClientCardTable thead{
     font-weight: 600;
     text-transform: uppercase;
 }
 
 .ClientCardTable tbody td{
+    color: var(--text-black);
     -webkit-user-select: text;
     -khtml-user-select: text;
     -moz-user-select: text;

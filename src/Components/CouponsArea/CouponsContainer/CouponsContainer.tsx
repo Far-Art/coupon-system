@@ -15,9 +15,6 @@ import FiltersContainer from "../../FiltersArea/FiltersContainer/FiltersContaine
 import { useAppSelector } from "../../../Redux/Hooks/hooks";
 import CouponCard from "../CouponCard/CouponCard";
 import EditableTableRow from "../../InputArea/EditableTableRow/EditableTableRow";
-import { CompanyModel } from "../../../Models/CompanyModel";
-import { CustomerModel } from "../../../Models/CustomerModel";
-import emitActionToast from "../../SharedArea/Toasts/EmitActionToast";
 
 interface ContainerProps {
     couponsList: CouponModel[]; // coupons list
@@ -31,6 +28,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     // sets edit mode
     const [editCouponWithId, setEditCouponWithId] = useState<number>(0);
 
+    // coupons state
     const [coupons, setCoupons] = useState<CouponModel[]>([]);
 
     // store filters subscribe
@@ -86,7 +84,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
 
     /* this function creates a map of filtered values by provided props
     ----------------------------------------------------------------------- */
-    function filteredMapFromObject(model: CouponModel | CompanyModel | CustomerModel): Map<string, any> {
+    function filteredMapFromObject(model: CouponModel): Map<string, any> {
         const tempMapArray: Map<string, any> = new Map();
         if (model === undefined) {
             return tempMapArray;
@@ -94,7 +92,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
         mainLoop: for (const [key, value] of Object.entries(model)) {
             // ignore keys with object by default
             if ((typeof value === "object" && key.toLowerCase() !== "image") || value === undefined) {
-                continue mainLoop;
+                continue;
             }
             //check for ignored fields
             if (props.ignoreFields !== undefined && props.ignoreFields.length > 0) {
@@ -117,7 +115,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
         if (props.couponsList && props.couponsList.length > 0) {
             setCoupons(filterCoupons(props.couponsList));
         }
-    }, [props.couponsList, appfilters]);
+    }, [props.couponsList, appfilters]); // eslint-disable-line react-hooks/exhaustive-deps
 
     /* This function invoked on list render
     ----------------------------------------------------------------------- */
@@ -138,21 +136,11 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
                     <tbody>
                         {coupons.map(coupon =>
                             coupon.id === editCouponWithId ?
-                                // editable case
+                                // in edit mode
                                 <EditableTableRow
                                     key={coupon.id}
                                     object={coupon}
                                     objectModel={"CouponModel"}
-                                    onClick={() => emitActionToast({
-                                        object: coupon,
-                                        model:"CouponModel",
-                                        editCallback: setEditCouponWithId,
-                                        editCallbackParam: coupon.id,
-                                        nonEditableCallbackFunction: deleteFromCartHandler,
-                                        nonEditableFunctionParam: coupon.id,
-                                        isEditable: true
-                                    })}
-                                    // onClick={() => emitToast(coupon, "CouponModel", setEditCouponWithId, deleteFromCartHandler, true)}
                                     ignoreFieldsFunction={filteredMapFromObject}
                                     inEditMode={true}
                                     tdClassName="table__center_text"
@@ -160,12 +148,12 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
                                     onSave={setEditCouponWithId}
                                 />
                                 :
-                                // non editable case
+                                // display mode
                                 <EditableTableRow
                                     key={coupon.id}
                                     object={coupon}
                                     objectModel={"CouponModel"}
-                                    onClick={() => emitActionToast(coupon)}
+                                    onClick={() => emitToast(coupon)} 
                                     ignoreFieldsFunction={filteredMapFromObject}
                                     tdClassName="table__center_text"
                                     nonEditableFields={["id"]}
@@ -223,7 +211,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
 
     /* emiting toast component
     ----------------------------------------------------------------------- */
-    const emitToast2 = (coupon: CouponModel) => {
+    const emitToast = (coupon: CouponModel) => {
         toast.dismiss(); // close previous toasts
         toast.warning(
             () => {

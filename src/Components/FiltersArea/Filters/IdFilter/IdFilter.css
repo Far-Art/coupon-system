@@ -1,8 +1,8 @@
-.FreeTextFilter {
+.IdFilter {
 	text-align: center;
 }
 
-.FreeTextFilter p {
+.IdFilter p {
     color: var(--text-wine-red);
     font-weight: 600;
     margin: 0 0 7px;

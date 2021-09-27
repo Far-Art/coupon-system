@@ -4,8 +4,6 @@ import { CustomersAppState } from "../States/CustomersAppState";
 
 export function customerReducer(currentState: CustomersAppState = new CustomersAppState(), action: CustomerAction): CustomersAppState {
 
-    //TODO Check this FC for proper functionality
-
     const newState = { ...currentState };
 
     switch (action.type) {

@@ -23,6 +23,9 @@ export function FiltersReducer(currentState: FiltersAppState = new FiltersAppSta
                 case FilterType.TEXT:
                     newState.freeText = action.filterValue;
                     break;
+                case FilterType.ID:
+                    newState.id = +action.filterValue;
+                    break;
             }
             break;
 
@@ -43,20 +46,19 @@ export function FiltersReducer(currentState: FiltersAppState = new FiltersAppSta
                     break;
             }
             break;
-        // TODO Reset state of checkboxes on clear
         case FilterActionType.CLEAR:
+            newState.id = -99;
             newState.categoriesList = [];
             newState.companiesList = [];
             newState.priceList = -99;
             newState.freeText = "";
             break;
-
         default:
             return currentState;
     }
 
     /* check if all filters disabled */
-    if (newState.categoriesList.length === 0 && newState.companiesList.length === 0 && newState.priceList < 0 && newState.freeText.length === 0) {
+    if (newState.id < 0 && newState.categoriesList.length === 0 && newState.companiesList.length === 0 && newState.priceList < 0 && newState.freeText.length === 0) {
         newState.filtersActive = false;
     }
 

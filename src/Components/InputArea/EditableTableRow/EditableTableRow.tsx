@@ -11,12 +11,12 @@ import React from "react";
 import AppCurrencySymbol from "../../../Services/Currency";
 import { CustomerModel } from "../../../Models/CustomerModel";
 import { CompanyModel } from "../../../Models/CompanyModel";
-import { updateCoupon } from "../../../Redux/Actions/CouponAction";
+import { ClientType } from "../../../Models/ClientType";
 
 interface EditableTableRowProps {
-    objectModel: "CouponModel" | "CustomerModel" | "CompanyModel"; // ????????
+    objectModel: "CouponModel" | "CustomerModel" | "CompanyModel";
     object: CouponModel | CustomerModel | CompanyModel;
-    ignoreFieldsFunction: Function;
+    ignoreFieldsFunction?: Function;
     nonEditableFields?: string[];
     className?: string;
     tdClassName?: string;
@@ -31,14 +31,12 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
 
     const [newObject, setNewObject] = useState<CustomerModel | CouponModel | CompanyModel>({ ...props.object });
 
-    const [focus, setFocus] = useState<string>("");
-
     useEffect(() => {
-        { props.inEditMode && emitToast() }
+        props.inEditMode && emitToast();
         toast.update("TableEditToast", {
             render: toastComponent(newObject)
         });
-    }, [props.inEditMode, newObject]);
+    }, [props.inEditMode, newObject]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const toastComponent = (object: any) => {
         return (
@@ -46,14 +44,29 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
                 <span>Save / Cancel changes? </span>
                 <button
                     onClick={() => {
-                        GlobalDataStreamer.updateCoupon(object).then((result) => {
-                            if (result) {
-                                { props.onSave && props.onSave(0) };
-                            } else {
-                                setNewObject(props.object);
-                               
-                            }
-                        });
+                        switch (props.objectModel) {
+                            case "CouponModel":
+                                GlobalDataStreamer.updateCoupon(object).then((result) => {
+                                    if (result) {
+                                        props.onSave && props.onSave(0);
+                                    }
+                                });
+                                break;
+                            case "CustomerModel":
+                                GlobalDataStreamer.updateCustomer(object).then((result) => {
+                                    if (result) {
+                                        props.onSave && props.onSave(0);
+                                    }
+                                });
+                                break;
+                            case "CompanyModel":
+                                GlobalDataStreamer.updateCompany(object).then((result) => {
+                                    if (result) {
+                                        props.onSave && props.onSave(0);
+                                    }
+                                });
+                                break;
+                        }
                     }}
                     className="Toast__button" ><Icon component={CheckIcon} />
                 </button>
@@ -163,6 +176,52 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
                         </option>)}
                 </select>
             )
+        } else if (key.toLowerCase().includes("clienttype")) {
+            const clientTypes: string[] = Object.keys(ClientType).filter(key => typeof key === "string");
+            return (
+                <select
+                    onBlur={(event) => {
+                        setNewObjectValue(key, event.target.value);
+                    }}
+                    onKeyDown={(event) => {
+                        if (event.key === "Enter") {
+                            (event.target as HTMLInputElement).blur();
+                        }
+                    }}
+                    defaultValue={value} >
+                    {clientTypes.map(clientType =>
+                        <option
+                            key={clientType}
+                            value={clientType}>
+                            {clientType}
+                        </option>)}
+                </select>
+            )
+        } else if (key.toLowerCase().includes("active")) {
+            return (
+                <select
+                    onBlur={(event) => {
+                        setNewObjectValue(key, event.target.value);
+                    }}
+                    onKeyDown={(event) => {
+                        if (event.key === "Enter") {
+                            (event.target as HTMLInputElement).blur();
+                        }
+                    }}
+                    defaultValue={value} >
+                        <option
+                            key={"false"}
+                            value={"false"}>
+                            {"False"}
+                        </option>
+                        <option
+                            key={"true"}
+                            value={"true"}>
+                            {"True"}
+                        </option>
+                </select>
+                
+            )
         }
         return <input
             type="text"
@@ -190,11 +249,12 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
     ****************************************************************************************************/
     function render() {
         let counter = 1;
-
+        const keyValueArrays = props.ignoreFieldsFunction !== undefined ? Array.from((props.ignoreFieldsFunction(props.object) as Map<string, any>).entries()) : Array.from(Object.entries(props.object));
         // check if data represent a header
         if (props.isHeader) {
+            // const keyValueArrays = props.ignoreFieldsFunction !== undefined ?  Array.from((props.ignoreFieldsFunction(props.object) as Map<string, any>).entries()) : Array.from(Object.entries(props.object));
             return (
-                Array.from((props.ignoreFieldsFunction(props.object) as Map<string, any>).entries()).map(([key, value]) => <th
+                keyValueArrays.map(([key, value]) => <th
                     style={setCellWidth(`${value}`)}
                     key={props.object.id + counter++}
                     className="EditableTH"
@@ -204,8 +264,9 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
 
         // if in edit mode
         else if (props.inEditMode) {
+            // const keyValueArrays = props.ignoreFieldsFunction !== undefined ?  Array.from((props.ignoreFieldsFunction(props.object) as Map<string, any>).entries()) : Array.from(Object.entries(props.object));
             return (
-                Array.from((props.ignoreFieldsFunction(props.object) as Map<string, any>).entries()).map(([key, value]) => {
+                keyValueArrays.map(([key, value]) => {
                     // editable fields case
                     if (editableValueValidation(key)) {
                         return (
@@ -232,7 +293,7 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
 
         // other cases
         return (
-            Array.from((props.ignoreFieldsFunction(props.object) as Map<string, any>).entries()).map(([key, value]) =>
+            keyValueArrays.map(([key, value]) =>
                 <td
                     className={"EditableTD " + props.tdClassName}
                     key={props.object.id + counter++}>
@@ -244,7 +305,7 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
 
     return (
         <tr
-            onClick={props.inEditMode ? () => { } : props.onClick}
+            onClick={props.inEditMode ? () => emitToast() : props.onClick}
             id={props.id}
             onKeyDown={(event) => {
                 if (event.key === "Escape") {
@@ -254,7 +315,7 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
                     }
                 }
             }}
-            className={props.className + (props.inEditMode ? " TrInEdit" : "") + " " + focus}>
+            className={(props.className ? props.className : "") + (props.inEditMode ? " TrInEdit " : " ") + ("")}>
             {render()}
         </tr>
     )

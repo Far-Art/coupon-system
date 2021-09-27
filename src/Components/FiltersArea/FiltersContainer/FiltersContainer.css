@@ -3,7 +3,7 @@
     padding: 0;
     margin: 15px 0;
     transition: var(--menu-transition);
-    z-index: 9999;
+    z-index: var(--z-index-4);
     top: 0;
     height: inherit;
     align-items: center;
