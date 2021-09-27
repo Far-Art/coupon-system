@@ -40,9 +40,11 @@ export default function Cart(): JSX.Element {
     function buyHandler() {
         if (store.getState().currentClientState.client) {
             const toPurchase = coupons.map((c) => c.id);
-            GlobalDataStreamer.purchaseCoupons(toPurchase).then(() =>
-                setState("happy")
-            );
+            GlobalDataStreamer.purchaseCoupons(toPurchase).then((result) => {
+                if (result) {
+                    setState("happy");
+                }
+            });
         } else {
             toast.warn("You must be logged in for making purchases", {
                 toastId: "NotLoggedInToast",
@@ -135,7 +137,7 @@ export default function Cart(): JSX.Element {
                     {coupons.reduce(
                         (sum, currentCoupon) => sum + currentCoupon.price,
                         0
-                    )}
+                    ).toFixed(2)}
                     {AppCurrencySymbol}
                 </p>
                 <button
