@@ -108,13 +108,9 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
         return tempMapArray;
     }
 
-    // function splitByCamelCase(string: string) {
-    //     return string.split(/(?=[A-Z])/).map(str => str.toLowerCase()).join(' ');
-    // }
-
     useEffect(() => {
         if (props.couponsList && props.couponsList.length > 0) {
-            setCoupons(filterCoupons(props.couponsList));
+            setCoupons(filterCoupons(props.couponsList).sort(() => Math.random() - 0.5));
         } else {
             setCoupons([]);
         }
@@ -173,7 +169,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     ----------------------------------------------------------------------- */
     function renderAsCards() {
         if (coupons.length > 0) {
-            return coupons.sort(() => Math.random() - 0.5).map(c => <CouponCard coupon={c} key={c.id} />);
+            return coupons.map(c => <CouponCard coupon={c} key={c.id} />);
         }
     }
 
