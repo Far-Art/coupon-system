@@ -26,6 +26,9 @@ export function clientCouponsReducer(currentState: ClientCouponsAppState = new C
         case ClientActionType.LOGOUT:
             newState.clientCouponsList = [];
             break;
+        case CouponActionType.DISMISS_ALL_COUPONS:
+            newState.clientCouponsList = [];
+            break;
         case RevertActionType.REVERT_STATE:
             return currentState;
         default:

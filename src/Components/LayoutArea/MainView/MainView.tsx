@@ -8,6 +8,8 @@ import { CouponModel } from "../../../Models/CouponModel";
 import { CompanyModel } from "../../../Models/CompanyModel";
 import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 import ClientsContainer from "../ClientsContainer/ClientsContainer";
+import { store } from "../../../Redux/Store/Store";
+import { clearFilters } from "../../../Redux/Actions/FilterAction";
 
 export default function MainView(): JSX.Element {
 
@@ -24,6 +26,7 @@ export default function MainView(): JSX.Element {
     );
 
     useEffect(() => {
+        store.dispatch(clearFilters());
         GlobalDataStreamer.fetchAllCategories();
     }, [])
 

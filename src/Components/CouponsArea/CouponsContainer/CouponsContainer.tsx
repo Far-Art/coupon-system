@@ -108,9 +108,9 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
         return tempMapArray;
     }
 
-    function splitByCamelCase(string: string) {
-        return string.split(/(?=[A-Z])/).map(str => str.toLowerCase()).join(' ');
-    }
+    // function splitByCamelCase(string: string) {
+    //     return string.split(/(?=[A-Z])/).map(str => str.toLowerCase()).join(' ');
+    // }
 
     useEffect(() => {
         if (props.couponsList && props.couponsList.length > 0) {
@@ -169,25 +169,11 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
         }
     }
 
-    /* if amount is zero or end date is near, set warn class
-    ----------------------------------------------------------------------- */
-    function setWarningClass(coupon: CouponModel) {
-        const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
-        if (
-            coupon.amount === 0 ||
-            Date.parse(new Date(coupon.endDate).toLocaleDateString()) <=
-            timeNowInMillis
-        ) {
-            return "Warn";
-        }
-        return "";
-    }
-
     /* This function invoked on cards render
     ----------------------------------------------------------------------- */
     function renderAsCards() {
         if (coupons.length > 0) {
-            return coupons.map(c => <CouponCard coupon={c} key={c.id} />);
+            return coupons.sort(() => Math.random() - 0.5).map(c => <CouponCard coupon={c} key={c.id} />);
         }
     }
 
@@ -311,7 +297,9 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
                             (props.insteadOfDisplayedText ? props.insteadOfDisplayedText : "displayed")}
                     </p>
                 </div>
-                {props.asList ? renderAsList() : renderAsCards()}
+                <div className="CouponsView">
+                    {props.asList ? renderAsList() : renderAsCards()}
+                </div>
             </>
         );
     };
@@ -322,7 +310,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
         <div className="CouponsContainer">
            {(props.couponsList && props.couponsList.length) > 0 && <FiltersContainer
                 coupons={props.couponsList} />}
-            <div className="CouponsView">
+            <div >
                 {coupons.length > 0 ? render() : renderEmptyView()}
             </div>
         </div>

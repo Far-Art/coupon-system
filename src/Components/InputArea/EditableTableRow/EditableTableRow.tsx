@@ -100,6 +100,20 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
         setNewObject(Object.fromEntries(map));
     }
 
+    /* if amount or price is zero or end date is near, set warn class
+   ----------------------------------------------------------------------- */
+    function setWarningClass(key:string, value: any) {
+        const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
+        if (value === 0) {
+            return " Warn";
+        } else if (key.toLowerCase().includes("enddate")) {
+            if (Date.parse(new Date(value).toLocaleDateString()) < timeNowInMillis) {
+                return " Warn";
+            }
+        }
+        return "";
+    }
+
     /*  set cell width
     ****************************************************************************************************/
     function setCellWidth(value: string) {
@@ -209,18 +223,18 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
                         }
                     }}
                     defaultValue={value} >
-                        <option
-                            key={"false"}
-                            value={"false"}>
-                            {"False"}
-                        </option>
-                        <option
-                            key={"true"}
-                            value={"true"}>
-                            {"True"}
-                        </option>
+                    <option
+                        key={"false"}
+                        value={"false"}>
+                        {"False"}
+                    </option>
+                    <option
+                        key={"true"}
+                        value={"true"}>
+                        {"True"}
+                    </option>
                 </select>
-                
+
             )
         }
         return <input
@@ -293,15 +307,27 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
 
         // other cases
         return (
-            keyValueArrays.map(([key, value]) =>
-                <td
-                    className={"EditableTD " + props.tdClassName}
-                    key={props.object.id + counter++}>
-                    {`${value}` + (key.includes("price") ? AppCurrencySymbol : "")}
-                </td>)
+            keyValueArrays.map(([key, value]) => {
+                if (key.toLowerCase().includes("image")) {
+                    return (
+                        <td
+                            className={"EditableTD " + props.tdClassName}
+                            key={props.object.id + counter++}>
+                            {<img className="EditableTDImage" src={value} alt="coupon" />}
+                        </td>
+                    );
+                }
+
+                return (
+                    <td
+                        className={"EditableTD " + props.tdClassName + setWarningClass(key, value)}
+                        key={props.object.id + counter++}>
+                        {`${value}` + (key.includes("price") ? AppCurrencySymbol : "")}
+                    </td>
+                );
+            })
         );
     }
-
 
     return (
         <tr

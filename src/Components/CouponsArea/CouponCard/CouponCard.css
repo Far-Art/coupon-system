@@ -95,12 +95,12 @@
 }
 
 .CouponCard .Title {
-    font-family: 'Oleo Script Swash Caps', cursive;
+    font-family: 'Exo', sans-serif;
     letter-spacing: 0.5px;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--text-white);
     margin: 5px;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .CouponCard .Category {

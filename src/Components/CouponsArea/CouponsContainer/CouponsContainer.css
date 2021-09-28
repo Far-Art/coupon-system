@@ -4,27 +4,30 @@
     height: 100%;
 }
 
-.CouponsContainer > .CouponsView {
-    flex-grow: 3;
+.CouponsContainer > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+    transition: all 1s linear;
+    min-width: 100%;
+    padding-right: 80px;
 }
 
 .CouponsView {
+    max-width: 1300px;
     display: flex;
-    flex-direction: column;
+    gap: calc(60px + 5%);
     flex-wrap: wrap;
     padding: 10px;
-    align-items: center;
-    justify-content: flex-start;
 }
 
-.CouponsView > .CouponsCounter{
-    display: inline-flex;
-    align-items: center;
+.CouponsCounter {
     padding: 10px;
     margin: 15px 0;
     color: var(--wine-red);
-    font-size: 120%;
-    font-weight: 400;
     background: var(--white-transparent);
     text-align: center;
     border-radius: var(--border-radius);
@@ -33,16 +36,17 @@
 }
 
 .CouponsCounter > p {
+    font-family: 'Exo';
     background: var(--white);
     border-radius: var(--border-radius);
     padding: 5px 10px;
     margin: 0;
     box-shadow: var(--box-shadow-light);
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 600;
 }
 
-.CouponsView > h1 {
+.CouponsView h1 {
 	color: var(--wine-red);
 }
 
@@ -101,32 +105,4 @@
     font-weight: bold;
     font-style:oblique;
     margin: 0 8px;
-}
-
-.Coupons__table .Warn {
-    -webkit-animation: flickerAnimation var(--warning-background-animation-speed);
-    -moz-animation: flickerAnimation var(--warning-background-animation-speed);
-    -o-animation: flickerAnimation var(--warning-background-animation-speed);
-    animation: flickerAnimation var(--warning-background-animation-speed);
-}
-
-@keyframes flickerAnimation {
-    0%   { background: var(--warning-background-light); }
-    50%  { background: var(--warning-background-dark); }
-    100% { background: var(--warning-background-light); }
-}
-@-o-keyframes flickerAnimation {
-    0%   { background: var(--warning-background-light); }
-    50%  { background: var(--warning-background-dark); }
-    100% { background: var(--warning-background-light); }
-}
-@-moz-keyframes flickerAnimation {
-    0%   { background: var(--warning-background-light); }
-    50%  { background: var(--warning-background-dark); }
-    100% { background: var(--warning-background-light); }
-}
-@-webkit-keyframes flickerAnimation {
-    0%   { background: var(--warning-background-light); }
-    50%  { background: var(--warning-background-dark); }
-    100% { background: var(--warning-background-light); }
 }

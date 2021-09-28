@@ -10,7 +10,7 @@ import CreateCustomerForm from "../../InputArea/CreateCustomerForm/CreateCustome
 import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 import MainView from "../MainView/MainView";
 import ProfileView from "../ProfileView/ProfileView";
-import CreditsPage from "../CreditsPage/CreditsPage";
+import CreditsPage from "../../SharedArea/CreditsPage/CreditsPage";
 
 export default function Routing(): JSX.Element {
     const client = useAppSelector(state =>

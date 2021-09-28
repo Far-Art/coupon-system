@@ -7,6 +7,8 @@ import ClientCard from "../ClientCard/ClientCard";
 import CouponsContainer from "../../CouponsArea/CouponsContainer/CouponsContainer";
 import "./ProfileView.css";
 import EmptyView from "../../SharedArea/EmptyView/EmptyView";
+import { store } from "../../../Redux/Store/Store";
+import { clearFilters } from "../../../Redux/Actions/FilterAction";
 
 export default function ProfileView(): JSX.Element {
 
@@ -19,13 +21,30 @@ export default function ProfileView(): JSX.Element {
     );
 
     useEffect(() => {
+        store.dispatch(clearFilters());
         GlobalDataStreamer.fetchClientInfo();
-    }, []);
+        if (client?.clientType === ClientType.CUSTOMER) {
+            GlobalDataStreamer.fetchCouponsByCustomer();
+        }
+    }, [clientCoupons.length, client?.clientType]);
+
+    function handleClick() {
+        GlobalDataStreamer.dismissAllCoupons();
+    }
+
+    function render() {
+        return (
+            <>
+                <ClientCard client={client as ClientInfoModel} />
+                {client?.clientType === ClientType.CUSTOMER && ((clientCoupons && clientCoupons.length) > 0 ? <CouponsContainer asList={true} insteadOfDisplayedText={"in possession"} ignoreFields={["id", "companyemail", "startdate", "enddate", "amount"]} couponsList={clientCoupons} /> : <EmptyView text="you have no purchased coupons" />)}
+                {client?.clientType === ClientType.CUSTOMER && ((clientCoupons && clientCoupons.length) > 0 && <button onClick={() => handleClick()} className="APP__BUTTON">Use my coupons</button>)}
+            </>
+        );
+    }
 
     return (
         <div className="ProfileView">
-            <ClientCard client={client as ClientInfoModel} />
-            {client?.clientType === ClientType.CUSTOMER && ((clientCoupons && clientCoupons.length) > 0 ? <CouponsContainer asList={true} insteadOfDisplayedText={"in possession"} ignoreFields={["id", "companyemail", "startdate", "enddate", "amount"]} couponsList={clientCoupons} /> : <EmptyView text="you have no purchased coupons" />)}
+            {render()}
         </div>
     );
 }

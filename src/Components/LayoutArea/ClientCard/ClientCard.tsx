@@ -37,7 +37,7 @@ export default function ClientCard(props:ClientCardProps): JSX.Element {
             <table className="ClientCardTable">
                 <thead>
                     <tr>
-                        {objectEntries.map(([key, value]) => 
+                        {objectEntries.map(([key, ]) => 
                             <td key={key}>
                                 {camelCaseSplit(key)}
                             </td>
@@ -48,11 +48,11 @@ export default function ClientCard(props:ClientCardProps): JSX.Element {
                     <tr>
                         {objectEntries.map(([key, value]) => 
                             key === "password" ? 
-                                <td style={blurStyle} key={value}>
+                                <td style={blurStyle} key={key + value}>
                                     {value}
                                 </td>
                                 :
-                                <td style={{textTransform: "capitalize"}} key={value}>
+                                <td style={{textTransform: "capitalize"}} key={key + value}>
                                     {typeof value === "boolean" ? value + "" : value}
                                 </td>
                         )}

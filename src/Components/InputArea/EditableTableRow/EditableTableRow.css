@@ -1,13 +1,14 @@
 .EditableTD {
     position: relative;
-    white-space: nowrap;
     overflow: hidden;
     min-width: 35px;
     color: var(--text-black);
 }
 
-.EditableTD:hover {
-    white-space: normal;
+.EditableTDImage{
+    width: 100px;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
 }
 
 .EditableTH {
@@ -65,6 +66,67 @@
     background: var(--active-edit) !important;
 }
 
-.TRFocus{
-    background: tomato !important;
+.Warn {
+    -webkit-animation: flickerAnimation var(--warning-background-animation-speed);
+    -moz-animation: flickerAnimation var(--warning-background-animation-speed);
+    -o-animation: flickerAnimation var(--warning-background-animation-speed);
+    animation: flickerAnimation var(--warning-background-animation-speed);
+    border: 1px solid var(--wine-red);
+}
+
+@keyframes flickerAnimation {
+    0% { 
+        background: var(--warning-background-light); 
+        border-color: transparent;
+    }
+    50% { 
+        background: var(--warning-background-dark); 
+        border-color: var(--wine-red);
+    }
+    100% { 
+        background: var(--warning-background-light); 
+        border-color: transparent;
+    }
+}
+@-o-keyframes flickerAnimation {
+    0% { 
+        background: var(--warning-background-light); 
+        border-color: transparent;
+    }
+    50% { 
+        background: var(--warning-background-dark); 
+        border-color: var(--wine-red);
+    }
+    100% { 
+        background: var(--warning-background-light); 
+        border-color: transparent;
+    }
+}
+@-moz-keyframes flickerAnimation {
+    0% { 
+        background: var(--warning-background-light); 
+        border-color: transparent;
+    }
+    50% { 
+        background: var(--warning-background-dark); 
+        border-color: var(--wine-red);
+    }
+    100% { 
+        background: var(--warning-background-light); 
+        border-color: transparent;
+    }
+}
+@-webkit-keyframes flickerAnimation {
+    0% { 
+        background: var(--warning-background-light); 
+        border-color: transparent;
+    }
+    50% { 
+        background: var(--warning-background-dark); 
+        border-color: var(--wine-red);
+    }
+    100% { 
+        background: var(--warning-background-light); 
+        border-color: transparent;
+    }
 }

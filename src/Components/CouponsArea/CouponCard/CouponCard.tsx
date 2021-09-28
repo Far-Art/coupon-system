@@ -6,7 +6,6 @@ import "./CouponCard.css";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Icon from '@material-ui/core/Icon';
 import AppCurrencySymbol from "../../../Services/Currency";
-import globals from "../../../Services/Globals";
 
 interface CardProps {
     coupon: CouponModel;
@@ -47,26 +46,34 @@ export default function CouponCard(props: CardProps): JSX.Element {
         return true;
     }
 
+    function formatDate(date:Date){
+        const jsDate = new Date(date + "Z");
+        const year:number = jsDate.getFullYear();
+        const month:number = jsDate.getMonth();
+        const day:number = jsDate.getDate();
+        return `${day}.${month}.${year}`;
+    }
+
     return (
         <div className="CouponCard">
             <div className={"CouponCardState " + (validStartDate() ? "" : "ComingSoon")}>
                 <div className="ComingSoon_tag">
-                    <p>{`Get me from ${props.coupon.startDate}`}</p>
+                    <p>{`Get me from ${formatDate(props.coupon.startDate)}`}</p>
                 </div>
             </div>
             <div className="CouponCardData">
-                {validStartDate() && <div className="Price_tag">
+                    {validStartDate() && <div className="Price_tag">
                     <p className="Price">{props.coupon.price === 0 ? "FREE" : props.coupon.price.toFixed(2) + " " + AppCurrencySymbol}</p>
                 </div>}
                 <div className="Image_container">
-                    <img className="Image" src={globals.urls.couponImage + "/1"} alt="coupon" />
+                    <img className="Image" src={props.coupon.imageUrl} alt="coupon" />
                 </div>
                 <div className="Text_container">
                     <p className="Title">{props.coupon.title}</p>
                     <p className="Company">{`By ${props.coupon.companyName}`}</p>
                     <p className="Category">{props.coupon.category}</p>
                     <p className="Description">{props.coupon.description}</p>
-                    <p className="EndDate">{`Ends on ${props.coupon.endDate}`}</p>
+                    <p className="EndDate">{`Ends on ${formatDate(props.coupon.endDate)}`}</p>
                 </div>
             </div>
             {validStartDate() && <button className="CardButton APP__BUTTON" onClick={() => emitToast(props.coupon)}>Add to Cart</button>}

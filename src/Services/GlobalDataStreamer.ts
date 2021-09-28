@@ -3,7 +3,7 @@ import { CompanyModel } from "../Models/CompanyModel";
 import { CouponModel } from "../Models/CouponModel";
 import { CustomerModel } from "../Models/CustomerModel";
 import { deleteCompany, fetchAllCompanies, updateCompany } from "../Redux/Actions/CompanyAction";
-import { deleteCoupon, fetchAllCoupons, fetchCouponsByCompany, fetchCouponsByCustomer, updateCoupon } from "../Redux/Actions/CouponAction";
+import { deleteCoupon, dismissAllCoupons, fetchAllCoupons, fetchCouponsByCompany, fetchCouponsByCustomer, updateCoupon } from "../Redux/Actions/CouponAction";
 import { deleteCustomer, fetchAllCustomers, updateCustomer } from "../Redux/Actions/CustomerAction";
 import { store } from "../Redux/Store/Store";
 import globals from "./Globals";
@@ -27,9 +27,9 @@ export default class GlobalDataStreamer {
             toast.dismiss("fetchAllCustomer");
             store.dispatch(fetchAllCustomers(response.data));
         })
-        .catch((error) => {
-            this.errorToast("fetchAllCustomer", error);
-        });
+            .catch((error) => {
+                this.errorToast("fetchAllCustomer", error);
+            });
     }
 
     public static async fetchAllCompanies() {
@@ -38,9 +38,9 @@ export default class GlobalDataStreamer {
             toast.dismiss("fetchAllCompanies");
             store.dispatch(fetchAllCompanies(response.data));
         })
-        .catch((error) => {
-            this.errorToast("fetchAllCompanies", error);
-        });
+            .catch((error) => {
+                this.errorToast("fetchAllCompanies", error);
+            });
     }
 
     public static async addCompany(company: ClientInfoModel) {
@@ -73,7 +73,7 @@ export default class GlobalDataStreamer {
         this.emitToast(customerId, "Deleting customer...");
         return axios.delete<string>(globals.urls.customers + "/" + customerId, this.appendBody())
             .then((response) => {
-                this.successToast(customerId, response);
+                this.successToast(customerId, response.data);
                 store.dispatch(deleteCustomer(customerId));
                 return true;
             })
@@ -84,7 +84,7 @@ export default class GlobalDataStreamer {
         this.emitToast(companyId, "Deleting company...");
         return axios.delete<string>(globals.urls.companies + "/" + companyId, this.appendBody())
             .then((response) => {
-                this.successToast(companyId, response);
+                this.successToast(companyId, response.data);
                 store.dispatch(deleteCompany(companyId));
                 return true;
             })
@@ -149,6 +149,16 @@ export default class GlobalDataStreamer {
             .catch((error: any) => {
                 this.errorToast("Purchase", error);
                 return false;
+            });
+    }
+
+    public static async dismissAllCoupons() {
+        this.emitToast("dismissCoupons", "Coupons being used...");
+        return axios.delete<string>(globals.urls.customers + "/coupons/purchased", this.appendBody())
+            .then((response) => {
+                this.successToast("dismissCoupons", response.data);
+                store.dispatch(dismissAllCoupons());
+                return true;
             });
     }
 

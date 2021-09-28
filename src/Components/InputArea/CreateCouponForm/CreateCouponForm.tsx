@@ -97,6 +97,10 @@ export default function CreateCouponForm(): JSX.Element {
                 })} />
                 {errors.price && <p className="Error">{errors.price.message}</p>}
 
+                {/* image */}
+                <input type="text" className="FIELD" placeholder="image url" {...register("imageUrl", {
+                })} />
+
                 <button
                     type="reset"
                     onClick={() => {

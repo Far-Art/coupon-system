@@ -35,7 +35,7 @@
     /* FLICKER ANIMATION */
     --warning-background-light: rgba(201, 188, 160, 0.0);
     --warning-background-dark: rgba(255, 0, 0, 0.1);
-    --warning-background-animation-speed: 4s infinite;
+    --warning-background-animation-speed: 3.5s infinite;
 
     /* SHADOW */
     --box-shadow: 0 1px 1px rgba(0,0,0,0.08), 
@@ -136,8 +136,8 @@
     --toast-error-bg: rgba(175, 30, 30, 0.5);
 
     /* FLICKER ANIMATION */
-    --warning-background-light: rgba(201, 188, 160, 0.0);
-    --warning-background-dark: rgba(255, 0, 0, 0.1);
+    --warning-background-light: rgba(66, 68, 190, 0.0);
+    --warning-background-dark: rgba(66, 68, 190, 0.1);
 
     /* BACKGROUND IMAGES */
     --background-image-main: url("../../../Assets/Images/dark/HalfCirclesBG2.png"); 
