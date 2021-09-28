@@ -73,11 +73,8 @@
     /* BACKGROUND IMAGES */
     --background-image-main: url("../../../Assets/Images/normal/HalfCirclesBG2.png"); 
     --background-image-back: url("../../../Assets/Images/normal/IconBG.png");
-    /* https://www.patterncooler.com/#a103b103c12Cd12Ce0f0g64h0C303CFB5989CE144BE21A56E0386AiB5j0k64l1F4m1F4 */
     --background-image-logo: url("../../../Assets/Images/normal/HalfCirclesBG3.png") repeat; 
-    /* --background-image-logo: url("../../../Assets/Images/DropletsBG3.png") repeat;  */
     --background-image-cards: url("../../../Assets/Images/normal/HalfCirclesBG3.png") repeat; 
-    /* --background-image-cards: url("../../../Assets/Images/DropletsBG3.png") repeat;  */
     --background-image-login: url("../../../Assets/Images/normal/LoginBG.png") center;
     --background-image-register: url("../../../Assets/Images/normal/RegisterBG.png") center;
     --background-image-add: url("../../../Assets/Images/normal/AddItemBG.png") center;
@@ -90,6 +87,7 @@
     /* SIZES */
     --border-radius: 40px;
     --border-radius-toast: 25px;
+    --border-radius-skewed: 70px 120px 70px 120px;
     --nav-button-size: 50px;
     --filters-min-width: 300px;
     --filter-max-height: 900px;
@@ -119,7 +117,7 @@
     --black:rgba(239, 236, 248, 0.9);
     --wine-red:rgb(168, 168, 224);
     --wine-red-transparent:rgba(35, 35, 59, 0.85);
-    --wine-red-dark:rgb(28, 37, 63);
+    --wine-red-dark:rgb(69, 81, 116);
     --wine-hover:rgb(124, 123, 167);
 
     /* TEXT COLOR*/
@@ -164,7 +162,7 @@
 
 .FORM {
     color: var(--wine-red);
-    border-radius: 70px 120px 70px 120px;
+    border-radius: var(--border-radius-skewed);
     border: 4px solid var(--white);
     text-align: center;
     padding: 30px 5px;

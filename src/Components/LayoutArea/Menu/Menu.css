@@ -7,4 +7,5 @@
     border-radius: 0 0 35px 35px;
     padding: 0 10px 10px;
     backdrop-filter: var(--backdrop-blur);
+    box-shadow: var(--box-shadow-light);
 }

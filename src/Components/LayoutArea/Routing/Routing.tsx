@@ -14,6 +14,7 @@ import Logout from "../Logout/Logout";
 import MainView from "../MainView/MainView";
 import ProfileView from "../ProfileView/ProfileView";
 import Sign_up from "../Sign_up/Sign_up";
+import CreditsPage from "../CreditsPage/CreditsPage";
 
 export default function Routing(): JSX.Element {
     const client = useAppSelector(state =>
@@ -30,6 +31,7 @@ export default function Routing(): JSX.Element {
                 <Route path={RouteUrls.SIGNUP} component={Sign_up} exact />
                 <Route path={RouteUrls.LOGOUT} component={Logout} exact />
                 <Route path={RouteUrls.PROFILE} component={ProfileView} exact />
+                <Route path={"/credits"} component={CreditsPage} exact />
                 {(client === undefined || client?.clientType === ClientType.CUSTOMER) && <Route path={RouteUrls.CART} component={Cart} exact />}
                 {(client as ClientInfoModel)?.active && client?.clientType === ClientType.COMPANY && <Route path={RouteUrls.CREATE_COUPON} component={CreateCouponForm} exact />}
                 {client?.clientType === ClientType.ADMIN && <Route path={RouteUrls.CREATE_COMPANY} component={CreateCompanyForm} exact />}

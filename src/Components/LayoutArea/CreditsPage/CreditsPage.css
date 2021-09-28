@@ -1,0 +1,49 @@
+.CreditsPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.CreditsPage > * {
+    width: 100%;
+    max-width: 700px;
+    padding: 30px 55px;
+    backdrop-filter: var(--backdrop-blur);
+    background: var(--white-transparent);
+    border-radius: var(--border-radius-skewed);
+    margin-top: 40px;
+    box-shadow: var(--box-shadow);
+}
+
+.CreditsPage h2 {
+    text-align: center;
+    color: var(--wine-red-dark);
+}
+
+.CreditsPage p {
+	color: var(--black);
+}
+
+.CreditsPage li {
+    font-size: 1.13rem;
+    margin: 7px;
+	color: var(--wine-red);
+}
+
+.CreditsPage li:hover, .CreditsPage li:active {
+    color: var(--wine-hover);
+    text-decoration: underline;
+}
+
+.CreditsPage a {
+    color: var(--wine-red);
+    padding: 3px 7px;
+    margin-left: 10px;
+}
+
+.CreditsPage a:hover, .CreditsPage a:hover {
+    color: var(--white);
+    background: var(--wine-hover);
+    border-radius: 15px;
+}
