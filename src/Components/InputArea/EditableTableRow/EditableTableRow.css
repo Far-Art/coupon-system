@@ -1,0 +1,70 @@
+.EditableTD {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 35px;
+    color: var(--text-black);
+}
+
+.EditableTD:hover {
+    white-space: normal;
+}
+
+.EditableTH {
+    color: var(--text-white);
+    overflow: hidden;
+    min-width: 35px;
+    padding: 0;
+}
+
+.EditableTD > input, .EditableTD > select {
+    text-align: center;
+    height: 98%;
+    border: 2px solid transparent;
+    width: 100%;
+    border-radius: 8px;
+    padding: 10px 5px;
+    margin: 0 10px;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.EditableTD > input:hover, .EditableTD > select:hover {
+    box-shadow: inset 0 0 10px rgba(0 0 0 / .25);
+    transition: all .15s ease-in-out;
+}
+
+/* number arrows */
+.EditableTD > input::-webkit-inner-spin-button{
+    position: relative;
+    height: 40px;
+    right: -5px;
+    margin: 0;
+}
+
+/* date picker icon */
+.EditableTD > input::-webkit-calendar-picker-indicator{
+    margin: 0;
+}
+
+.EditableTD > input:focus, .EditableTD > select:focus {
+    border: 2px solid var(--wine-red);
+    outline: none;
+    color: var(--wine-red);
+    width: 100%;
+    text-decoration: underline;
+    box-shadow: var(--box-shadow-focus);
+}
+
+.ETDError {
+    position: absolute;
+    color: red;
+}
+
+.TrInEdit {
+    background: var(--active-edit) !important;
+}
+
+.TRFocus{
+    background: tomato !important;
+}

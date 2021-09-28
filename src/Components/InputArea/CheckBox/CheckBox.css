@@ -1,5 +1,6 @@
 /* The container */
 .container {
+	color: var(--text-black);
 	display: block;
 	position: relative;
 	padding-left: 28px;
@@ -33,7 +34,7 @@
 	border-color: transparent;
 	border-radius: 8px;
 	transition: var(--transition);
-	box-shadow: var(--box-shadow);
+	box-shadow: var(--box-shadow-light);
 }
 
 .checkmark:active {

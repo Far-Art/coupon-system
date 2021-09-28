@@ -10,7 +10,7 @@
 }
 
 .PriceFilter p{
-    color: var(--wine-red);
+    color: var(--text-wine-red);
     font-weight: 600;
     margin: 7px 0 0;
     padding: 5px 0;
@@ -20,7 +20,7 @@
 }
 
 .PriceFilterContainer > span{
-    color: var(--wine-red);
+    color: var(--text-wine-red);
     font-weight: 600;
     padding: 5px 0;
     width: 100%;

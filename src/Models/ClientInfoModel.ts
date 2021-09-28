@@ -1,6 +1,6 @@
 import { ClientType } from "./ClientType";
 
-export class ClientInfoModel{
+export class ClientInfoModel {
     id!: number;
     name!: string;
     lastName!: string;

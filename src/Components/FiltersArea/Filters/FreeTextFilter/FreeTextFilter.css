@@ -3,7 +3,7 @@
 }
 
 .FreeTextFilter p {
-    color: var(--wine-red);
+    color: var(--text-wine-red);
     font-weight: 600;
     margin: 0 0 7px;
     padding: 5px 0;

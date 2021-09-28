@@ -2,13 +2,13 @@ import { CompanyModel } from "../../Models/CompanyModel";
 import { CompaniesActionType, CompanyAction } from "../Actions/CompanyAction";
 import { CompaniesAppState } from "../States/CompaniesAppState";
 
-export function companyReducer(currentState:CompaniesAppState = new CompaniesAppState(), action:CompanyAction): CompaniesAppState {
-    
+export function companyReducer(currentState: CompaniesAppState = new CompaniesAppState(), action: CompanyAction): CompaniesAppState {
+
     //TODO Check this FC for proper functionality
 
-    const newState = {...currentState};
+    const newState = { ...currentState };
 
-    switch(action.type){
+    switch (action.type) {
         case CompaniesActionType.ADD:
             newState.appCompaniesList.push(action.payload);
             break;
@@ -30,10 +30,10 @@ export function companyReducer(currentState:CompaniesAppState = new CompaniesApp
     return newState;
 }
 
-function updateCompany(companiesList:CompanyModel[], toUpdate:CompanyModel):CompanyModel[]{
-    for(let i = 0; i < companiesList.length; i++){
-        if(companiesList[i].id === toUpdate.id){
-            companiesList[i] = {...toUpdate};
+function updateCompany(companiesList: CompanyModel[], toUpdate: CompanyModel): CompanyModel[] {
+    for (let i = 0; i < companiesList.length; i++) {
+        if (companiesList[i].id === toUpdate.id) {
+            companiesList[i] = { ...toUpdate };
         }
     }
     return companiesList;

@@ -1,102 +1,175 @@
 .CouponCard {
+    display: flex;
     position: relative;
-    background: var(--background-image-cards);
-    background-size: 30%;
+    flex-direction: column;
+    padding: 0;
+    height: 560px;
+    width: 330px;
     margin: 10px auto calc(2% + 30px) auto;
-    max-width: 800px;
-    text-align: center;
-    padding: calc(5px + 0.1vw);
-    box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    height: 200px;
+    z-index: var(--z-index-2);
+    background: var(--background-image-cards);
+    border-radius: 100px 50px 100px 50px;
+    transition: var(--menu-transition);
     animation: out 1s ease;
-}
-
-.CouponCard * {
-    z-index: 2;
-}
-
-.Dashed_border {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    border-top: calc(4px + 0.05vw) dashed white;
-    border-bottom: calc(4px + 0.05vw) dashed white;
-}
-
-.CardButton {
-    position: relative;
-    top: 89%;
-    border-color: white;
-}
-
-.CardButton:hover {
-    box-shadow: 0 0 15px white;
-    border-color: rgba(255 255 255 / .7);
-}
-
-.CardButton:active {
-    box-shadow: 0 0 15px white;
-
-}
-
-.Image_container {
-	transform: translate(0%,-50%);
-	top: 50%;
-	right: 0;
-    position: absolute;
-    height: 187px;
-    width: 187px;
-    margin: auto;
-    border-radius: 100vw;
-    border: calc(5px + 0.05vw) solid white;
+    align-items: center;
+    box-shadow: 0 0 0px 1px transparent, var(--box-shadow-card);
     overflow: hidden;
-    background: white;
 }
 
-.Image_container * {
-    height: 100%;
-    width: 100%;
+.CouponCardData {
+    flex-direction: column;
+    border-radius: 100px 50px 100px 50px;
+    overflow: hidden;
+}
+
+.CouponCardData * {
+    font-family: Montserrat;
+    transition: var(--menu-transition);
 }
 
 .Price_tag {
     position: absolute;
-    right: -40px;
-    top: 135px;
-    background-image: url("../../../Assets/Icons/PriceLabel.svg");
-    background-repeat: no-repeat;
-    background-size: auto;
-    height: 120px;
-    width: 55px;
-    transform: rotate(-35deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 40px;
+    left: -60px;
+    top: 25px;
+    padding: 5px;
+    background-image: linear-gradient(90deg, var(--wine-red-dark), var(--wine-hover), var(--wine-red-dark));
+    transform: rotate(-40deg) translate3d(0,0,0);
+    z-index: var(--z-index-2);
+    border-top: 2px dashed var(--white-transparent);
+    border-bottom: 2px dashed var(--white-transparent);
+    box-shadow: var(--box-shadow);
 }
 
-.CouponCard .title {
-    margin: auto;
-    font-weight: bold;
-    font-size: calc(15px + 0.4vw);
-    color: white;
+.Price_tag > * {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.CouponCardData:hover > .Image_container {
+    transform: translateY(-150px);
+}
+
+.CouponCardData:hover > .Text_container {
+    transform: translateY(-100px);
+}
+
+.CouponCardData:hover .Description, .CouponCardData:hover .EndDate{
+    top: -100px;
+    opacity: 1;
+}
+
+.CouponCardData:hover .Title, .CouponCardData:hover .Category, .CouponCardData:hover .Company{
+    opacity: 0;
+}
+
+.CardButton {
+    margin: 15px 0;
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+}
+
+.Image_container {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+}
+
+.Image_container > .Image {
     width: 100%;
 }
 
-.CouponCard .company {
-    margin: 50px 0;
-    font-weight: 500;
-    font-size: calc(8px + 0.4vw);
-    color: white;
-}
-
-.CouponCard .category {
+.CouponCard .Company {
+    color: var(--text-white);
+    border-radius: var(--border-radius);
+    left: 50px;
     top: 0;
-    margin: calc(10px + 0.5%) 0;
-    font-weight: 500;
-    font-size: calc(11px + 0.2vw);
-    color: white;
+    font-size: 1rem;
+    padding: 3px 25px;
+    margin: 0 15px;
 }
 
-.CouponCard .price {
-    font-weight: bolder;
-    color: white;
+.CouponCard .Title {
+    font-family: 'Oleo Script Swash Caps', cursive;
+    letter-spacing: 0.5px;
+    font-size: 1.5rem;
+    color: var(--text-white);
+    margin: 5px;
+    font-weight: 700;
+}
+
+.CouponCard .Category {
+    top: 0;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-white);
+}
+
+.CouponCard .Description {
+    position: relative;
+    top: 90px;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: var(--text-white);
+    margin: 0 15px;
+    opacity: 0;
+}
+
+.CouponCard .EndDate {
+    color: var(--text-white);
+    position: relative;
+    top: 50px;
+    opacity: 0;
+    margin-top: 50px;
+}
+
+.CouponCard .Price {
+    color: var(--text-white);
+}
+
+.CouponCardState{
+    height: 0;
+    width: 0;
+    position: absolute;
+    z-index: var(--z-index-3);
+    display: none;
+}
+
+.ComingSoon {
+    background: var(--black-semi-transparent);
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.ComingSoon_tag {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200%;
+    height: 60px;
+    left: -50%;
+    top: 75%;
+    padding: 5px;
+    background-image: linear-gradient(90deg, var(--wine-red-dark), var(--wine-hover), var(--wine-red-dark));
+    transform: rotate(-10deg);
+    z-index: var(--z-index-2);
+    border-top: 3px dashed var(--white-transparent);
+    border-bottom: 3px dashed var(--white-transparent);
+    box-shadow: var(--box-shadow);
+}
+
+.ComingSoon_tag > * {
+    color: var(--text-white);
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 120%;
 }
 
 @keyframes in {

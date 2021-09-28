@@ -2,7 +2,8 @@
     padding: 0 5px 0 15px;
     display: flex;
     justify-content: center;
-    z-index: var(--z-index-4);
+    z-index: var(--z-index-3);
+    backdrop-filter: var(--backdrop-blur);
 }
 
 .NavBar > * {

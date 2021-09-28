@@ -33,30 +33,6 @@ export default class ApiGlobalLogic{
         }
     }
 
-    public static errorDescriptions = {
-        minLength: {
-            name: `Name must include at least ${ApiGlobalLogic.forms.fieldsMinLength.name} characters`,
-            companyName: `Company name must include at least ${ApiGlobalLogic.forms.fieldsMinLength.companyName} characters`,
-            email: `Email must include at least ${ApiGlobalLogic.forms.fieldsMinLength.email} characters`,
-            password: `Password must include at least ${ApiGlobalLogic.forms.fieldsMinLength.password} symbols`,
-            telephone: `Telephone must include at least ${ApiGlobalLogic.forms.fieldsMinLength.telephone} numbers`
-        },
-
-        maxLength: {
-            name: `Name cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.name} characters`,
-            companyName: `Company name cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.companyName} characters`,
-            email: `Email cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.email} characters`,
-            password: `Password cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.password} symbols`,
-            telephone: `Telephone cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.telephone} numbers`
-        },
-
-        badPattern: {
-            email: "Bad email pattern",
-            password: "Password must include at least one UPPERCASE letter, one lowercase letter and one digit",
-            amount: "Amount must be a whole number"
-        }
-    }
-
     public static items = {
         coupon: {
             fieldsMinLength: {
@@ -71,6 +47,31 @@ export default class ApiGlobalLogic{
                 description: 300,
                 price: 9999
             }
+        }
+    }
+
+    public static errorDescriptions = {
+        minLength: {
+            name: `Name must include at least ${ApiGlobalLogic.forms.fieldsMinLength.name} characters`,
+            companyName: `Company name must include at least ${ApiGlobalLogic.forms.fieldsMinLength.companyName} characters`,
+            email: `Email must include at least ${ApiGlobalLogic.forms.fieldsMinLength.email} characters`,
+            password: `Password must include at least ${ApiGlobalLogic.forms.fieldsMinLength.password} symbols`,
+            telephone: `Telephone must include at least ${ApiGlobalLogic.forms.fieldsMinLength.telephone} numbers`,
+            couponTitle: `Title must include at least ${ApiGlobalLogic.items.coupon.fieldsMinLength.title} characters`
+        },
+
+        maxLength: {
+            name: `Name cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.name} characters`,
+            companyName: `Company name cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.companyName} characters`,
+            email: `Email cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.email} characters`,
+            password: `Password cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.password} symbols`,
+            telephone: `Telephone cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.telephone} numbers`
+        },
+
+        badPattern: {
+            email: "Bad email pattern",
+            password: "Password must include at least one UPPERCASE letter, one lowercase letter and one digit",
+            amount: "Amount must be a whole number"
         }
     }
 }

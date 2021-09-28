@@ -5,12 +5,27 @@
     --white:white;
     --gray:rgb(150, 150, 150);
     --gray-light:rgb(230, 230, 230);
-    --white-transparent:rgba(255, 255, 255, .5);
-    --white-semi-transparent:rgba(255 255 255 / .97);
+    --white-transparent:rgba(255, 255, 255, .3);
+    --white-semi-transparent:rgba(255, 255, 255, .97);
+    --black-semi-transparent:rgba(0, 0, 0, .5);
+    --black:rgba(0, 0, 0, .9);
     --wine-red:rgb(173, 12, 60); /* #ad0c3c */
-    --wine-red-transparent:rgb(130 19 52 /.5);
+    --wine-red-transparent:rgb(173, 12, 60, .85);
     --wine-red-dark:rgb(114, 17, 46); /* #72112e  */
     --wine-hover:rgb(199, 5, 63); /* #c7053f */
+
+    /* TEXT COLOR*/
+    --text-white:var(--white);
+    --text-black:var(--black);
+    --text-wine-red:var(--wine-red);
+
+    /* WEB ELEMENTS STYLE*/
+    --scrollbar-track: var(--gray-light);
+
+    /* TABLE STYLE*/
+    --gray-light-even:rgba(255, 255, 255, 0.3);
+    --gray-light-odd:rgba(228, 223, 223, 0.3);
+    --active-edit:rgba(0, 238, 107, 0.83);
 
     /* TOASTS STYLE*/
     --toast-success-bg: rgba(0, 238, 107, 0.83);
@@ -23,35 +38,56 @@
     --warning-background-animation-speed: 4s infinite;
 
     /* SHADOW */
-    --box-shadow: 3px 6px 25px rgba(0, 0, 0, 0.1);
-    --box-shadow-text: 1px 4px 12px rgba(0, 0, 0, 0.5);
-    --box-shadow-focus: 0 0 20px rgba(0, 0, 0, 0.4);
-    --box-shadow-button: 2px 6px 15px rgba(0, 0, 0, 0.14);
-    --box-shadow-button-pressed: inset 2px 5px 7px rgba(0, 0, 0, 0.4);
+    --box-shadow: 0 1px 1px rgba(0,0,0,0.08), 
+            0 2px 2px rgba(0,0,0,0.06), 
+            0 4px 4px rgba(0,0,0,0.06), 
+            0 8px 8px rgba(0,0,0,0.06), 
+            0 16px 16px rgba(0,0,0,0.06), 
+            0 32px 32px rgba(0,0,0,0.04);
+    --box-shadow-light: 0 1px 1px rgba(0,0,0,0.03), 
+            0 2px 2px rgba(0,0,0,0.03), 
+            0 4px 4px rgba(0,0,0,0.02), 
+            0 8px 8px rgba(0,0,0,0.02), 
+            0 16px 16px rgba(0,0,0,0.01), 
+            0 32px 32px rgba(0,0,0,0.01);
+    --box-shadow-card: 0 1px 1px rgba(0,0,0,0.12), 
+            2px 2px 2px rgba(0,0,0,0.12), 
+            4px 6px 6px rgba(0,0,0,0.12), 
+            6px 10px 10px rgba(0,0,0,0.12), 
+            8px 16px 16px rgba(0,0,0,0.12), 
+            16px 32px 32px rgba(0,0,0,0.12);
+    --box-shadow-text: 1px 4px 12px rgba(0, 0, 0, .3);
+    --box-shadow-focus: 0 0 20px rgba(0, 0, 0, .4);
+    --box-shadow-button: 0 1px 2px rgba(0,0,0,0.03), 
+            1px 2px 4px rgba(0,0,0,0.03), 
+            2px 4px 8px rgba(0,0,0,0.04), 
+            2px 8px 16px rgba(0,0,0,0.04),
+            2px 16px 32px rgba(0,0,0,0.05), 
+            2px 32px 64px rgba(0,0,0,0.05);
+    --box-shadow-button-pressed: inset 2px 5px 7px rgba(0, 0, 0, .4);
 
     /* BORDERS */
     --nav-button-border: 0 solid var(--wine-red);
     --toast-border: 3px solid var(--wine-red);
     
     /* BACKGROUND IMAGES */
-    --background-image-main: url("../../../Assets/Images/HalfCirclesBG2.png") repeat; 
-    --background-image-back: url("../../../Assets/Images/IconBG.png");
-    /* https://www.patterncooler.com/#a103b103c12Cd12Ce0f0g64h0C303CFB5989CE144BE21A56E0386AiB5j0k64l1F4m1F4 */
-    --background-image-logo: url("../../../Assets/Images/HalfCirclesBG3.png") repeat; 
-    /* --background-image-logo: url("../../../Assets/Images/DropletsBG3.png") repeat;  */
-    --background-image-cards: url("../../../Assets/Images/HalfCirclesBG3.png") repeat; 
-    /* --background-image-cards: url("../../../Assets/Images/DropletsBG3.png") repeat;  */
-    --background-image-login: url("../../../Assets/Images/LoginBG.png") center;
-    --background-image-register: url("../../../Assets/Images/RegisterBG.png") center;
-    --background-image-add: url("../../../Assets/Images/AddItemBG.png") center;
+    --background-image-main: url("../../../Assets/Images/normal/HalfCirclesBG2.png"); 
+    --background-image-back: url("../../../Assets/Images/normal/IconBG.png");
+    --background-image-logo: url("../../../Assets/Images/normal/HalfCirclesBG3.png") repeat; 
+    --background-image-cards: url("../../../Assets/Images/normal/HalfCirclesBG3.png") repeat; 
+    --background-image-login: url("../../../Assets/Images/normal/LoginBG.png") center;
+    --background-image-register: url("../../../Assets/Images/normal/RegisterBG.png") center;
+    --background-image-add: url("../../../Assets/Images/normal/AddItemBG.png") center;
     
     /* EFFECTS */
     --backdrop-blur: blur(4px);
     --backdrop-blur-toast: blur(4px);
+    --background-blend: ;
 
     /* SIZES */
     --border-radius: 40px;
     --border-radius-toast: 25px;
+    --border-radius-skewed: 70px 120px 70px 120px;
     --nav-button-size: 50px;
     --filters-min-width: 300px;
     --filter-max-height: 900px;
@@ -65,17 +101,55 @@
     --z-index-2: 2;
     --z-index-3: 3;
     --z-index-4: 4;
-    --z-index-ontop: 9999;
-
-    
+    --z-index-ontop: 9999;   
 }
 
-/*----------------------------------------------------------------------------*/
+/*  DARK MODE COLORS 
+**********************************************************************/
+[color-palette = "DARK"]{
+    /* COLOR */
+    --white:rgb(66, 69, 102);
+    --gray:rgb(55, 48, 75);
+    --gray-light:rgb(78, 78, 110);
+    --white-transparent:rgba(65, 65, 95, 0.4);
+    --white-semi-transparent:rgba(24, 32, 54, 0.97);
+    --black-semi-transparent:rgba(0, 0, 0, .5);
+    --black:rgba(239, 236, 248, 0.9);
+    --wine-red:rgb(168, 168, 224);
+    --wine-red-transparent:rgba(35, 35, 59, 0.85);
+    --wine-red-dark:rgb(69, 81, 116);
+    --wine-hover:rgb(124, 123, 167);
 
-.HEADER_BG {
-    background: var(--background-image-logo);
-    border-radius: 0 0 50px 50px;
-    background-size: auto 50%;
+    /* TEXT COLOR*/
+    --text-white:rgb(255, 255, 255);
+    --text-black:rgb(195, 195, 219);
+    --text-wine-red:rgb(255, 255, 255);
+
+    /* TABLE STYLE*/
+    --gray-light-even:rgba(134, 135, 172, 0.3);
+    --gray-light-odd:rgba(166, 167, 207, 0.3);
+    --active-edit:rgba(64, 117, 88, 0.83);
+
+    /* TOASTS STYLE*/
+    --toast-success-bg: rgba(41, 116, 72, 0.8);
+    --toast-warn-bg: rgba(88, 102, 129, 0.9);
+    --toast-error-bg: rgba(175, 30, 30, 0.5);
+
+    /* FLICKER ANIMATION */
+    --warning-background-light: rgba(201, 188, 160, 0.0);
+    --warning-background-dark: rgba(255, 0, 0, 0.1);
+
+    /* BACKGROUND IMAGES */
+    --background-image-main: url("../../../Assets/Images/dark/HalfCirclesBG2.png"); 
+    --background-image-back: url("../../../Assets/Images/dark/IconBG.png");
+    /* https://www.patterncooler.com/#a103b103c12Cd12Ce0f0g64h0C303CFB5989CE144BE21A56E0386AiB5j0k64l1F4m1F4 */
+    --background-image-logo: url("../../../Assets/Images/dark/HalfCirclesBG3.png") repeat; 
+    /* --background-image-logo: url("../../../Assets/Images/DropletsBG3.png") repeat;  */
+    --background-image-cards: url("../../../Assets/Images/dark/HalfCirclesBG3.png") repeat; 
+    /* --background-image-cards: url("../../../Assets/Images/DropletsBG3.png") repeat;  */
+    --background-image-login: url("../../../Assets/Images/dark/LoginBG.png") center;
+    --background-image-register: url("../../../Assets/Images/dark/RegisterBG.png") center;
+    --background-image-add: url("../../../Assets/Images/dark/AddItemBG.png") center;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -88,15 +162,15 @@
 
 .FORM {
     color: var(--wine-red);
-    /* background: var(--background-image-main); */
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-skewed);
     border: 4px solid var(--white);
     text-align: center;
-    padding: 20px 5px;
+    padding: 30px 5px;
     box-shadow: var(--box-shadow);
+    min-width: 300px;
     max-width: 600px;
     margin: 20px auto;
-    backdrop-filter: blur(5px);
+    backdrop-filter: var(--backdrop-blur);
 }
 
 .FORM a:hover{
@@ -261,8 +335,10 @@
 ----------------------------------------------------------------------------*/
 
 .Toastify__toast{
-    font-size: 1.05rem;
-    letter-spacing: 0.02rem;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 1rem;
+    word-spacing: 0.1rem;
     border: var(--toast-border);
     border-color: transparent;
     transition: all .07s linear;
@@ -283,7 +359,7 @@
 
 .Toastify__toast--warning {
     background: var(--toast-warn-bg) !important;
-    color: var(--wine-red) !important;
+    color: var(--text-wine-red) !important;
 }
 
 .Toastify__progress-bar--warning {
