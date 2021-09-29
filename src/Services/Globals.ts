@@ -3,6 +3,7 @@ class Globals{
 
 class DevelopmentGlobals extends Globals{
     public urls = {
+        pushdata: "http://localhost:8080/initData/",
         signup: "http://localhost:8080/register",
         login: "http://localhost:8080/login",
         logout: "http://localhost:8080/logout",
@@ -19,6 +20,7 @@ class DevelopmentGlobals extends Globals{
 
 class ProductionGlobals extends Globals{
     public urls = {
+        pushdata: "/initData/",
         signup: "/register",
         login: "/login",
         logout: "/logout",

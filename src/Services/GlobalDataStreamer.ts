@@ -122,6 +122,19 @@ export default class GlobalDataStreamer {
             });
     }
 
+    public static async initData(numOfCustomers:number, numOfCompanies:number) {
+        this.emitToast("INITDATA", "Pushing data, this may take some while ...");
+        return axios.put<string>(globals.urls.pushdata + numOfCustomers + "/" + numOfCompanies, {}, this.appendBody())
+            .then((response) => {
+                this.successToast("INITDATA", response.data);
+                return true;
+            })
+            .catch((error: any) => {
+                this.errorToast("INITDATA", error);
+                return false;
+            });
+    }
+
     /*                      CUSTOMER METHODS 
     ****************************************************************/
     public static async fetchCouponsByCustomer() {
