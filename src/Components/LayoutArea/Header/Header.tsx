@@ -16,7 +16,7 @@ export default function Header(): JSX.Element {
             <NavLink to={RouteUrls.HOME}>
                 <div className="Header_Background">
                     <img id="logo" className={clientType === ClientType.ADMIN ? "RotateLogo" : ""} src={logo} alt="logo" />
-                    <h1>Coupon As Art</h1>
+                    <h1>Coupons As Art</h1>
                 </div>
             </NavLink>
         </div>
