@@ -8,9 +8,9 @@
 .iframegif{
     width: 444px;
     overflow: hidden;
-    border: 8px solid white;
+    border: 8px solid var(--white);
     border-radius: 70px;
-    background: white;
+    background: var(--white);
     margin: 0 auto 40px auto;
     box-sizing: content-box;
 }

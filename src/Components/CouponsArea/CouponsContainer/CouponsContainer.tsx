@@ -110,7 +110,6 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     }
 
     useEffect(() => {
-        console.log("HERE 1");
         if (props.couponsList && props.couponsList.length > 0) {
             setCoupons(filterCoupons(props.couponsList).sort(() => Math.random() - 0.5));
         } else {

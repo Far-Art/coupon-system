@@ -27,7 +27,7 @@ export default function EmptyView(props: EmptyViewProps): JSX.Element {
                     <iframe
                         className="iframegif"
                         scrolling="no"
-                        src="http://mrwgifs.com/wp-content/uploads/2014/01/Tom-and-Jerry-Depressed-By-On-The-Train-Tracks-In-Sad-Episode.gif"
+                        src="https://mrwgifs.com/wp-content/uploads/2014/01/Tom-and-Jerry-Depressed-By-On-The-Train-Tracks-In-Sad-Episode.gif"
                         width="480"
                         height="190"
                         title="Tom happy dancing"
