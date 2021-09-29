@@ -23,6 +23,7 @@ interface ContainerProps {
     onlyValid?: boolean; // omit coupons with zero amount and expired date
     ignoreFields?: string[]; // omit specified fields when rendering coupons
     insteadOfDisplayedText?: string; 
+    preventToast?: boolean;
 }
 
 export default function CouponsContainer(props: ContainerProps): JSX.Element {
@@ -109,6 +110,7 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     }
 
     useEffect(() => {
+        console.log("HERE 1");
         if (props.couponsList && props.couponsList.length > 0) {
             setCoupons(filterCoupons(props.couponsList).sort(() => Math.random() - 0.5));
         } else {
@@ -144,7 +146,8 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
                                     inEditMode={true}
                                     tdClassName="table__center_text"
                                     nonEditableFields={["id"]}
-                                    onSave={setEditCouponWithId}
+                                    onSave={setEditCouponWithId} 
+                                    preventToast={props.preventToast}
                                 />
                                 :
                                 // display mode
@@ -156,7 +159,8 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
                                     ignoreFieldsFunction={filteredMapFromObject}
                                     tdClassName="table__center_text"
                                     nonEditableFields={["id"]}
-                                    onSave={setEditCouponWithId}
+                                    onSave={setEditCouponWithId} 
+                                    preventToast={props.preventToast}
                                 />
                         )}
                     </tbody>
@@ -197,6 +201,9 @@ export default function CouponsContainer(props: ContainerProps): JSX.Element {
     /* emiting toast component
     ----------------------------------------------------------------------- */
     const emitToast = (coupon: CouponModel) => {
+        if(props.preventToast){
+            return;
+        }
         toast.dismiss(); // close previous toasts
         toast.warning(
             () => {

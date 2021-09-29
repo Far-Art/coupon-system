@@ -36,7 +36,7 @@ export default function ProfileView(): JSX.Element {
         return (
             <>
                 <ClientCard client={client as ClientInfoModel} />
-                {client?.clientType === ClientType.CUSTOMER && ((clientCoupons && clientCoupons.length) > 0 ? <CouponsContainer asList={true} insteadOfDisplayedText={"in possession"} ignoreFields={["id", "companyemail", "startdate", "enddate", "amount"]} couponsList={clientCoupons} /> : <EmptyView text="you have no purchased coupons" />)}
+                {client?.clientType === ClientType.CUSTOMER && ((clientCoupons && clientCoupons.length) > 0 ? <CouponsContainer preventToast={true} asList={true} insteadOfDisplayedText={"in possession"} ignoreFields={["id", "companyemail", "startdate", "enddate", "amount"]} couponsList={clientCoupons} /> : <EmptyView text="you have no purchased coupons" />)}
                 {client?.clientType === ClientType.CUSTOMER && ((clientCoupons && clientCoupons.length) > 0 && <button onClick={() => handleClick()} className="APP__BUTTON">Use my coupons</button>)}
             </>
         );

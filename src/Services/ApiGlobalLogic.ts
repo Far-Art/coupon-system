@@ -17,16 +17,12 @@ export default class ApiGlobalLogic{
 
     public static forms = {
         fieldsMinLength: {
-            name: 4,
-            companyName: 2,
             email: 4,
             password: 6,
             telephone: 9
         },
 
         fieldsMaxLength: {
-            name: 40,
-            companyName: 100,
             email: 50,
             password: 16,
             telephone: 10
@@ -44,34 +40,56 @@ export default class ApiGlobalLogic{
     
             fieldsMaxLength: {
                 title: 60,
-                description: 300,
-                price: 9999
+                description: 200,
+                price: 9999,
+                amount: 2147483647
             }
-        }
+        },
+        customer: {
+            fieldsMinLength: {
+                name: 1
+            },
+            fieldsMaxLength: {
+                name: 60
+            }
+        },
+        company: {
+            fieldsMinLength: {
+                name: 2
+            },
+            fieldsMaxLength: {
+                name: 200
+            }
+        },
     }
 
     public static errorDescriptions = {
         minLength: {
-            name: `Name must include at least ${ApiGlobalLogic.forms.fieldsMinLength.name} characters`,
-            companyName: `Company name must include at least ${ApiGlobalLogic.forms.fieldsMinLength.companyName} characters`,
+            customerName: `Name must include at least ${ApiGlobalLogic.items.customer.fieldsMinLength.name} characters`,
+            companyName: `Company name must include at least ${ApiGlobalLogic.items.company.fieldsMinLength.name} characters`,
             email: `Email must include at least ${ApiGlobalLogic.forms.fieldsMinLength.email} characters`,
             password: `Password must include at least ${ApiGlobalLogic.forms.fieldsMinLength.password} symbols`,
             telephone: `Telephone must include at least ${ApiGlobalLogic.forms.fieldsMinLength.telephone} numbers`,
-            couponTitle: `Title must include at least ${ApiGlobalLogic.items.coupon.fieldsMinLength.title} characters`
+            couponTitle: `Title must include at least ${ApiGlobalLogic.items.coupon.fieldsMinLength.title} characters`,
+            price: `Price must start from ${ApiGlobalLogic.items.coupon.fieldsMinLength.price}`
         },
 
         maxLength: {
-            name: `Name cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.name} characters`,
-            companyName: `Company name cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.companyName} characters`,
+            customerName: `Name cannot exceed ${ApiGlobalLogic.items.customer.fieldsMaxLength.name} characters`,
+            companyName: `Company name cannot exceed ${ApiGlobalLogic.items.company.fieldsMaxLength.name} characters`,
             email: `Email cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.email} characters`,
             password: `Password cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.password} symbols`,
-            telephone: `Telephone cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.telephone} numbers`
+            telephone: `Telephone cannot exceed ${ApiGlobalLogic.forms.fieldsMaxLength.telephone} numbers`,
+            amount: `Amount cannot exceed ${ApiGlobalLogic.items.coupon.fieldsMaxLength.amount}`,
+            price: `Price cannot exceed ${ApiGlobalLogic.items.coupon.fieldsMaxLength.price}`,
+            title: `Title cannot exceed ${ApiGlobalLogic.items.coupon.fieldsMaxLength.title} characters`,
+            description: `Description cannot exceed ${ApiGlobalLogic.items.coupon.fieldsMaxLength.description} characters`
         },
 
         badPattern: {
             email: "Bad email pattern",
             password: "Password must include at least one UPPERCASE letter, one lowercase letter and one digit",
-            amount: "Amount must be a whole number"
+            amount: "Amount must be a whole positive number"
         }
     }
 }

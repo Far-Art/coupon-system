@@ -49,7 +49,7 @@ export default function CouponCard(props: CardProps): JSX.Element {
     function formatDate(date:Date){
         const jsDate = new Date(date + "Z");
         const year:number = jsDate.getFullYear();
-        const month:number = jsDate.getMonth();
+        const month:number = jsDate.getMonth() + 1;
         const day:number = jsDate.getDate();
         return `${day}.${month}.${year}`;
     }

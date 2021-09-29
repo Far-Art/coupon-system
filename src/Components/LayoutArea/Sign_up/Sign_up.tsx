@@ -37,32 +37,32 @@ export default function Sign_up(): JSX.Element {
         switch (clientType) {
             case ClientType.CUSTOMER:
                 return (<>
-                    <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.name} type="text" className="FIELD" placeholder="first name" {...register("name", {
+                    <input maxLength={ApiGlobalLogic.items.customer.fieldsMaxLength.name} type="text" className="FIELD" placeholder="first name" {...register("name", {
                         required: {
                             value: true,
                             message: "First name required"
                         },
-                        minLength: apiGlobalLogic.forms.fieldsMinLength.name
+                        minLength: apiGlobalLogic.items.customer.fieldsMinLength.name
                     })} />
                     {errors.name && <p className="Error">{errors.name.message}</p>}
 
-                    <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.name} type="text" className="FIELD" placeholder="last name" {...register("lastName", {
+                    <input maxLength={ApiGlobalLogic.items.customer.fieldsMaxLength.name} type="text" className="FIELD" placeholder="last name" {...register("lastName", {
                         required: {
                             value: true,
                             message: "Last name required"
                         },
-                        minLength: apiGlobalLogic.forms.fieldsMinLength.name
+                        minLength: apiGlobalLogic.items.customer.fieldsMinLength.name
                     })} />
                     {errors.lastName && <p className="Error">{errors.lastName.message}</p>}
                 </>);
             case ClientType.COMPANY:
                 return (<>
-                    <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.name} type="text" className="FIELD" placeholder="company name" {...register("name", {
+                    <input maxLength={ApiGlobalLogic.items.company.fieldsMaxLength.name} type="text" className="FIELD" placeholder="company name" {...register("name", {
                         required: {
                             value: true,
                             message: "Company name required"
                         },
-                        minLength: apiGlobalLogic.forms.fieldsMinLength.name
+                        minLength: apiGlobalLogic.items.company.fieldsMinLength.name
                     })} />
                     {errors.name && <p className="Error">{errors.name.message}</p>}
                 </>);

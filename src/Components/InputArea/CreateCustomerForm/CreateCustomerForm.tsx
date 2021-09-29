@@ -21,27 +21,27 @@ export default function CreateCustomerForm(): JSX.Element {
             <form onSubmit={handleSubmit(send)}>
 
                 {/* customers first name */}
-                <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.name} type="text" className="FIELD" placeholder="customers first name" {...register("firstName" as "name", {
+                <input maxLength={ApiGlobalLogic.items.customer.fieldsMaxLength.name} type="text" className="FIELD" placeholder="customers first name" {...register("firstName" as "name", {
                     required: {
                         value: true,
                         message: "Customers first name required"
                     },
                     minLength: {
-                        value: ApiGlobalLogic.forms.fieldsMinLength.name,
-                        message: ApiGlobalLogic.errorDescriptions.minLength.name
+                        value: ApiGlobalLogic.items.customer.fieldsMinLength.name,
+                        message: ApiGlobalLogic.errorDescriptions.minLength.customerName
                     }
                 })} />
                 {errors.name && <p className="Error">{errors.name.message}</p>}
 
                 {/* customers last name */}
-                <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.name} type="text" className="FIELD" placeholder="customers last name" {...register("lastName", {
+                <input maxLength={ApiGlobalLogic.items.customer.fieldsMaxLength.name} type="text" className="FIELD" placeholder="customers last name" {...register("lastName", {
                     required: {
                         value: true,
                         message: "Customers last name required"
                     },
                     minLength: {
-                        value: ApiGlobalLogic.forms.fieldsMinLength.name,
-                        message: ApiGlobalLogic.errorDescriptions.minLength.name
+                        value: ApiGlobalLogic.items.customer.fieldsMinLength.name,
+                        message: ApiGlobalLogic.errorDescriptions.minLength.customerName
                     }
                 })} />
                 {errors.lastName && <p className="Error">{errors.lastName.message}</p>}

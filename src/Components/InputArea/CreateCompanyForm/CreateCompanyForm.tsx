@@ -21,13 +21,13 @@ export default function CreateCompanyForm(): JSX.Element {
             <form onSubmit={handleSubmit(send)}>
 
                 {/* company name */}
-                <input maxLength={ApiGlobalLogic.forms.fieldsMaxLength.companyName} type="text" className="FIELD" placeholder="company name" {...register("name", {
+                <input maxLength={ApiGlobalLogic.items.company.fieldsMaxLength.name} type="text" className="FIELD" placeholder="company name" {...register("name", {
                     required: {
                         value: true,
                         message: "Company name required"
                     },
                     minLength: {
-                        value: ApiGlobalLogic.forms.fieldsMinLength.companyName,
+                        value: ApiGlobalLogic.items.company.fieldsMinLength.name,
                         message: ApiGlobalLogic.errorDescriptions.minLength.companyName
                     }
                 })} />

@@ -44,6 +44,10 @@ export default function CreateCouponForm(): JSX.Element {
                     minLength: {
                         value: ApiGlobalLogic.items.coupon.fieldsMinLength.title,
                         message: ApiGlobalLogic.errorDescriptions.minLength.couponTitle
+                    },
+                    maxLength: {
+                        value: ApiGlobalLogic.items.coupon.fieldsMaxLength.title,
+                        message: ApiGlobalLogic.errorDescriptions.maxLength.title
                     }
                 })} />
                 {errors.title && <p className="Error">{errors.title.message}</p>}
@@ -53,6 +57,10 @@ export default function CreateCouponForm(): JSX.Element {
                     minLength: {
                         value: ApiGlobalLogic.items.coupon.fieldsMinLength.description,
                         message: `Description must contain at least ${ApiGlobalLogic.items.coupon.fieldsMinLength.description} characters`
+                    },
+                    maxLength: {
+                        value: ApiGlobalLogic.items.coupon.fieldsMaxLength.description,
+                        message: ApiGlobalLogic.errorDescriptions.maxLength.description
                     }
                 })} />
                 {errors.description && <p className="Error">{errors.description.message}</p>}
@@ -81,6 +89,10 @@ export default function CreateCouponForm(): JSX.Element {
                         value: true,
                         message: "Amount required"
                     },
+                    max:{
+                        value: ApiGlobalLogic.items.coupon.fieldsMaxLength.amount,
+                        message: ApiGlobalLogic.errorDescriptions.maxLength.amount
+                    },
                     pattern: {
                         value: ApiGlobalLogic.patterns.regex.numbers,
                         message: ApiGlobalLogic.errorDescriptions.badPattern.amount
@@ -93,6 +105,14 @@ export default function CreateCouponForm(): JSX.Element {
                     required: {
                         value: true,
                         message: "Price required"
+                    },
+                    min: {
+                        value: ApiGlobalLogic.items.coupon.fieldsMinLength.price,
+                        message: ApiGlobalLogic.errorDescriptions.minLength.price
+                    },
+                    max: {
+                        value: ApiGlobalLogic.items.coupon.fieldsMaxLength.price,
+                        message: ApiGlobalLogic.errorDescriptions.maxLength.price
                     }
                 })} />
                 {errors.price && <p className="Error">{errors.price.message}</p>}

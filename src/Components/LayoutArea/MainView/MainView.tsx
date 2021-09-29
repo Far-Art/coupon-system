@@ -68,6 +68,12 @@ export default function MainView(): JSX.Element {
 
     return (
         <div className="MainView">
+            <button
+                onClick={() => {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }} 
+                className="APP__BUTTON">go to top</button>
             {render()}
         </div>
     );

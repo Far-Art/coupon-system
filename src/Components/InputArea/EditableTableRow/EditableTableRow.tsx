@@ -25,6 +25,7 @@ interface EditableTableRowProps {
     isHeader?: boolean;
     onClick?: MouseEventHandler<HTMLTableRowElement>;
     onSave?: React.Dispatch<React.SetStateAction<any>>;
+    preventToast?: boolean;
 }
 
 export default function EditableTableRow(props: EditableTableRowProps): JSX.Element {
@@ -102,7 +103,7 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
 
     /* if amount or price is zero or end date is near, set warn class
    ----------------------------------------------------------------------- */
-    function setWarningClass(key:string, value: any) {
+    function setWarningClass(key: string, value: any) {
         const timeNowInMillis = Date.parse(new Date().toLocaleDateString());
         if (value === 0) {
             return " Warn";

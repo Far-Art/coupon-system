@@ -1,3 +1,11 @@
 .MainView {
   text-align: center;
 }
+
+.MainView > button {
+  position: fixed;
+  bottom: 15px;
+  right: 0;
+  padding: 10px 15px;
+  z-index: var(--z-index-4);
+}
