@@ -122,7 +122,7 @@ export default class GlobalDataStreamer {
             });
     }
 
-    public static async initData(numOfCustomers:number, numOfCompanies:number) {
+    public static async initData(numOfCustomers: number, numOfCompanies: number) {
         this.emitToast("INITDATA", "Pushing data, this may take some while ...");
         return axios.put<string>(globals.urls.pushdata + numOfCustomers + "/" + numOfCompanies, {}, this.appendBody())
             .then((response) => {
@@ -314,7 +314,10 @@ export default class GlobalDataStreamer {
 
     public static async fetchAllCoupons() {
         this.emitToast("allCoupons", "Fetching coupons...");
-        await axios.get<CouponModel[]>(globals.urls.coupons)
+        await axios.get<CouponModel[]>(globals.urls.coupons, {
+            timeout: 7000,
+            timeoutErrorMessage: "Response timeout"
+        })
             .then((response) => {
                 toast.dismiss("allCoupons");
                 store.dispatch(fetchAllCoupons(response.data));
@@ -340,7 +343,7 @@ export default class GlobalDataStreamer {
             toastId: toastId,
             theme: "colored",
             closeOnClick: true,
-            autoClose: 5000
+            autoClose: 5000,
         });
     }
 

@@ -259,9 +259,9 @@
     font-weight: 500;
     padding: 5px 12px;
     margin: 4px 6px;
-    border: var(--nav-button-border);
     background: var(--white);
     border-radius: var(--border-radius);
+    border: none;
     cursor: pointer;
     justify-content: center;
     align-items: center;
@@ -272,7 +272,6 @@
 .APP__BUTTON:hover {
     color: var(--white);
     background: var(--wine-red);
-    border: inherit solid rgba(150, 1, 71, 0);
 }
 
 .APP__BUTTON:active {
@@ -379,7 +378,7 @@
     font-weight: 500;
     padding: 5px 12px;
     margin: 4px 6px;
-    border: var(--nav-button-border);
+    border: none;
     background: var(--white);
     border-radius: var(--border-radius);
     cursor: pointer;
@@ -392,7 +391,6 @@
 .Toast__button:hover {
     color: var(--white);
     background: var(--wine-red);
-    border: inherit solid rgba(150, 1, 71, 0);
 }
 
 .Toast__button:active{

@@ -10,7 +10,9 @@ export default function Login(): JSX.Element {
     const { register, handleSubmit, reset, formState: { errors } } = useForm<LoginRequestModel>();
 
     const send = (login: LoginRequestModel) => {
+        
         GlobalDataStreamer.login(login).then((response) => {
+            
             if (response) {
                 IdleTimerApi.startIdleTimer();
             }
