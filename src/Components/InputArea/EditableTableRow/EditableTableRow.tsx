@@ -337,6 +337,7 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
             onKeyDown={(event) => {
                 if (event.key === "Escape") {
                     if (props.onSave) {
+                        toast.dismiss("TableEditToast");
                         setNewObject(props.object);
                         props.onSave(0); // cancel editing
                     }
