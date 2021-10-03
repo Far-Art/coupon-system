@@ -19,7 +19,6 @@
     width: 85%;
 }
 
-.CreateCompanyForm label{
-    position: relative;
-    z-index: 2;
+.CreateCompanyForm .InputFieldsContainer{
+    width: 70%;
 }

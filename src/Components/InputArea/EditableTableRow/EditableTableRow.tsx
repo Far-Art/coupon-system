@@ -267,7 +267,6 @@ export default function EditableTableRow(props: EditableTableRowProps): JSX.Elem
         const keyValueArrays = props.ignoreFieldsFunction !== undefined ? Array.from((props.ignoreFieldsFunction(props.object) as Map<string, any>).entries()) : Array.from(Object.entries(props.object));
         // check if data represent a header
         if (props.isHeader) {
-            // const keyValueArrays = props.ignoreFieldsFunction !== undefined ?  Array.from((props.ignoreFieldsFunction(props.object) as Map<string, any>).entries()) : Array.from(Object.entries(props.object));
             return (
                 keyValueArrays.map(([key, value]) => <th
                     style={setCellWidth(`${value}`)}
