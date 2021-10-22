@@ -1,0 +1,55 @@
+.DocumentationPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.DocumentationPage > div {
+    width: 100%;
+    max-width: 700px;
+    padding: 30px 55px;
+    backdrop-filter: var(--backdrop-blur);
+    background: var(--white-transparent);
+    border-radius: var(--border-radius-skewed);
+    margin: 40px auto;
+    box-shadow: var(--box-shadow);
+}
+
+.DocumentationPage h2 {
+    text-align: center;
+    color: var(--wine-red-dark);
+}
+
+.DocumentationPage h3 {
+    color: var(--wine-hover);
+}
+
+.DocumentationPage p {
+    color: var(--black);
+}
+
+.DocumentationPage li {
+    font-size: 1.13rem;
+    margin: 7px;
+    color: var(--wine-red);
+}
+
+.DocumentationPage li:hover,
+.DocumentationPage li:active {
+    color: var(--wine-hover);
+    text-decoration: underline;
+}
+
+.DocumentationPage a {
+    color: var(--wine-red);
+    padding: 3px 7px;
+    margin-left: 10px;
+}
+
+.DocumentationPage a:hover,
+.DocumentationPage a:hover {
+    color: var(--white);
+    background: var(--wine-hover);
+    border-radius: 15px;
+}
