@@ -1,0 +1,68 @@
+.HelpComponent {
+    --width: clamp(35px, 15vw, 40px);
+
+    position: fixed;
+    width: var(--width);
+    height: var(--width);
+    right: 1vw;
+    top: calc(0.5vh + 25px);
+    z-index: 9998;
+}
+
+.HelpComponentContainer {
+    z-index: 9997;
+    position: fixed;
+    padding: 0;
+    right: 1vw;
+    top: calc(0.5vh + 25px);
+    transition: var(--menu-transition);
+    box-shadow: var(--box-shadow);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    background: var(--white-transparent);
+    border-radius: 30px;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+}
+
+.HelpComponentContent {
+    color: var(--black);
+    cursor: default;
+    z-index: 9997;
+    padding: 15px;
+    width: 50%;
+    min-width: fit-content;
+    min-height: fit-content;
+}
+
+.HelpComponentContent a {
+    color: var(--wine-hover);
+    text-shadow: var(--box-shadow-text);
+}
+
+.HelpComponentContent,
+.HelpComponentContent * {
+    user-select: text;
+}
+
+.ImportantField {
+    color: var(--wine-hover);
+    text-decoration: underline;
+    text-shadow: var(--box-shadow-text);
+    font-size: large;
+    user-select: text;
+}
+
+.HelpDisplayed {
+    width: clamp(250px, 40vw, 600px);
+    height: calc(clamp(350px, 100vh, 550px) - 10vw);
+    overflow: auto;
+}
+
+@media only screen and (max-width: 700px) {
+    .HelpDisplayed {
+        width: 100%;
+        height: calc(clamp(350px, 25vh, 550px) - 10vw);
+    }
+}
