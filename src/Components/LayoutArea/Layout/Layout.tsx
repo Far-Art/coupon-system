@@ -12,6 +12,7 @@ import Footer from "../Footer/Footer";
 import IdleTimerApi from "../../../Services/IdleTimerApi";
 import DarkMode from "../DarkMode/DarkMode";
 import { useAppSelector } from "../../../Redux/Hooks/hooks";
+import HelpComponent from "../../SharedArea/HelpComponent/HelpComponent";
 
 export default function Layout(): JSX.Element {
 
@@ -23,6 +24,7 @@ export default function Layout(): JSX.Element {
 
     return (
         <div onClick={() => IdleTimerApi.clientMadeAction()} className="Layout" color-palette={colorPalette}>
+            <HelpComponent />
             <DarkMode />
             <ToastContainer
                 limit={7}
