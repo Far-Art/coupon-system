@@ -55,6 +55,9 @@ export default function DocumentationPage(): JSX.Element {
 
                 <ul>
                     <li>There are notifications displayed almost for all actions, warnings and errors</li>
+                    <li>On login every client gets token from server, this token grants him access to system features</li>
+                    <li>There is filter button on left side of webpage, you can filter coupons displayed / clients, depends on client type</li>
+                    <li>Filter button will be displayed only if there are content to filter</li>
                     <li>This project uses redux persist, this allows to store state locally on clients device
                         <ul>
                             <li>Redux persist in this project stores clients login information on device and allows to stay logged in after page refresh or even closing the browser</li>
@@ -69,6 +72,7 @@ export default function DocumentationPage(): JSX.Element {
                     <li>This project uses custom reusable react components</li>
                     <li>This project has dark mode toggle</li>
                     <li>This project uses css variables and global classes</li>
+                    <li>This project heavily uses react functional components with hooks</li>
                 </ul>
             </div>
         );
