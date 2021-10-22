@@ -26,6 +26,7 @@ export default function DocumentationPage(): JSX.Element {
                     <h3>Customer</h3>
                     <li>Customer can browse available coupons and add them to cart</li>
                     <li>Customer can purchase coupons present in the cart</li>
+                    <li>Customer cannot purchase same coupon again</li>
                     <li>Customer can access its profile by clicking on person icon</li>
                     <li>In profile page customer can see its info including purchased coupons</li>
                     <br />
@@ -56,6 +57,8 @@ export default function DocumentationPage(): JSX.Element {
                 <h2>Features</h2>
 
                 <ul>
+                    <li>Expired coupons will not be displayed</li>
+                    <li>Coupons with late start date cannot be purchased, but will be displayed as greyed out with proper annotation</li>
                     <li>There are notifications displayed almost for all actions, warnings and errors</li>
                     <li>On login every client gets token from server, this token grants him access to system features</li>
                     <li>There is filter button on left side of webpage, you can filter coupons displayed / clients, depends on client type</li>
