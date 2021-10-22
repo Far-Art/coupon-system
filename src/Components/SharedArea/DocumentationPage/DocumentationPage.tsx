@@ -37,6 +37,8 @@ export default function DocumentationPage(): JSX.Element {
                     <li>Company cannot browse other companies coupons</li>
                     <li>Company can add new coupons to system</li>
                     <li>Company can edit its own coupons</li>
+                    <li>Company can delete its own coupons</li>
+                    <li>Deleting coupon that were purchased by customer, also will delete it from customers possession</li>
                     <br />
 
                     <h3>Admin</h3>
