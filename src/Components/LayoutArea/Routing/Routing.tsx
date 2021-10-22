@@ -11,6 +11,7 @@ import EmptyView from "../../SharedArea/EmptyView/EmptyView";
 import MainView from "../MainView/MainView";
 import ProfileView from "../ProfileView/ProfileView";
 import CreditsPage from "../../SharedArea/CreditsPage/CreditsPage";
+import DocumentationPage from "../../SharedArea/DocumentationPage/DocumentationPage";
 
 export default function Routing(): JSX.Element {
     const client = useAppSelector(state =>
@@ -22,6 +23,7 @@ export default function Routing(): JSX.Element {
             <Switch>
                 <Route path={RouteUrls.HOME} component={MainView} exact />
                 <Route path={"/credits"} component={CreditsPage} exact />
+                <Route path={"/documentation"} component={DocumentationPage} exact />
                 {client !== undefined && <Route path={RouteUrls.PROFILE} component={ProfileView} exact />}
                 {(client === undefined || client?.clientType === ClientType.CUSTOMER) && <Route path={RouteUrls.CART} component={Cart} exact />}
                 {(client as ClientInfoModel)?.active && client?.clientType === ClientType.COMPANY && <Route path={RouteUrls.CREATE_COUPON} component={CreateCouponForm} exact />}
