@@ -4,7 +4,7 @@
     height: 0;
     width: 0;
     overflow: visible;
-    z-index: var(--z-index-ontop);
+    z-index: var(--z-index-4);
 }
 
 .DarkModeButton {
