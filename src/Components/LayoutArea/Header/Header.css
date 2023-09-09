@@ -10,7 +10,7 @@
     vertical-align: middle;
 }
 
-#logo{
+#logo {
     max-width: 70px;
     filter: drop-shadow(var(--box-shadow));
     transition: 2s;
@@ -20,11 +20,25 @@
     font-family: 'Oleo Script Swash Caps', cursive;
     font-weight: 400;
     font-size: 2.7em;
-    margin: 0 20px;
+    margin: 0 0.7em;
     color: var(--text-white);
     text-shadow: var(--box-shadow);
 }
 
 .RotateLogo {
     transform: rotate(-40deg);
+}
+
+@media screen and (max-width: 600px) {
+    #logo {
+        max-width: 2.25em;
+    }
+
+    .Header h1 {
+        font-family: 'Oleo Script Swash Caps', cursive;
+        font-weight: 400;
+        font-size: 1.5em;
+        color: var(--text-white);
+        text-shadow: var(--box-shadow);
+    }
 }

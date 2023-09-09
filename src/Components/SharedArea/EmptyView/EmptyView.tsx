@@ -17,7 +17,7 @@ export default function EmptyView(props: EmptyViewProps): JSX.Element {
                         height="334px"
                         alt="Tom dancing"
                     />
-                    
+
                 </>
             ) : (
                 <>
@@ -28,7 +28,6 @@ export default function EmptyView(props: EmptyViewProps): JSX.Element {
                         width="480px"
                         height="198px"
                     />
-                   
                 </>
             )}
         </div>

@@ -1,7 +1,7 @@
-class Globals{
+class Globals {
 }
 
-class DevelopmentGlobals extends Globals{
+class DevelopmentGlobals extends Globals {
     public urls = {
         pushdata: "http://localhost:8080/initData/",
         signup: "http://localhost:8080/register",
@@ -14,11 +14,11 @@ class DevelopmentGlobals extends Globals{
         coupons: "http://localhost:8080/coupons",
         couponImage: "http://localhost:8080/coupons/images",
         categories: "http://localhost:8080/coupons/categories",
-        purchase : "http://localhost:8080/customers/purchase"
+        purchase: "http://localhost:8080/customers/purchase"
     }
 }
 
-class ProductionGlobals extends Globals{
+class ProductionGlobals extends Globals {
     public urls = {
         pushdata: "/initData/",
         signup: "/register",
@@ -31,7 +31,7 @@ class ProductionGlobals extends Globals{
         coupons: "/coupons",
         couponImage: "/coupons/images",
         categories: "/coupons/categories",
-        purchase : "/customers/purchase"
+        purchase: "/customers/purchase"
     }
 }
 

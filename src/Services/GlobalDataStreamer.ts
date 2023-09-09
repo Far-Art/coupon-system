@@ -1,20 +1,27 @@
 import axios from "axios";
-import { CompanyModel } from "../Models/CompanyModel";
-import { CouponModel } from "../Models/CouponModel";
-import { CustomerModel } from "../Models/CustomerModel";
-import { deleteCompany, fetchAllCompanies, updateCompany } from "../Redux/Actions/CompanyAction";
-import { deleteCoupon, dismissAllCoupons, fetchAllCoupons, fetchCouponsByCompany, fetchCouponsByCustomer, updateCoupon } from "../Redux/Actions/CouponAction";
-import { deleteCustomer, fetchAllCustomers, updateCustomer } from "../Redux/Actions/CustomerAction";
-import { store } from "../Redux/Store/Store";
+import {CompanyModel} from "../Models/CompanyModel";
+import {CouponModel} from "../Models/CouponModel";
+import {CustomerModel} from "../Models/CustomerModel";
+import {deleteCompany, fetchAllCompanies, updateCompany} from "../Redux/Actions/CompanyAction";
+import {
+    deleteCoupon,
+    dismissAllCoupons,
+    fetchAllCoupons,
+    fetchCouponsByCompany,
+    fetchCouponsByCustomer,
+    updateCoupon
+} from "../Redux/Actions/CouponAction";
+import {deleteCustomer, fetchAllCustomers, updateCustomer} from "../Redux/Actions/CustomerAction";
+import {store} from "../Redux/Store/Store";
 import globals from "./Globals";
-import { syncCategories } from "../Redux/Actions/CategoriesAction";
-import { toast } from "react-toastify";
-import { LoginRequestModel } from "../Models/LoginRequestModel";
-import { LoginResponseModel } from "../Models/LoginResponseModel";
-import { loginAction, logoutAction, requestInfo } from "../Redux/Actions/ClientAction";
-import { ClientInfoModel } from "../Models/ClientInfoModel";
-import { clearCart } from "../Redux/Actions/CartAction";
-import { SignupModel } from "../Models/SignupModel";
+import {syncCategories} from "../Redux/Actions/CategoriesAction";
+import {toast} from "react-toastify";
+import {LoginRequestModel} from "../Models/LoginRequestModel";
+import {LoginResponseModel} from "../Models/LoginResponseModel";
+import {loginAction, logoutAction, requestInfo} from "../Redux/Actions/ClientAction";
+import {ClientInfoModel} from "../Models/ClientInfoModel";
+import {clearCart} from "../Redux/Actions/CartAction";
+import {SignupModel} from "../Models/SignupModel";
 
 // static class for data streams
 export default class GlobalDataStreamer {
@@ -301,7 +308,7 @@ export default class GlobalDataStreamer {
 
     public static async fetchCouponImage(imageName: string | number) {
         this.emitToast("CouponImageFetching", "Fetching image...");
-        return axios.get(globals.urls.couponImage + `/${imageName}`, { responseType: "blob" })
+        return axios.get(globals.urls.couponImage + `/${imageName}`, {responseType: "blob"})
             .then((response) => {
                 this.successToast("CouponImageFetching", "Fetch successful");
                 return response;
