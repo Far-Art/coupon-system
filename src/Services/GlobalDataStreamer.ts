@@ -26,6 +26,8 @@ import {SignupModel} from "../Models/SignupModel";
 // static class for data streams
 export default class GlobalDataStreamer {
 
+    public static retryCounter = 0;
+
     /*                      ADMIN METHODS 
     ****************************************************************/
     public static async fetchAllCustomers() {
@@ -331,6 +333,10 @@ export default class GlobalDataStreamer {
             })
             .catch((error) => {
                 this.errorToast("allCoupons", error);
+                if (GlobalDataStreamer.retryCounter < 10) {
+                    GlobalDataStreamer.retryCounter++;
+                    setTimeout(() => GlobalDataStreamer.fetchAllCoupons(), 200);
+                }
             });
     }
 
