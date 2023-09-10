@@ -11,7 +11,7 @@
     align-self: center;
 }
 
-.NavBar > * *{
+.NavBar > * * {
     align-self: baseline;
 }
 
@@ -26,4 +26,10 @@
 
 .NavBar > span {
     font-weight: 500;
+}
+
+@media screen and (max-width: 600px) {
+    .NavBar > p {
+        font-size: smaller;
+    }
 }

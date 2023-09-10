@@ -1,6 +1,6 @@
 .DarkMode {
-	position: sticky;
-    top: 10px;
+    position: sticky;
+    top: 0.25em;
     height: 0;
     width: 0;
     overflow: visible;
@@ -9,28 +9,27 @@
 
 .DarkModeButton {
     background: var(--white);
-    padding: 5px;
-    width: 45px;
-    height: 90px;
+    padding: 0.2em;
+    width: 2em;
+    height: 4em;
     overflow: hidden;
     border: none;
-    border-radius: 50px;
+    border-radius: 2em;
     box-shadow: var(--box-shadow);
 }
 
 .DarkModeIconContainer {
-    transform: translateY(-45px);
+    transform: translateY(-2em);
     transition: 0.5s;
 }
 
 .DarkModeIcons {
-    padding: 3px;
+    padding: 2px;
     width: 100% !important;
     height: 100% !important;
-    
 }
 
-.DarkModeToggled{
+.DarkModeToggled {
     transform: translateY(0px);
 }
 
@@ -40,7 +39,23 @@
     transition: 0.4s !important;
 }
 
-.LightIconDisabled{
+.LightIconDisabled {
     opacity: 0;
     transition: 0.4s !important;
+}
+
+@media screen and (max-width: 600px) {
+    .DarkModeButton {
+        width: 1.5em;
+        height: 3em;
+    }
+
+    .LightIcon {
+        margin-top: 1em;
+    }
+
+    .DarkModeToggled {
+        transform: translateY(0.8em);
+    }
+
 }

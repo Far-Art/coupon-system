@@ -1,5 +1,5 @@
 .Header_Background {
-    padding: 25px;
+    padding: 1em;
     text-align: center;
     background: var(--background-image-logo);
     background-size: auto 80%;
@@ -11,7 +11,7 @@
 }
 
 #logo {
-    max-width: 70px;
+    max-width: 4em;
     filter: drop-shadow(var(--box-shadow));
     transition: 2s;
 }

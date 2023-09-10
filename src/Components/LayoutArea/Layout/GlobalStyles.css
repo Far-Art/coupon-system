@@ -140,10 +140,8 @@
     /* https://www.patterncooler.com/#a103b103c12Cd12Ce0f0g64h0C303CFB5989CE144BE21A56E0386AiB5j0k64l1F4m1F4 */
     --background-image-logo: url("../../../Assets/Images/dark/HalfCirclesBG3.png")
         repeat;
-    /* --background-image-logo: url("../../../Assets/Images/DropletsBG3.png") repeat;  */
     --background-image-cards: url("../../../Assets/Images/dark/HalfCirclesBG3.png")
         repeat;
-    /* --background-image-cards: url("../../../Assets/Images/DropletsBG3.png") repeat;  */
     --background-image-login: url("../../../Assets/Images/dark/LoginBG.png")
         center;
     --background-image-register: url("../../../Assets/Images/dark/RegisterBG.png")
@@ -403,4 +401,16 @@
 .Toast__button:active {
     box-shadow: var(--box-shadow-button-pressed);
     transition: var(--transition);
+}
+
+@media screen and (max-width: 600px){
+    .APP__BUTTON {
+        /*max-width: 4em;*/
+        /*max-height: 4em;*/
+        /*width: 4em;*/
+        /*font-size: 0.8em;*/
+        /*font-weight: 500;*/
+        /*padding: 1.5em;*/
+        /*margin: 0;*/
+    }
 }
