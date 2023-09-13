@@ -18,7 +18,7 @@ export default function CompaniesFilter(props: CompaniesFilterProps): JSX.Elemen
     return (
         <div className="CompaniesFilter">
             <p>Companies </p>
-            {companies.map(c => <CheckBox key={c} filterKey={FilterType.COMPANIES} filterValue={c} />)}
+            {companies.map(company => <CheckBox key={company} filterKey={FilterType.COMPANIES} filterValue={company} />)}
         </div>
     );
 }

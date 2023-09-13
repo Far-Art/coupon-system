@@ -18,7 +18,7 @@ export default function CategoriesFilter(props: CategoriesFilterProps): JSX.Elem
     return (
         <div className="CategoriesFilter">
             <p>Categories</p>
-            {categories.map(c => <CheckBox key={c} filterKey={FilterType.CATEGORIES} filterValue={c} />)}
+            {categories.map(category => <CheckBox key={category} filterKey={FilterType.CATEGORIES} filterValue={category} />)}
         </div>
     );
 }

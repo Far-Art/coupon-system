@@ -39,7 +39,7 @@ export function FiltersReducer(currentState: FiltersAppState = new FiltersAppSta
                     newState.priceList = 0;
                     break;
                 case FilterType.COMPANIES:
-                    newState.companiesList = [];
+                    newState.companiesList = newState.companiesList.filter(c => c !== action.filterValue);
                     break;
                 case FilterType.TEXT:
                     newState.freeText = "";
