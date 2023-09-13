@@ -27,7 +27,7 @@ export default function PriceFilter(props: PriceFilterProps): JSX.Element {
         setValue(props.maxNumber);
     }, [props.maxNumber])
 
-    function handleDispatchValue(event: React.MouseEvent<HTMLInputElement>) {
+    function handleDispatchValue(event: React.MouseEvent<HTMLInputElement> | React.TouchEvent<HTMLInputElement>) {
         store.dispatch(addFilter(FilterType.PRICE, evalNumber(event.currentTarget.value)));
     }
 
@@ -46,7 +46,14 @@ export default function PriceFilter(props: PriceFilterProps): JSX.Element {
         <div className="PriceFilter">
             <p>Price</p>
             <div className="PriceFilterContainer">
-                <input className="PriceFilterRange" onChange={(event) => handleCHange(event)} value={value} onMouseUp={(event) => handleDispatchValue(event)} min={0} max={evalNumber(props.maxNumber) + 1} type="range"></input>
+                <input className="PriceFilterRange"
+                       onChange={(event) => handleCHange(event)}
+                       value={value}
+                       onTouchEnd={(event) => handleDispatchValue(event)}
+                       onMouseUp={(event) => handleDispatchValue(event)}
+                       min={0}
+                       max={evalNumber(props.maxNumber) + 1}
+                       type="range"></input>
                 <span>{value === 0 ? "Free" : value}</span>
             </div>
         </div>

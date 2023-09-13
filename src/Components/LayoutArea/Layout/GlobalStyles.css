@@ -39,22 +39,22 @@
 
     /* SHADOW */
     --box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.06),
-        0 4px 4px rgba(0, 0, 0, 0.06), 0 8px 8px rgba(0, 0, 0, 0.06),
-        0 16px 16px rgba(0, 0, 0, 0.06), 0 32px 32px rgba(0, 0, 0, 0.04);
+    0 4px 4px rgba(0, 0, 0, 0.06), 0 8px 8px rgba(0, 0, 0, 0.06),
+    0 16px 16px rgba(0, 0, 0, 0.06), 0 32px 32px rgba(0, 0, 0, 0.04);
     --box-shadow-light: 0 1px 1px rgba(0, 0, 0, 0.03),
-        0 2px 2px rgba(0, 0, 0, 0.03), 0 4px 4px rgba(0, 0, 0, 0.02),
-        0 8px 8px rgba(0, 0, 0, 0.02), 0 16px 16px rgba(0, 0, 0, 0.01),
-        0 32px 32px rgba(0, 0, 0, 0.01);
+    0 2px 2px rgba(0, 0, 0, 0.03), 0 4px 4px rgba(0, 0, 0, 0.02),
+    0 8px 8px rgba(0, 0, 0, 0.02), 0 16px 16px rgba(0, 0, 0, 0.01),
+    0 32px 32px rgba(0, 0, 0, 0.01);
     --box-shadow-card: 0 1px 1px rgba(0, 0, 0, 0.12),
-        2px 2px 2px rgba(0, 0, 0, 0.12), 4px 6px 6px rgba(0, 0, 0, 0.12),
-        6px 10px 10px rgba(0, 0, 0, 0.12), 8px 16px 16px rgba(0, 0, 0, 0.12),
-        16px 32px 32px rgba(0, 0, 0, 0.12);
+    2px 2px 2px rgba(0, 0, 0, 0.12), 4px 6px 6px rgba(0, 0, 0, 0.12),
+    6px 10px 10px rgba(0, 0, 0, 0.12), 8px 16px 16px rgba(0, 0, 0, 0.12),
+    16px 32px 32px rgba(0, 0, 0, 0.12);
     --box-shadow-text: 1px 4px 12px rgba(0, 0, 0, 0.3);
     --box-shadow-focus: 0 0 20px rgba(0, 0, 0, 0.4);
     --box-shadow-button: 0 1px 2px rgba(0, 0, 0, 0.03),
-        1px 2px 4px rgba(0, 0, 0, 0.03), 2px 4px 8px rgba(0, 0, 0, 0.04),
-        2px 8px 16px rgba(0, 0, 0, 0.04), 2px 16px 32px rgba(0, 0, 0, 0.05),
-        2px 32px 64px rgba(0, 0, 0, 0.05);
+    1px 2px 4px rgba(0, 0, 0, 0.03), 2px 4px 8px rgba(0, 0, 0, 0.04),
+    2px 8px 16px rgba(0, 0, 0, 0.04), 2px 16px 32px rgba(0, 0, 0, 0.05),
+    2px 32px 64px rgba(0, 0, 0, 0.05);
     --box-shadow-button-pressed: inset 2px 5px 7px rgba(0, 0, 0, 0.4);
 
     /* BORDERS */
@@ -64,16 +64,11 @@
     /* BACKGROUND IMAGES */
     --background-image-main: url("../../../Assets/Images/normal/HalfCirclesBG2.png");
     --background-image-back: url("../../../Assets/Images/normal/IconBG.png");
-    --background-image-logo: url("../../../Assets/Images/normal/HalfCirclesBG3.png")
-        repeat;
-    --background-image-cards: url("../../../Assets/Images/normal/HalfCirclesBG3.png")
-        repeat;
-    --background-image-login: url("../../../Assets/Images/normal/LoginBG.png")
-        center;
-    --background-image-register: url("../../../Assets/Images/normal/RegisterBG.png")
-        center;
-    --background-image-add: url("../../../Assets/Images/normal/AddItemBG.png")
-        center;
+    --background-image-logo: url("../../../Assets/Images/normal/HalfCirclesBG3.png") repeat;
+    --background-image-cards: url("../../../Assets/Images/normal/HalfCirclesBG3.png") repeat;
+    --background-image-login: url("../../../Assets/Images/normal/LoginBG.png") center;
+    --background-image-register: url("../../../Assets/Images/normal/RegisterBG.png") center;
+    --background-image-add: url("../../../Assets/Images/normal/AddItemBG.png") center;
 
     /* EFFECTS */
     --backdrop-blur: blur(4px);
@@ -138,16 +133,11 @@
     --background-image-main: url("../../../Assets/Images/dark/HalfCirclesBG2.png");
     --background-image-back: url("../../../Assets/Images/dark/IconBG.png");
     /* https://www.patterncooler.com/#a103b103c12Cd12Ce0f0g64h0C303CFB5989CE144BE21A56E0386AiB5j0k64l1F4m1F4 */
-    --background-image-logo: url("../../../Assets/Images/dark/HalfCirclesBG3.png")
-        repeat;
-    --background-image-cards: url("../../../Assets/Images/dark/HalfCirclesBG3.png")
-        repeat;
-    --background-image-login: url("../../../Assets/Images/dark/LoginBG.png")
-        center;
-    --background-image-register: url("../../../Assets/Images/dark/RegisterBG.png")
-        center;
-    --background-image-add: url("../../../Assets/Images/dark/AddItemBG.png")
-        center;
+    --background-image-logo: url("../../../Assets/Images/dark/HalfCirclesBG3.png") repeat;
+    --background-image-cards: url("../../../Assets/Images/dark/HalfCirclesBG3.png") repeat;
+    --background-image-login: url("../../../Assets/Images/dark/LoginBG.png") center;
+    --background-image-register: url("../../../Assets/Images/dark/RegisterBG.png") center;
+    --background-image-add: url("../../../Assets/Images/dark/AddItemBG.png") center;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -169,11 +159,6 @@
     max-width: 600px;
     margin: 20px auto;
     backdrop-filter: var(--backdrop-blur);
-}
-
-.FORM a:hover {
-    text-decoration: underline;
-    cursor: pointer;
 }
 
 .FORM .Error::before {
@@ -203,12 +188,6 @@
     transition: var(--transition);
 }
 
-.FIELD:hover,
-.LINK:hover,
-.SELECT:hover {
-    background: var(--white);
-}
-
 .FIELD:focus-visible,
 .LINK:focus-visible,
 .SELECT:focus-visible {
@@ -221,11 +200,6 @@
 .SELECT::placeholder {
     color: var(--gray-light);
     transition: var(--transition);
-}
-
-.FIELD:hover::placeholder,
-.SELECT:hover::placeholder {
-    color: var(--gray);
 }
 
 .SELECT {
@@ -275,10 +249,6 @@
     transition: var(--transition);
 }
 
-.APP__BUTTON:hover {
-    color: var(--white);
-    background: var(--wine-red);
-}
 
 .APP__BUTTON:active {
     box-shadow: var(--box-shadow-button-pressed);
@@ -299,11 +269,6 @@
     box-shadow: var(--box-shadow-button);
 }
 
-.NAV__BUTTON:hover {
-    color: var(--white);
-    background: var(--wine-red);
-    transition: var(--transition);
-}
 
 .NAV__BUTTON:active {
     box-shadow: var(--box-shadow-button-pressed);
@@ -316,10 +281,6 @@
     color: var(--gray);
 }
 
-.DISABLED__BUTTON:hover {
-    background: var(--gray-light);
-    color: var(--gray);
-}
 
 .BUTTON__AS_LINK {
     background: none;
@@ -328,9 +289,6 @@
     cursor: pointer;
 }
 
-.BUTTON__AS_LINK:hover {
-    text-decoration: underline;
-}
 
 .BUTTON__AS_LINK:active {
     text-decoration: underline;
@@ -353,6 +311,7 @@
     padding: 0;
     box-shadow: var(--box-shadow);
 }
+
 .Toastify__close-button {
     margin-top: 3px;
     margin-right: 6px;
@@ -393,17 +352,12 @@
     transition: var(--transition);
 }
 
-.Toast__button:hover {
-    color: var(--white);
-    background: var(--wine-red);
-}
-
 .Toast__button:active {
     box-shadow: var(--box-shadow-button-pressed);
     transition: var(--transition);
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
     .APP__BUTTON {
         /*max-width: 4em;*/
         /*max-height: 4em;*/
@@ -412,5 +366,49 @@
         /*font-weight: 500;*/
         /*padding: 1.5em;*/
         /*margin: 0;*/
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    .FORM a:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .FIELD:hover,
+    .LINK:hover,
+    .SELECT:hover {
+        background: var(--white);
+    }
+
+    .FIELD:hover::placeholder,
+    .SELECT:hover::placeholder {
+        color: var(--gray);
+    }
+
+    .APP__BUTTON:hover {
+        color: var(--white);
+        background: var(--wine-red);
+    }
+
+    .NAV__BUTTON:hover {
+        color: var(--white);
+        background: var(--wine-red);
+        transition: var(--transition);
+    }
+
+    .DISABLED__BUTTON:hover {
+        background: var(--gray-light);
+        color: var(--gray);
+    }
+
+    .BUTTON__AS_LINK:hover {
+        text-decoration: underline;
+    }
+
+    .Toast__button:hover {
+        color: var(--white);
+        background: var(--wine-red);
     }
 }
