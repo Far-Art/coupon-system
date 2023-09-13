@@ -1,11 +1,11 @@
 .HelpComponent {
-    --width: clamp(35px, 15vw, 40px);
+    --width: clamp(1em, 5vw, 3em);
 
     position: fixed;
     width: var(--width);
     height: var(--width);
     right: 1vw;
-    top: calc(0.5vh + 25px);
+    top: calc(0.5vh + 1em);
     z-index: 9998;
 }
 
@@ -60,9 +60,19 @@
     overflow: auto;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 600px) {
+    .HelpComponent {
+        --width: clamp(1em, 10vw, 3em);
+
+        top: calc(0.5vh + 0.5em);
+    }
+
     .HelpDisplayed {
         width: 100%;
         height: calc(clamp(350px, 25vh, 550px) - 10vw);
+    }
+
+    .HelpComponentContent {
+        font-size: 0.75em;
     }
 }

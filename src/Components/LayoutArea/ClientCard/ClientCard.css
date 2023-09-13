@@ -11,7 +11,7 @@
     text-align: center;
 }
 
-.ClientCardTitle{
+.ClientCardTitle {
     color: var(--wine-red);
     font-weight: 900;
     font-size: 150%;
@@ -35,25 +35,25 @@
     padding-top: 40px;
 }
 
-.ClientCardTable, .ClientCardTable tr{
+.ClientCardTable, .ClientCardTable tr {
     display: flex;
 }
 
-.ClientCardTable thead{
+.ClientCardTable thead {
     color: var(--white);
     background: var(--background-image-main);
 }
 
-.ClientCardTable thead td{
+.ClientCardTable thead td {
     color: var(--text-white);
 }
 
-.ClientCardTable thead{
+.ClientCardTable thead {
     font-weight: 600;
     text-transform: uppercase;
 }
 
-.ClientCardTable tbody td{
+.ClientCardTable tbody td {
     color: var(--text-black);
     -webkit-user-select: text;
     -khtml-user-select: text;
@@ -62,12 +62,19 @@
     user-select: text;
 }
 
-.ClientCardTable tr{
+.ClientCardTable tr {
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.ClientCardTable td:hover, .ClientCardTable td:active{
+
+.ClientCardTable td:hover, .ClientCardTable td:active {
     filter: blur(0) !important;
     transition: all .4s linear;
+}
+
+@media screen and (max-width: 600px) {
+    .ClientCardTitle {
+        font-size: 1em;
+    }
 }

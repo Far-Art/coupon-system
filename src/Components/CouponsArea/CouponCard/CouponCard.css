@@ -38,7 +38,7 @@
     top: 25px;
     padding: 5px;
     background-image: linear-gradient(90deg, var(--wine-red-dark), var(--wine-hover), var(--wine-red-dark));
-    transform: rotate(-40deg) translate3d(0,0,0);
+    transform: rotate(-40deg) translate3d(0, 0, 0);
     z-index: var(--z-index-2);
     border-top: 2px dashed var(--white-transparent);
     border-bottom: 2px dashed var(--white-transparent);
@@ -58,12 +58,12 @@
     transform: translateY(-100px);
 }
 
-.CouponCardData:hover .Description, .CouponCardData:hover .EndDate{
+.CouponCardData:hover .Description, .CouponCardData:hover .EndDate {
     top: -100px;
     opacity: 1;
 }
 
-.CouponCardData:hover .Title, .CouponCardData:hover .Category, .CouponCardData:hover .Company{
+.CouponCardData:hover .Title, .CouponCardData:hover .Category, .CouponCardData:hover .Company {
     opacity: 0;
 }
 
@@ -132,7 +132,7 @@
     color: var(--text-white);
 }
 
-.CouponCardState{
+.CouponCardState {
     height: 0;
     width: 0;
     position: absolute;
@@ -176,7 +176,7 @@
     0% {
         transform: scale(100%);
     }
-    
+
     100% {
         transform: scale(110%);
     }
@@ -186,8 +186,60 @@
     0% {
         transform: scale(110%);
     }
-    
+
     100% {
         transform: scale(100%);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .CouponCard {
+        height: 15em;
+        width: 15em;
+        margin: 0 0 0 0.5em;
+        border-radius: 4em;
+    }
+
+    .CouponCardData {
+        border-radius: 0;
+    }
+
+    .Price_tag {
+        width: 80%;
+        height: 2em;
+        left: -3em;
+        top: 1em;
+        padding: 0;
+    }
+
+    .Price_tag > * {
+        font-size: 1.1em;
+        font-weight: 600;
+    }
+
+    .Text_container > .Title {
+        transform: translateY(-8em);
+        text-shadow: 0 0 1px black;
+    }
+
+    .Text_container > .Title,
+    .Text_container > .Company,
+    .Text_container > .Category,
+    .Text_container > .Description,
+    .Text_container > .EndDate {
+        font-size: 0.75em;
+    }
+
+    .CouponCardData:hover > .Text_container {
+        transform: translateY(-7em);
+    }
+
+    .ComingSoon_tag {
+        height: 2.7em;
+        left: -7em;
+    }
+
+    .ComingSoon_tag > * {
+        font-size: 1em;
     }
 }

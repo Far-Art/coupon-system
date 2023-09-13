@@ -9,11 +9,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    padding: 10px;
+    justify-content: center;
+    padding: 0.5em;
     transition: all 1s linear;
     min-width: 100%;
-    padding-right: 80px;
 }
 
 .CouponsView {
@@ -47,7 +46,7 @@
 }
 
 .CouponsView h1 {
-	color: var(--wine-red);
+    color: var(--wine-red);
 }
 
 .Coupons__table {
@@ -63,7 +62,7 @@
     max-width: 1800px;
 }
 
-.Coupons__table > thead{
+.Coupons__table > thead {
     background: var(--background-image-main);
     background-size: auto 160%;
     color: var(--white);
@@ -72,17 +71,17 @@
     text-transform: capitalize;
 }
 
-.Coupons__table > tbody tr{
+.Coupons__table > tbody tr {
     background: var(--gray-light-odd);
     width: 100%;
     border: none;
 }
 
-.Coupons__table tr:nth-child(even){
+.Coupons__table tr:nth-child(even) {
     background: var(--gray-light-even);
 }
 
-.Coupons__table > tbody tr:hover{
+.Coupons__table > tbody tr:hover {
     background: var(--wine-red-transparent) !important;
     mix-blend-mode: hard-light;
     color: var(--white);
@@ -90,12 +89,11 @@
     box-shadow: var(--box-shadow-focus);
 }
 
-.Coupons__table .table__center_text{
+.Coupons__table .table__center_text {
     text-align: center;
 }
 
-.Coupons__table th, td{
-    border: 1px solid rgba(121, 116, 116, 0.3);
+.Coupons__table th, td {
     height: 50px;
     padding: 8px 15px;
     border: none;
@@ -103,6 +101,35 @@
 
 .Coupon__title {
     font-weight: bold;
-    font-style:oblique;
+    font-style: oblique;
     margin: 0 8px;
+}
+
+@media screen and (max-width: 600px) {
+    .CouponsCounter {
+        padding: 0.5em;
+        margin: 1em 0;
+        transform: translateX(-2em);
+    }
+
+    .Coupons__table {
+        /*margin: 0;*/
+        /*table-layout: auto;*/
+        /*width: 10%;*/
+        /*max-width: 600px;*/
+        /*-webkit-transform: rotate(-270deg);*/
+        /*-moz-transform: rotate(-270deg);*/
+        /*-o-transform: rotate(-270deg);*/
+        /*transform: rotate(-270deg);*/
+    }
+
+    .Coupons__table th, td {
+        /*height: 1em;*/
+        /*padding: 0.5em;*/
+        /*-webkit-transform: rotate(270deg);*/
+        /*-moz-transform: rotate(270deg);*/
+        /*-o-transform: rotate(270deg);*/
+        /*transform: rotate(270deg);*/
+        /*writing-mode: lr-tb;*/
+    }
 }

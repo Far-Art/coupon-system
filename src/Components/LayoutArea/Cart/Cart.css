@@ -32,3 +32,13 @@
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow-button);
 }
+
+@media screen and (max-width: 600px) {
+    .CartInfoField {
+        max-width: 10em;
+        max-height: 5em;
+        font-size: 0.7em;
+        padding: 1.4em 0.5em;
+        margin: 0 0.5em;
+    }
+}
